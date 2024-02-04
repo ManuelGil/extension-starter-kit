@@ -1,5 +1,22 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"type": "object",
-	"properties": {}
+	"properties": {
+		"extension-starter-kit.files.includes": {
+			"type": "array",
+			"default": [
+				"**/*"
+			],
+			"scope": "resource",
+			"description": "Glob patterns to include in the package. The default is all files."
+		},
+		"extension-starter-kit.files.excludes": {
+			"type": "array",
+			"default": [
+				"**/node_modules/**"
+			],
+			"scope": "resource",
+			"description": "Glob patterns to exclude from the package. The default is node_modules."
+		}
+	}
 }

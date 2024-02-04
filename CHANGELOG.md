@@ -25,6 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add number helper to format numbers
 - Add security helper to escape HTML and JavaScript
 - Add text helper to format strings
+- Add `@types/minimatch` to `devDependencies` to fix TypeScript error
+- Add definition of constants for the extension
+- Add class configuration to define the extension settings
+- Add JSON schema for settings validation in `package.json` and `settings.schema.json`
 
 ### Changed
 
