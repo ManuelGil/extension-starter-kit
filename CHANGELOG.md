@@ -22,3 +22,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update dependencies to latest versions and fix security vulnerabilities
 - Update test cases to use lastest version of `glob` and `mocha`
+- Update `package.json` to use `eslint` and `prettier` for code linting and formatting
+- Improve folder structure and file naming for better organization and readability
