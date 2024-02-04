@@ -1,23 +1,87 @@
 {
-  "name": "extension-starter-kit",
-	"displayName": "extension-starter-kit",
-	"description": "",
-	"version": "0.0.1",
+	"name": "extension-starter-kit",
+	"displayName": "MyExtension",
+	"description": "My First VS Code Extension",
+	"version": "1.0.0",
+	"preview": true,
+	"icon": "icon.png",
+	"galleryBanner": {
+		"color": "#eff1f3",
+		"theme": "dark"
+	},
+	"pricing": "Free",
+	"license": "MIT",
+	"publisher": "imgildev",
+	"author": {
+		"name": "Manuel Gil",
+		"email": "support@imgil.dev",
+		"url": "https://imgil.dev/"
+	},
+	"sponsor": {
+		"url": "https://github.com/sponsors/manuelgil"
+	},
 	"engines": {
-		"vscode": "^1.46.0"
+		"vscode": "^1.86.0"
 	},
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"extension",
+		"starter",
+		"kit",
+		"vscode"
+	],
+	"homepage": "https://github.com/ManuelGil/extension-starter-kit",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ManuelGil/extension-starter-kit"
+	},
+	"bugs": {
+		"url": "https://github.com/ManuelGil/extension-starter-kit/issues"
+	},
 	"activationEvents": [
-        "onCommand:extension-starter-kit.helloWorld"
+		"onCommand:extension-starter-kit.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "Extension name",
+			"properties": {}
+		},
 		"commands": [
 			{
 				"command": "extension-starter-kit.helloWorld",
-				"title": "Hello World"
+				"title": "Hello World",
+				"category": "Extension name"
+			}
+		],
+		"submenus": [
+			{
+				"id": "extension.submenu",
+				"label": "Extension name"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"submenu": "extension.submenu",
+					"group": "2_workspace",
+					"when": "explorerViewletFocus && explorerResourceIsFolder && !explorerResourceIsRoot"
+				}
+			],
+			"extension.submenu": [
+				{
+					"command": "extension-starter-kit.helloWorld",
+					"alt": "Hello World",
+					"group": "extension-starter-kit@1"
+				}
+			]
+		},
+		"jsonValidation": [
+			{
+				"fileMatch": ".vscode/settings.json",
+				"url": "./schemas/config.schema.json"
 			}
 		]
 	},
@@ -27,19 +91,29 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"test": "node ./out/test/runTest.js",
+		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.46.0",
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.4",
-		"@types/node": "^12.11.7",
-		"eslint": "^7.19.0",
-		"@typescript-eslint/eslint-plugin": "^4.14.1",
-		"@typescript-eslint/parser": "^4.14.1",
-		"glob": "^7.1.6",
-		"mocha": "^8.2.1",
-		"typescript": "^4.1.3",
+		"@commitlint/cli": "^18.6.0",
+		"@commitlint/config-conventional": "^18.6.0",
+		"@types/glob": "^8.1.0",
+		"@types/mocha": "^10.0.6",
+		"@types/node": "^20.11.16",
+		"@types/vscode": "^1.86.0",
+		"@typescript-eslint/eslint-plugin": "^6.20.0",
+		"@typescript-eslint/parser": "^6.20.0",
+		"eslint": "^8.56.0",
+		"eslint-config-standard-with-typescript": "^43.0.1",
+		"eslint-plugin-import": "^2.29.1",
+		"eslint-plugin-n": "^16.6.2",
+		"eslint-plugin-promise": "^6.1.1",
+		"glob": "^10.3.10",
+		"husky": "^9.0.10",
+		"lint-staged": "^15.2.1",
+		"mocha": "^10.2.0",
+		"prettier": "3.2.5",
+		"typescript": "^5.3.3",
 		"vscode-test": "^1.5.0"
 	}
 }
