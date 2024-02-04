@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add new JSON schema file for settings validation in `schemas/settings.schema.json` and reference it in `package.json`
 - Add `CONTRIBUTING.md` file to define how to contribute to the project
 - Add `CODE_OF_CONDUCT.md` file to define the code of conduct for the project
+- Add command helper to execute commands in the terminal
+- Add date helper to format dates
+- Add dialog helper to show information, warning and error messages
+- Add filesytem helper to read and write files
+- Add inflector helper to convert strings to different cases
+- Add number helper to format numbers
+- Add security helper to escape HTML and JavaScript
+- Add text helper to format strings
 
 ### Changed
 
