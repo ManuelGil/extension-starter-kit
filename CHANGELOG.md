@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-02-05
+
 ### Added
 
 - Add `eslint` and `prettier` for code linting and formatting
@@ -42,3 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix file creation issue when creating a new file
+
+[unreleased]: https://github.com/ManuelGil/vscode-nextjs-generator/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/ManuelGil/vscode-nextjs-generator/releases/tag/v1.0.0
