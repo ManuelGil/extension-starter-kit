@@ -26,7 +26,7 @@ export class Config {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.include);
    */
-  include: string[];
+  public include: string[];
 
   /**
    * The files to exclude.
@@ -37,12 +37,18 @@ export class Config {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.exclude);
    */
-  exclude: string[];
+  public exclude: string[];
+
+  // -----------------------------------------------------------------
+  // Constructor
+  // -----------------------------------------------------------------
 
   /**
    * Constructor for the Config class.
    *
    * @param {WorkspaceConfiguration} config - The workspace configuration
+   * @public
+   * @memberof Config
    */
   constructor(config: WorkspaceConfiguration) {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;

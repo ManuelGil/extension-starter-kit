@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add definition of constants for the extension
 - Add class configuration to define the extension settings
 - Add JSON schema for settings validation in `package.json` and `settings.schema.json`
+- Add an `ExampleController` to handle commands and menus
 
 ### Changed
 
@@ -36,3 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update test cases to use lastest version of `glob` and `mocha`
 - Update `package.json` to use `eslint` and `prettier` for code linting and formatting
 - Improve folder structure and file naming for better organization and readability
+- Implement `ExampleController` to handle commands and menus in `extension.ts`
+
+### Fixed
+
+- Fix file creation issue when creating a new file

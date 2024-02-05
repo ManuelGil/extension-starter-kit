@@ -41,7 +41,8 @@
 		"url": "https://github.com/ManuelGil/extension-starter-kit/issues"
 	},
 	"activationEvents": [
-		"onCommand:extension-starter-kit.helloWorld"
+		"onCommand:extension-starter-kit.helloWorld",
+		"onCommand:extension-starter-kit.getFilesInFolder"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -71,6 +72,11 @@
 				"command": "extension-starter-kit.helloWorld",
 				"title": "Hello World",
 				"category": "Extension name"
+			},
+			{
+				"command": "extension-starter-kit.getFilesInFolder",
+				"title": "Get Files in Folder",
+				"category": "Extension name"
 			}
 		],
 		"submenus": [
@@ -89,8 +95,8 @@
 			],
 			"extension.submenu": [
 				{
-					"command": "extension-starter-kit.helloWorld",
-					"alt": "Hello World",
+					"command": "extension-starter-kit.getFilesInFolder",
+					"alt": "Get Files in Folder",
 					"group": "extension-starter-kit@1"
 				}
 			]

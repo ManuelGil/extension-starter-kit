@@ -1,5 +1,5 @@
-import { access, open, writeFileSync } from 'fs';
-import { join } from 'path';
+import { access, existsSync, mkdirSync, open, writeFileSync } from 'fs';
+import { dirname, join } from 'path';
 import { FilePermission, FileStat, Uri, window, workspace } from 'vscode';
 
 /**
@@ -53,7 +53,19 @@ export const writeFile = async (
   filename: string,
   data: string,
 ): Promise<boolean> => {
-  const file = join(path, filename);
+  let folder: string = '';
+
+  if (workspace.workspaceFolders) {
+    folder = workspace.workspaceFolders[0].uri.fsPath;
+  } else {
+    return false;
+  }
+
+  const file = join(folder, path, filename);
+
+  if (!existsSync(dirname(file))) {
+    mkdirSync(dirname(file), { recursive: true });
+  }
 
   access(file, (err: any) => {
     if (err) {
