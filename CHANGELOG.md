@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [1.1.0] - 2024-02-06
+
 ### Added
 
 - Add new constants file to define the documentation URL, repository URL and issues URL
@@ -60,5 +62,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/vscode-nextjs-generator/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/ManuelGil/vscode-nextjs-generator/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/ManuelGil/vscode-nextjs-generator/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/ManuelGil/vscode-nextjs-generator/releases/tag/v1.0.0
