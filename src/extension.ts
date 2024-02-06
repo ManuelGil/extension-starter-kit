@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
   // The args parameter is the path to the folder
   const getFilesInFolder = vscode.commands.registerCommand(
     'extension-starter-kit.getFilesInFolder',
-    async (args) => await exampleController.getFilesInFolder(args.path),
+    async (args) => await exampleController.getFilesInFolder(args),
   );
 
   context.subscriptions.push(disposable);

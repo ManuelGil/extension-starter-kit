@@ -218,7 +218,7 @@ export const asciiToEntities = (str: string): string => {
  * @returns {string} - The string with converted HTML entities
  */
 export const entitiesToAscii = (str: string): string => {
-  return str.replace(/&#(\d+);/g, (m, n) => String.fromCharCode(n));
+  return str.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n));
 };
 
 /**

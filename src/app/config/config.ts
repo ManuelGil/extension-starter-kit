@@ -27,7 +27,6 @@ export class Config {
    * console.log(config.include);
    */
   public include: string[];
-
   /**
    * The files to exclude.
    * @type {string[]}
@@ -53,5 +52,37 @@ export class Config {
   constructor(config: WorkspaceConfiguration) {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
+  }
+
+  // -----------------------------------------------------------------
+  // Methods
+  // -----------------------------------------------------------------
+
+  /**
+   * The update method.
+   *
+   * @param {WorkspaceConfiguration} config - The workspace configuration
+   * @public
+   * @memberof Config
+   * @example
+   * const config = new Config(workspace.getConfiguration());
+   * config.update(workspace.getConfiguration());
+   */
+  public update(config: WorkspaceConfiguration): void {
+    this.include = config.get<string[]>('files.include') ?? INCLUDE;
+    this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
+  }
+
+  /**
+   * The toString method.
+   *
+   * @public
+   * @memberof Config
+   * @example
+   * const config = new Config(workspace.getConfiguration());
+   * console.log(config.toString());
+   */
+  public toString(): string {
+    return JSON.stringify({ include: this.include, exclude: this.exclude });
   }
 }

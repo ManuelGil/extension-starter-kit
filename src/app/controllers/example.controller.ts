@@ -1,3 +1,6 @@
+import { Uri } from 'vscode';
+
+// Import the Config and helper functions
 import { Config } from '../config';
 import {
   directoryMap,
@@ -65,7 +68,7 @@ export class ExampleController {
   /**
    * The getFilesInFolder method.
    *
-   * @param {string} path - The path to the folder
+   * @param {Uri | null} path - The path to the folder
    * @public
    * @memberof ExampleController
    * @example
@@ -73,19 +76,20 @@ export class ExampleController {
    *
    * @returns {Promise<void>} - The promise with no return value
    */
-  public async getFilesInFolder(path: string = ''): Promise<void> {
+  public async getFilesInFolder(path: Uri | null): Promise<void> {
     // Get the relative path
-    const folderPath = await getRelativePath(path);
+    const folderPath: string = path ? await getRelativePath(path.path) : '';
 
     // Get the path to the folder
     const folder = await getPath(
       'Type the folder name to search for files:',
       'Folder name',
       folderPath,
-      (text: string) => {
-        if (!/^\/|(\/[\w-]+)+$/.test(text)) {
+      (path: string) => {
+        if (!/^\/|([\/\w-]+)+$/.test(path)) {
           return 'The folder name must be a valid name';
         }
+        return;
       },
     );
 

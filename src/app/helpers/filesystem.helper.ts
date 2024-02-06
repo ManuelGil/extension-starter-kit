@@ -23,7 +23,7 @@ export const directoryMap = async (
   path: string,
   options?: { extensions?: string[]; ignore?: string[]; maxResults?: number },
 ): Promise<Thenable<Uri[]>> => {
-  let includes = `${path}/**/*`;
+  let includes = path === '/' ? '**/*' : `${path}/**/*`;
   let exclude = '';
 
   if (options && options.extensions && options.extensions.length) {
@@ -85,6 +85,8 @@ export const writeFile = async (
 
       return true;
     }
+
+    return false;
   });
 
   return false;

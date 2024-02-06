@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add new constants file to define the documentation URL, repository URL and issues URL
+- Add `update` and `toString` methods to `Configuration` class
+
+### Changed
+
+- Update `tsconfig.json` to use `include` and `exclude` properties
+
+### Fixed
+
+- Fix JSON schema for settings validation in `package.json` and `settings.schema.json`
+- Fix patterns for folders and files in `filesytem.helper.ts` and `example.controller.ts`
+- Fix parameter types in `getFilesInFolder` method in `ExampleController`
+
 ## [1.0.0] - 2024-02-05
 
 ### Added
