@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add compodoc to generate the documentation
+- Add `FeedbackProvider` to display the feedback view
+- Add `FeedbackController` to handle the feedback view
+- Add `NodeModel` to display the items in the feedback view
+
+### Changed
+
+- Update `README.md` to include the features of the extension
+- Update `package.json` to include the feedback view in the contributes section
+
 ### [1.1.0] - 2024-02-06
 
 ### Added

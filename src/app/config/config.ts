@@ -8,6 +8,7 @@ import { EXCLUDE, INCLUDE } from './constants';
  * @classdesc The class that represents the configuration of the extension.
  * @export
  * @public
+ * @property {WorkspaceConfiguration} config - The workspace configuration
  * @property {string[]} include - The files to include
  * @property {string[]} exclude - The files to exclude
  * @example
@@ -16,6 +17,10 @@ import { EXCLUDE, INCLUDE } from './constants';
  * console.log(config.exclude);
  */
 export class Config {
+  // -----------------------------------------------------------------
+  // Properties
+  // -----------------------------------------------------------------
+
   // Public properties
   /**
    * The files to include.
@@ -49,7 +54,7 @@ export class Config {
    * @public
    * @memberof Config
    */
-  constructor(config: WorkspaceConfiguration) {
+  constructor(public readonly config: WorkspaceConfiguration) {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
   }
@@ -58,6 +63,7 @@ export class Config {
   // Methods
   // -----------------------------------------------------------------
 
+  // Public methods
   /**
    * The update method.
    *
@@ -68,7 +74,7 @@ export class Config {
    * const config = new Config(workspace.getConfiguration());
    * config.update(workspace.getConfiguration());
    */
-  public update(config: WorkspaceConfiguration): void {
+  update(config: WorkspaceConfiguration): void {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
   }
@@ -82,7 +88,7 @@ export class Config {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.toString());
    */
-  public toString(): string {
+  toString(): string {
     return JSON.stringify({ include: this.include, exclude: this.exclude });
   }
 }

@@ -6,15 +6,15 @@ import { FilePermission, FileStat, Uri, window, workspace } from 'vscode';
  * Reads the contents of the file specified in the path.
  *
  * @param {string} path - Path to the source directory
- * @param {object} options - Options for the directoryMap function
- * @param {string[]} options.extensions - File extensions to include
- * @param {string[]} options.ignore - Directories to ignore
- * @param {number} options.maxResults - An upper-bound for the result
+ * @param {object} [options] - Options for the directoryMap function
+ * @param {string[]} [options.extensions] - File extensions to include
+ * @param {string[]} [options.ignore] - Directories to ignore
+ * @param {number} [options.maxResults] - An upper-bound for the result
  * @example
  * const files = await directoryMap('src', {
- *  extensions: ['ts'],
- *  ignore: ['**​/node_modules/**'],
- *  maxResults: 100,
+ *   extensions: ['ts'],
+ *   ignore: ['**​/node_modules/**'],
+ *   maxResults: 100,
  * });
  *
  * @returns {Promise<Thenable<Uri[]>>} - Array of files
@@ -96,9 +96,9 @@ export const writeFile = async (
  * Deletes ALL files contained in the supplied path.
  *
  * @param {string} path - Path to the directory
- * @param {object} options - Options for the deleteFiles function
- * @param {boolean} options.recursive - Delete the content recursively if a folder is denoted.
- * @param {boolean} options.useTrash - Use the trash instead of permanently deleting the files.
+ * @param {object} [options] - Options for the deleteFiles function
+ * @param {boolean} [options.recursive] - Delete the content recursively if a folder is denoted.
+ * @param {boolean} [options.useTrash] - Use the trash instead of permanently deleting the files.
  * @example
  * await deleteFiles('src');
  *
@@ -125,10 +125,10 @@ export const deleteFiles = async (
  * Returns an array of filenames in the supplied path.
  *
  * @param {string} path - Path to the directory
- * @param {object} options - Options for the directoryMap function
- * @param {string[]} options.extensions - File extensions to include
- * @param {string[]} options.ignore - Directories to ignore
- * @param {number} options.maxResults - An upper-bound for the result.
+ * @param {object} [options] - Options for the directoryMap function
+ * @param {string[]} [options.extensions] - File extensions to include
+ * @param {string[]} [options.ignore] - Directories to ignore
+ * @param {number} [options.maxResults] - An upper-bound for the result.
  * @example
  * const files = await getFilenames('src');
  *

@@ -22,6 +22,10 @@ import {
  * const controller = new ExampleController(config);
  */
 export class ExampleController {
+  // -----------------------------------------------------------------
+  // Properties
+  // -----------------------------------------------------------------
+
   // Public properties
   /**
    * The configuration.
@@ -68,7 +72,7 @@ export class ExampleController {
   /**
    * The getFilesInFolder method.
    *
-   * @param {Uri | null} path - The path to the folder
+   * @param {Uri} [path] - The path to the folder
    * @public
    * @memberof ExampleController
    * @example
@@ -76,7 +80,7 @@ export class ExampleController {
    *
    * @returns {Promise<void>} - The promise with no return value
    */
-  public async getFilesInFolder(path: Uri | null): Promise<void> {
+  public async getFilesInFolder(path?: Uri): Promise<void> {
     // Get the relative path
     const folderPath: string = path ? await getRelativePath(path.path) : '';
 

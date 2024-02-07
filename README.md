@@ -13,13 +13,56 @@ This is a starter kit for creating a new extension for Visual Studio Code. It in
 
 - [VS Code Extension - Starter Kit](#vs-code-extension---starter-kit)
   - [Table of Contents](#table-of-contents)
+  - [Features](#features)
   - [Prerequisites](#prerequisites)
   - [Usage](#usage)
+  - [Running the documentation](#running-the-documentation)
+  - [Building the extension](#building-the-extension)
+  - [Publishing the extension](#publishing-the-extension)
   - [Contributing](#contributing)
   - [Code of Conduct](#code-of-conduct)
   - [Changelog](#changelog)
   - [Authors](#authors)
   - [License](#license)
+
+## Features
+
+- Basic configuration for the development environment
+  - `.editorconfig` - Editor configuration
+  - `.eslintignore` - ESLint ignore file
+  - `.eslintrc.json` - ESLint configuration file
+  - `.linstagedrc` - Lint-staged configuration file
+  - `.nvmrc` - Node version manager configuration file
+  - `.prettierrc` - Prettier configuration file
+  - `commitlint.config.js` - Commit lint configuration file
+  - `package.json` - Package configuration for the extension
+  - `tsconfig.json` - TypeScript configuration for the extension
+- Basic structure for a new extension
+  - `app` - Source code for the extension
+    - `config` - Configuration files for the extension
+    - `controllers` - Controllers for the extension
+    - `helpers` - Helper functions for the extension
+    - `models` - Models for the extension
+    - `providers` - Providers for the extension
+    - `services` - Services for the extension
+  - `test` - Test files for the extension
+- JSON Schema validations for workspace settings
+  - `settings.schema.json` - JSON schema for the workspace settings
+- Helper functions to get started with the extension
+  - `command.helper.ts` - Helper functions to create a new command
+  - `data.helper.ts` - Helper functions to create a new data provider
+  - `dialog.helper.ts` - Helper functions to create a new dialog
+  - `filesystem.helper.ts` - Helper functions to create a new file system provider
+  - `inflection.helper.ts` - Helper functions to create a new inflection provider
+  - `number.helper.ts` - Helper functions to create a new number provider
+  - `security.helper.ts` - Helper functions to create a new security provider
+  - `text.helper.ts` - Helper functions to create a new text provider
+- Basic commands to get started with the extension
+  - `extension.ts` - Main file for the extension
+  - `commands` - Commands for the extension
+    - `example.controller.ts` - Example controller for the extension
+  - `providers` - Providers for the extension
+    - `feedback.provider.ts` - Feedback provider for the extension
 
 ## Prerequisites
 
@@ -32,6 +75,42 @@ You need to have [node](https://nodejs.org/en/) and [npm](https://nodejs.org/en/
 - Rename the folder if needed
 - Add the project folder to the editor
 - `npm install` in the terminal, then `F5` to run the sample
+
+For more information, see the [official documentation](https://code.visualstudio.com/api/get-started/your-first-extension)
+
+## Running the documentation
+
+To run the documentation, execute the following command in the terminal:
+
+```bash
+npm run compodoc
+```
+
+This will generate the documentation in the `compodoc` folder.
+
+For more information, see the [official documentation](https://compodoc.app/guides/getting-started.html)
+
+## Building the extension
+
+To build the extension, execute the following command in the terminal:
+
+```bash
+vsce package
+```
+
+This will create a `.vsix` file in the root of the project.
+
+For more information, see the [official documentation](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
+
+## Publishing the extension
+
+To publish the extension, execute the following command in the terminal:
+
+```bash
+vsce publish
+```
+
+This will open a new instance of Visual Studio Code with the extension running in debug mode.
 
 For more information, see the [official documentation](https://code.visualstudio.com/api/get-started/your-first-extension)
 
