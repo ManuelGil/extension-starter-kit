@@ -2,11 +2,12 @@ import {
   Event,
   EventEmitter,
   ProviderResult,
+  ThemeIcon,
   TreeDataProvider,
   TreeItem,
-  TreeItemCollapsibleState,
 } from 'vscode';
-import { Node } from '../models';
+
+import { NodeModel } from '../models';
 
 /**
  * The FeedbackProvider class
@@ -15,17 +16,21 @@ import { Node } from '../models';
  * @classdesc The class that represents the feedback provider.
  * @export
  * @public
- * @implements {TreeDataProvider<Node>}
+ * @implements {TreeDataProvider<NodeModel>}
  * @example
  * const provider = new FeedbackProvider();
  *
  * @see https://code.visualstudio.com/api/references/vscode-api#TreeDataProvider
  */
-export class FeedbackProvider implements TreeDataProvider<Node> {
+export class FeedbackProvider implements TreeDataProvider<NodeModel> {
+  // -----------------------------------------------------------------
+  // Properties
+  // -----------------------------------------------------------------
+
   // Private properties
   /**
    * The onDidChangeTreeData event emitter.
-   * @type {EventEmitter<Node | undefined | null | void>}
+   * @type {EventEmitter<NodeModel | undefined | null | void>}
    * @private
    * @memberof FeedbackProvider
    * @example
@@ -34,10 +39,14 @@ export class FeedbackProvider implements TreeDataProvider<Node> {
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#EventEmitter
    */
-  private _onDidChangeTreeData: EventEmitter<Node | undefined | null | void>;
+  private _onDidChangeTreeData: EventEmitter<
+    NodeModel | undefined | null | void
+  >;
+
+  // Public properties
   /**
    * The onDidChangeTreeData event.
-   * @type {Event<Node | undefined | null | void>}
+   * @type {Event<NodeModel | undefined | null | void>}
    * @public
    * @memberof FeedbackProvider
    * @example
@@ -46,7 +55,9 @@ export class FeedbackProvider implements TreeDataProvider<Node> {
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#Event
    */
-  public readonly onDidChangeTreeData: Event<Node | undefined | null | void>;
+  public readonly onDidChangeTreeData: Event<
+    NodeModel | undefined | null | void
+  >;
 
   // -----------------------------------------------------------------
   // Constructor
@@ -60,7 +71,7 @@ export class FeedbackProvider implements TreeDataProvider<Node> {
    */
   constructor() {
     this._onDidChangeTreeData = new EventEmitter<
-      Node | undefined | null | void
+      NodeModel | undefined | null | void
     >();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
   }
@@ -69,10 +80,11 @@ export class FeedbackProvider implements TreeDataProvider<Node> {
   // Methods
   // -----------------------------------------------------------------
 
+  // Public methods
   /**
    * Returns the tree item for the supplied element.
    *
-   * @param {Node} element - The element
+   * @param {NodeModel} element - The element
    * @public
    * @memberof FeedbackProvider
    * @example
@@ -82,68 +94,29 @@ export class FeedbackProvider implements TreeDataProvider<Node> {
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#TreeDataProvider
    */
-  getTreeItem(element: Node): TreeItem | Thenable<TreeItem> {
+  getTreeItem(element: NodeModel): TreeItem | Thenable<TreeItem> {
     return element;
   }
 
   /**
    * Returns the children for the supplied element.
    *
-   * @param {Node} [element] - The element
+   * @param {NodeModel} [element] - The element
    * @public
    * @memberof FeedbackProvider
    * @example
    * const children = provider.getChildren(element);
    *
-   * @returns {ProviderResult<Node[]>} - The children
+   * @returns {ProviderResult<NodeModel[]>} - The children
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#TreeDataProvider
    */
-  getChildren(element?: Node): ProviderResult<Node[]> {
+  getChildren(element?: NodeModel): ProviderResult<NodeModel[]> {
     if (element) {
       return element.children;
     } else {
       return this.getFeedbacks();
     }
-  }
-
-  /**
-   * Returns the feedbacks.
-   *
-   * @private
-   * @memberof FeedbackProvider
-   * @example
-   * const feedbacks = this.getFeedbacks();
-   *
-   * @returns {Node[]} - The feedbacks
-   */
-  private getFeedbacks(): Node[] {
-    return [
-      new Node('About Us', TreeItemCollapsibleState.None, 'about', {
-        title: 'About Us',
-        command: 'extension-stater-kit.aboutUs',
-      }),
-      new Node('Documentation', TreeItemCollapsibleState.None, 'docs', {
-        title: 'Documentation',
-        command: 'extension-stater-kit.documentation',
-      }),
-      new Node('Report Issues', TreeItemCollapsibleState.None, 'issues', {
-        title: 'Report Issues',
-        command: 'extension-stater-kit.reportIssues',
-      }),
-      new Node('Rate Us', TreeItemCollapsibleState.None, 'rate', {
-        title: 'Rate Us',
-        command: 'extension-stater-kit.rateUs',
-      }),
-      new Node('Follow Us', TreeItemCollapsibleState.None, 'follow', {
-        title: 'Follow Us',
-        command: 'extension-stater-kit.followUs',
-      }),
-      new Node('Support Us', TreeItemCollapsibleState.None, 'support', {
-        title: 'Support Us',
-        command: 'extension-stater-kit.supportUs',
-      }),
-    ];
   }
 
   /**
@@ -158,5 +131,45 @@ export class FeedbackProvider implements TreeDataProvider<Node> {
    */
   refresh(): void {
     this._onDidChangeTreeData.fire();
+  }
+
+  // Private methods
+  /**
+   * Returns the feedbacks.
+   *
+   * @private
+   * @memberof FeedbackProvider
+   * @example
+   * const feedbacks = this.getFeedbacks();
+   *
+   * @returns {NodeModel[]} - The feedbacks
+   */
+  private getFeedbacks(): NodeModel[] {
+    return [
+      new NodeModel('About Us', new ThemeIcon('info'), {
+        title: 'About Us',
+        command: 'extension-starter-kit.feedback.aboutUs',
+      }),
+      new NodeModel('Documentation', new ThemeIcon('book'), {
+        title: 'Documentation',
+        command: 'extension-starter-kit.feedback.documentation',
+      }),
+      new NodeModel('Report Issues', new ThemeIcon('bug'), {
+        title: 'Report Issues',
+        command: 'extension-starter-kit.feedback.reportIssues',
+      }),
+      new NodeModel('Rate Us', new ThemeIcon('star'), {
+        title: 'Rate Us',
+        command: 'extension-starter-kit.feedback.rateUs',
+      }),
+      new NodeModel('Follow Us', new ThemeIcon('twitter'), {
+        title: 'Follow Us',
+        command: 'extension-starter-kit.feedback.followUs',
+      }),
+      new NodeModel('Support Us', new ThemeIcon('heart'), {
+        title: 'Support Us',
+        command: 'extension-starter-kit.feedback.supportUs',
+      }),
+    ];
   }
 }

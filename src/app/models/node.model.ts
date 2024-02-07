@@ -1,4 +1,11 @@
-import { Command, TreeItem, TreeItemCollapsibleState, Uri } from 'vscode';
+import {
+  Command,
+  ThemeIcon,
+  TreeItem,
+  TreeItemCollapsibleState,
+  TreeItemLabel,
+  Uri,
+} from 'vscode';
 
 /**
  * The Node class
@@ -7,43 +14,64 @@ import { Command, TreeItem, TreeItemCollapsibleState, Uri } from 'vscode';
  * @classdesc The class that represents a node in the tree view.
  * @export
  * @public
- * @property {string} label - The label of the node
- * @property {TreeItemCollapsibleState} collapsibleState - The collapsible state of the node
- * @property {string} icon - The icon of the node
- * @property {Command} [command] - The command of the node
- * @property {Uri} [uri] - The URI of the node
- * @property {Node[]} [children] - The children of the node
+ * @extends {TreeItem}
+ * @property {string | TreeItemLabel} label - The label
+ * @property {string | Uri | { light: string | Uri; dark: string | Uri } | ThemeIcon} [iconPath] - The icon path
+ * @property {Command} [command] - The command
+ * @property {Uri} [resourceUri] - The resource URI
+ * @property {string} [contextValue] - The context value
+ * @property {Node[]} [children] - The children
  * @example
  * const node = new Node('About Us', TreeItemCollapsibleState.None, 'about', {
- *  title: 'About Us',
- *  command: 'extension-stater-kit.aboutUs',
+ *   title: 'About Us',
+ *   command: 'extension-stater-kit.aboutUs',
  * });
  *
  * @see https://code.visualstudio.com/api/references/vscode-api#TreeItem
  */
-export class Node implements TreeItem {
+export class NodeModel extends TreeItem {
   // -----------------------------------------------------------------
   // Constructor
   // -----------------------------------------------------------------
 
   /**
-   * Constructor for the Node class
+   * The constructor
    *
-   * @param {string} label - The label of the node
-   * @param {TreeItemCollapsibleState} collapsibleState - The collapsible state of the node
-   * @param {string} icon - The icon of the node
-   * @param {Command} [command] - The command of the node
-   * @param {Uri} [uri] - The URI of the node
-   * @param {Node[]} [children] - The children of the node
-   * @public
-   * @memberof Node
+   * @constructor
+   * @param {string | TreeItemLabel} label - The label
+   * @param {string | Uri | { light: string | Uri; dark: string | Uri } | ThemeIcon} [iconPath] - The icon path
+   * @param {Command} [command] - The command
+   * @param {Uri} [resourceUri] - The resource URI
+   * @param {string} [contextValue] - The context value
+   * @param {NodeModel[]} [children] - The children
+   * @example
+   * const node = new Node('About Us', new ThemeIcon('info'), {
+   *   title: 'About Us',
+   *   command: 'extension-stater-kit.aboutUs',
+   * });
    */
   constructor(
-    public readonly label: string,
-    public readonly collapsibleState: TreeItemCollapsibleState,
-    public readonly icon: string,
+    public readonly label: string | TreeItemLabel,
+    public readonly iconPath?:
+      | string
+      | Uri
+      | { light: string | Uri; dark: string | Uri }
+      | ThemeIcon,
     public readonly command?: Command,
-    public readonly uri?: Uri,
-    public readonly children?: Node[],
-  ) {}
+    public readonly resourceUri?: Uri,
+    public readonly contextValue?: string,
+    public readonly children?: NodeModel[],
+  ) {
+    super(
+      label,
+      children
+        ? TreeItemCollapsibleState.Expanded
+        : TreeItemCollapsibleState.None,
+    );
+    this.iconPath = iconPath;
+    this.resourceUri = resourceUri;
+    this.command = command;
+    this.contextValue = contextValue;
+    this.children = children;
+  }
 }
