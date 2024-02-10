@@ -46,17 +46,7 @@
 	"bugs": {
 		"url": "https://github.com/ManuelGil/extension-starter-kit/issues"
 	},
-	"activationEvents": [
-		"onCommand:extension-starter-kit.helloWorld",
-		"onCommand:extension-starter-kit.getFilesInFolder",
-		"onCommand:extension-starter-kit.feedback.aboutUs",
-		"onCommand:extension-starter-kit.feedback.documentation",
-		"onCommand:extension-starter-kit.feedback.reportIssues",
-		"onCommand:extension-starter-kit.feedback.rateUs",
-		"onCommand:extension-starter-kit.feedback.followUs",
-		"onCommand:extension-starter-kit.feedback.supportUs",
-		"onView:extension-starter-kit.feedbackView"
-	],
+	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {

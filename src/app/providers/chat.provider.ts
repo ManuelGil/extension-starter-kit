@@ -9,6 +9,7 @@ import {
 
 import { EXTENSION_ID } from '../config';
 import { getNonce } from '../helpers';
+import { OpenAIService } from '../services';
 
 /**
  * The ChatProvider class.
@@ -18,6 +19,9 @@ import { getNonce } from '../helpers';
  * @export
  * @public
  * @implements {WebviewViewProvider}
+ * @property {string} static viewType - The view type
+ * @property {WebviewView} [_view] - The view
+ * @property {OpenAIService} [openAISservice] - The OpenAI service
  * @example
  * const provider = new ChatProvider(extensionUri);
  */
@@ -43,9 +47,18 @@ export class ChatProvider implements WebviewViewProvider {
    *
    * @private
    * @memberof ChatProvider
-   * @type {WebviewView | undefined}
+   * @type {WebviewView}
    */
   private _view?: WebviewView;
+
+  /**
+   * The OpenAI service.
+   *
+   * @private
+   * @memberof ChatProvider
+   * @type {OpenAIService}
+   */
+  private openAISservice?: OpenAIService;
 
   // -----------------------------------------------------------------
   // Constructor
@@ -105,6 +118,21 @@ export class ChatProvider implements WebviewViewProvider {
   }
 
   /**
+   * The setService method.
+   *
+   * @param {OpenAIService} service - The service
+   * @public
+   * @memberof ChatProvider
+   * @example
+   * provider.setService(service);
+   *
+   * @returns {void} - No return value
+   */
+  public setService(service: OpenAIService): void {
+    this.openAISservice = service;
+  }
+
+  /**
    * The response method.
    *
    * @param {any} data - The data
@@ -117,10 +145,11 @@ export class ChatProvider implements WebviewViewProvider {
    */
   response(data: any): void {
     if (this._view) {
-      this._view.show?.(true); // `show` is not implemented in 1.49 but is for 1.50 insiders
-      this._view.webview.postMessage({
-        type: 'receiveMessage',
-        value: data.value,
+      this.openAISservice?.completion(data.value).then((response) => {
+        this._view?.webview.postMessage({
+          type: 'receiveMessage',
+          value: response.choices[0].message.content,
+        });
       });
     }
   }

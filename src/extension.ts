@@ -6,6 +6,7 @@ import * as vscode from 'vscode';
 import { Config, EXTENSION_ID } from './app/config';
 import { ExampleController, FeedbackController } from './app/controllers';
 import { ChatProvider, FeedbackProvider } from './app/providers';
+import { OpenAIService } from './app/services';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -113,6 +114,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Create a new ChatProvider
   const chatProvider = new ChatProvider(context.extensionUri);
+  chatProvider.setService(new OpenAIService(config));
 
   // Register the ChatProvider
   const chatWebviewProvider = vscode.window.registerWebviewViewProvider(

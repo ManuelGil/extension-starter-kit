@@ -50,23 +50,7 @@ export class OpenAIService {
   // Methods
   // -----------------------------------------------------------------
 
-  /**
-   * The getInstance method
-   *
-   * @public
-   * @memberof OpenAIService
-   * @example
-   * service.getInstance();
-   * @returns {OpenAI} - The OpenAI instance
-   */
-  getInstance(): OpenAI {
-    if (!this.openai) {
-      this.openai = new OpenAI({ apiKey: this.config.openai.apiKey });
-    }
-
-    return this.openai;
-  }
-
+  // Public methods
   /**
    * The completion method
    *
@@ -79,8 +63,29 @@ export class OpenAIService {
    */
   async completion(prompt: string): Promise<ChatCompletion> {
     return await this.getInstance().chat.completions.create({
-      messages: [{ role: 'system', content: prompt }],
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: prompt },
+      ],
       model: this.config.openai.model,
     });
+  }
+
+  // Private methods
+  /**
+   * The getInstance method
+   *
+   * @public
+   * @memberof OpenAIService
+   * @example
+   * service.getInstance();
+   * @returns {OpenAI} - The OpenAI instance
+   */
+  private getInstance(): OpenAI {
+    if (!this.openai) {
+      this.openai = new OpenAI({ apiKey: this.config.openai.apiKey });
+    }
+
+    return this.openai;
   }
 }
