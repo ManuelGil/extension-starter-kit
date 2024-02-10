@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 // Import the Config, Controllers, and Providers
 import { Config, EXTENSION_ID } from './app/config';
 import { ExampleController, FeedbackController } from './app/controllers';
-import { FeedbackProvider } from './app/providers';
+import { ChatProvider, FeedbackProvider } from './app/providers';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
   let disposable = vscode.commands.registerCommand(
-    'extension-starter-kit.helloWorld',
+    `${EXTENSION_ID}.helloWorld`,
     () => {
       // The code you place here will be executed every time your command is executed
 
@@ -51,7 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
   // The commandId parameter must match the command field in package.json
   // The args parameter is the path to the folder
   const getFilesInFolder = vscode.commands.registerCommand(
-    'extension-starter-kit.getFilesInFolder',
+    `${EXTENSION_ID}.getFilesInFolder`,
     async (args) => await exampleController.getFilesInFolder(args),
   );
 
@@ -62,50 +62,65 @@ export function activate(context: vscode.ExtensionContext) {
   // Register FeedbackProvider and Feedback commands
   // -----------------------------------------------------------------
 
+  // Create a new FeedbackProvider
+  const feedbackProvider = new FeedbackProvider(new FeedbackController());
+
   // Register the feedback provider
-  const feedbackProvider = vscode.window.createTreeView(
-    'extension-starter-kit.feedbackProvider',
+  const feedbackTreeView = vscode.window.createTreeView(
+    `${EXTENSION_ID}.feedbackView`,
     {
-      treeDataProvider: new FeedbackProvider(),
+      treeDataProvider: feedbackProvider,
     },
   );
 
-  // Create a new FeedbackController
-  const feedbackController = new FeedbackController();
-
   // Register the commands
   const aboutUs = vscode.commands.registerCommand(
-    'extension-starter-kit.feedback.aboutUs',
-    () => feedbackController.aboutUs(),
+    `${EXTENSION_ID}.feedback.aboutUs`,
+    () => feedbackProvider.controller.aboutUs(),
   );
   const documentation = vscode.commands.registerCommand(
-    'extension-starter-kit.feedback.documentation',
-    () => feedbackController.documentation(),
+    `${EXTENSION_ID}.feedback.documentation`,
+    () => feedbackProvider.controller.documentation(),
   );
   const reportIssues = vscode.commands.registerCommand(
-    'extension-starter-kit.feedback.reportIssues',
-    () => feedbackController.reportIssues(),
+    `${EXTENSION_ID}.feedback.reportIssues`,
+    () => feedbackProvider.controller.reportIssues(),
   );
   const rateUs = vscode.commands.registerCommand(
-    'extension-starter-kit.feedback.rateUs',
-    () => feedbackController.rateUs(),
+    `${EXTENSION_ID}.feedback.rateUs`,
+    () => feedbackProvider.controller.rateUs(),
   );
   const followUs = vscode.commands.registerCommand(
-    'extension-starter-kit.feedback.followUs',
-    () => feedbackController.followUs(),
+    `${EXTENSION_ID}.feedback.followUs`,
+    () => feedbackProvider.controller.followUs(),
   );
   const supportUs = vscode.commands.registerCommand(
-    'extension-starter-kit.feedback.supportUs',
-    () => feedbackController.supportUs(),
+    `${EXTENSION_ID}.feedback.supportUs`,
+    () => feedbackProvider.controller.supportUs(),
   );
 
-  context.subscriptions.push(feedbackProvider);
+  context.subscriptions.push(feedbackTreeView);
   context.subscriptions.push(aboutUs);
   context.subscriptions.push(documentation);
   context.subscriptions.push(reportIssues);
   context.subscriptions.push(rateUs);
   context.subscriptions.push(followUs);
   context.subscriptions.push(supportUs);
+
+  // -----------------------------------------------------------------
+  // Register the ChatProvider
+  // -----------------------------------------------------------------
+
+  // Create a new ChatProvider
+  const chatProvider = new ChatProvider(context.extensionUri);
+
+  // Register the ChatProvider
+  const chatWebviewProvider = vscode.window.registerWebviewViewProvider(
+    ChatProvider.viewType,
+    chatProvider,
+  );
+
+  context.subscriptions.push(chatWebviewProvider);
 }
 
 // this method is called when your extension is deactivated

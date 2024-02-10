@@ -51,16 +51,16 @@ export class NodeModel extends TreeItem {
    * });
    */
   constructor(
-    public readonly label: string | TreeItemLabel,
-    public readonly iconPath?:
+    readonly label: string | TreeItemLabel,
+    readonly iconPath?:
       | string
       | Uri
       | { light: string | Uri; dark: string | Uri }
       | ThemeIcon,
-    public readonly command?: Command,
-    public readonly resourceUri?: Uri,
-    public readonly contextValue?: string,
-    public readonly children?: NodeModel[],
+    readonly command?: Command,
+    readonly resourceUri?: Uri,
+    readonly contextValue?: string,
+    readonly children?: NodeModel[],
   ) {
     super(
       label,

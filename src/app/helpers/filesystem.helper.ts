@@ -1,4 +1,11 @@
-import { access, existsSync, mkdirSync, open, writeFileSync } from 'fs';
+import {
+  access,
+  existsSync,
+  mkdirSync,
+  open,
+  writeFile,
+  writeFileSync,
+} from 'fs';
 import { dirname, join } from 'path';
 import { FilePermission, FileStat, Uri, window, workspace } from 'vscode';
 
@@ -44,11 +51,11 @@ export const directoryMap = async (
  * @param {string} filename - Name of the file
  * @param {string} data - Data to write to the file
  * @example
- * await writeFile('src', 'file.ts', 'console.log("Hello World")');
+ * await saveFile('src', 'file.ts', 'console.log("Hello World")');
  *
  * @returns {Promise<boolean>} - Confirmation of the write operation
  */
-export const writeFile = async (
+export const saveFile = async (
   path: string,
   filename: string,
   data: string,
@@ -67,29 +74,31 @@ export const writeFile = async (
     mkdirSync(dirname(file), { recursive: true });
   }
 
-  access(file, (err: any) => {
-    if (err) {
-      open(file, 'w+', (err: any, fd: any) => {
-        if (err) {
-          throw err;
-        }
+  return new Promise((resolve, reject) => {
+    access(file, (err: any) => {
+      if (err) {
+        open(file, 'w+', (err: any, fd: any) => {
+          if (err) {
+            reject(false);
+          }
 
-        writeFileSync(fd, data);
+          writeFile(fd, data, 'utf8', (err: any) => {
+            if (err) {
+              reject(false);
+            }
 
-        const openPath = Uri.file(file);
+            const openPath = Uri.file(file);
 
-        workspace.openTextDocument(openPath).then((filename) => {
-          window.showTextDocument(filename);
+            workspace.openTextDocument(openPath).then((filename) => {
+              window.showTextDocument(filename);
+            });
+
+            resolve(true);
+          });
         });
-      });
-
-      return true;
-    }
-
-    return false;
+      }
+    });
   });
-
-  return false;
 };
 
 /**
@@ -253,4 +262,44 @@ export const setRealpath = async (path: string): Promise<Uri | FileStat> => {
  */
 export const getRelativePath = async (path: string): Promise<string> => {
   return workspace.asRelativePath(path);
+};
+
+/**
+ * Returns the realpath for the supplied path.
+ *
+ * @param {string} path - Path to the file
+ * @example
+ * const realpath = await getRealpath('src/file.ts');
+ *
+ * @returns {Promise<string>} - Realpath
+ */
+export const getRealpath = async (path: string): Promise<string> => {
+  return Uri.file(path).fsPath;
+};
+
+/**
+ * Returns a boolean indicating whether the supplied path exists.
+ *
+ * @param {string} path - Path to the file or directory
+ * @example
+ * const fileExists = await exists('src/file.ts');
+ *
+ * @returns {Promise<boolean>} - Confirmation of the existence
+ */
+export const exists = async (path: string): Promise<boolean> => {
+  return existsSync(path);
+};
+
+// isDirectory
+/**
+ * Returns a boolean indicating whether the supplied path is a directory.
+ *
+ * @param {string} path - Path to the file or directory
+ * @example
+ * const isDir = await isDirectory('src');
+ *
+ * @returns {Promise<boolean>} - Confirmation of the directory
+ */
+export const isDirectory = async (path: string): Promise<boolean> => {
+  return (await workspace.fs.stat(Uri.file(path))).type === 2;
 };

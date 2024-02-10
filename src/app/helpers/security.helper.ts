@@ -73,3 +73,21 @@ export const escapeUrl = (str: string): string => {
 export const escapeRegExp = (str: string): string => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
+
+/**
+ * Returns a random nonce.
+ *
+ * @example
+ * const nonce = getNonce();
+ *
+ * @returns {string} - The nonce
+ */
+export const getNonce = () => {
+  let text = '';
+  const possible =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 32; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};

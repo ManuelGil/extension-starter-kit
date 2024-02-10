@@ -11,6 +11,7 @@ import { EXCLUDE, INCLUDE } from './constants';
  * @property {WorkspaceConfiguration} config - The workspace configuration
  * @property {string[]} include - The files to include
  * @property {string[]} exclude - The files to exclude
+ * @property {{ apiKey: string; model: string; }} openai - The OpenAI API key
  * @example
  * const config = new Config(workspace.getConfiguration());
  * console.log(config.include);
@@ -31,7 +32,7 @@ export class Config {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.include);
    */
-  public include: string[];
+  include: string[];
   /**
    * The files to exclude.
    * @type {string[]}
@@ -41,7 +42,20 @@ export class Config {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.exclude);
    */
-  public exclude: string[];
+  exclude: string[];
+  /**
+   * The OpenAI API key.
+   * @type {string}
+   * @public
+   * @memberof Config
+   * @example
+   * const config = new Config(workspace.getConfiguration());
+   * console.log(config.openai.apiKey);
+   */
+  openai: {
+    apiKey: string;
+    model: string;
+  };
 
   // -----------------------------------------------------------------
   // Constructor
@@ -54,9 +68,13 @@ export class Config {
    * @public
    * @memberof Config
    */
-  constructor(public readonly config: WorkspaceConfiguration) {
+  constructor(readonly config: WorkspaceConfiguration) {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
+    this.openai = {
+      apiKey: config.get<string>('openai.apiKey') ?? '',
+      model: config.get<string>('openai.model') ?? '',
+    };
   }
 
   // -----------------------------------------------------------------
@@ -77,18 +95,9 @@ export class Config {
   update(config: WorkspaceConfiguration): void {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
-  }
-
-  /**
-   * The toString method.
-   *
-   * @public
-   * @memberof Config
-   * @example
-   * const config = new Config(workspace.getConfiguration());
-   * console.log(config.toString());
-   */
-  toString(): string {
-    return JSON.stringify({ include: this.include, exclude: this.exclude });
+    this.openai = {
+      apiKey: config.get<string>('openai.apiKey') ?? '',
+      model: config.get<string>('openai.model') ?? '',
+    };
   }
 }

@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `OpenAI` settings to generate the chat messages
+- Add `OpenAIService` to generate the chat messages
+- Add `ChatProvider` to display the chat view
+- Add `src/assets/main.js` to handle the chat view
+- Add `src/assets/main.css` to style the chat view
+- Add `getNonce` method to `security.helper.ts` file
+- Add `getRealpath`, `exists` and `isDirectory` methods to `filesystem.helper.ts` file
+
+### Changed
+
+- Rename `writeFile` method to `saveFile` in `filesystem.helper.ts` file
+- Improve the documentation of the extension
+
+### Fixed
+
+- Fix file creation issue when creating a new file
+
 ## [1.2.0] - 2024-02-07
 
 ### Added

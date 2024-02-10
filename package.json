@@ -27,10 +27,16 @@
 		"Other"
 	],
 	"keywords": [
+		"boilerplate",
 		"extension",
-		"starter",
-		"kit",
-		"vscode"
+		"imgildev",
+		"plugin",
+		"project",
+		"starter-kit",
+		"template",
+		"typescript",
+		"vscode",
+		"workspace"
 	],
 	"homepage": "https://github.com/ManuelGil/extension-starter-kit",
 	"repository": {
@@ -48,12 +54,13 @@
 		"onCommand:extension-starter-kit.feedback.reportIssues",
 		"onCommand:extension-starter-kit.feedback.rateUs",
 		"onCommand:extension-starter-kit.feedback.followUs",
-		"onCommand:extension-starter-kit.feedback.supportUs"
+		"onCommand:extension-starter-kit.feedback.supportUs",
+		"onView:extension-starter-kit.feedbackView"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
-			"title": "Extension name",
+			"title": "MyExtension",
 			"properties": {
 				"extension-starter-kit.files.include": {
 					"type": "array",
@@ -78,6 +85,41 @@
 					],
 					"scope": "resource",
 					"description": "Glob patterns to exclude from the package. The default is node_modules, dist, out, build, and any hidden files."
+				},
+				"extension-starter-kit.openai.apiKey": {
+					"type": "string",
+					"default": "",
+					"scope": "resource",
+					"description": "OpenAI API Key. Get it from https://platform.openai.com/account/api-keys"
+				},
+				"extension-starter-kit.openai.model": {
+					"type": "string",
+					"default": "gpt-3.5-turbo",
+					"enum": [
+						"babbage-002",
+						"dall-e-2",
+						"dall-e-3",
+						"davinci-002",
+						"gpt-3.5-turbo",
+						"gpt-3.5-turbo-0301",
+						"gpt-3.5-turbo-1106",
+						"gpt-3.5-turbo-16k",
+						"gpt-3.5-turbo-instruct",
+						"gpt-4",
+						"gpt-4-32k",
+						"gpt-4-turbo-preview",
+						"gpt-4-vision-preview",
+						"text-embedding-3-large",
+						"text-embedding-3-small",
+						"text-embedding-ada-002",
+						"text-moderation-latest",
+						"text-moderation-stable",
+						"tts-1",
+						"tts-1-hd",
+						"whisper-1"
+					],
+					"scope": "resource",
+					"description": "OpenAI Model. The default is gpt-3.5-turbo. Get more information from https://platform.openai.com/docs/models/model-endpoint-compatibility"
 				}
 			}
 		},
@@ -85,48 +127,48 @@
 			{
 				"command": "extension-starter-kit.helloWorld",
 				"title": "Hello World",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.getFilesInFolder",
 				"title": "Get Files in Folder",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.feedback.aboutUs",
 				"title": "About Us",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.feedback.documentation",
 				"title": "Documentation",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.feedback.reportIssues",
 				"title": "Report Issues",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.feedback.rateUs",
 				"title": "Rate Us",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.feedback.followUs",
 				"title": "Follow Us",
-				"category": "Extension name"
+				"category": "MyExtension"
 			},
 			{
 				"command": "extension-starter-kit.feedback.supportUs",
 				"title": "Support Us",
-				"category": "Extension name"
+				"category": "MyExtension"
 			}
 		],
 		"submenus": [
 			{
 				"id": "extension.submenu",
-				"label": "Extension name"
+				"label": "MyExtension"
 			}
 		],
 		"menus": {
@@ -145,12 +187,26 @@
 				}
 			]
 		},
-		"views": {
-			"explorer": [
+		"viewsContainers": {
+			"activitybar": [
 				{
-					"id": "extension-starter-kit.feedbackProvider",
+					"id": "chat-explorer",
+					"title": "Package Explorer",
+					"icon": "src/assets/dep.svg"
+				}
+			]
+		},
+		"views": {
+			"chat-explorer": [
+				{
+					"id": "extension-starter-kit.chatView",
+					"name": "Chat",
+					"type": "webview"
+				},
+				{
+					"id": "extension-starter-kit.feedbackView",
 					"name": "Help and Feedback",
-					"visibility": "collapsed"
+					"visibility": "visible"
 				}
 			]
 		},
@@ -166,8 +222,9 @@
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
-		"format": "prettier --write \"src/**/*.ts\"",
-		"lint": "eslint src --ext ts --fix",
+		"format": "prettier --write 'src/**/*.ts'",
+		"lint": "eslint src --ext .ts",
+		"lint:fix": "eslint src --ext .ts --fix",
 		"test": "node ./out/test/runTest.js",
 		"compodoc": "npx compodoc -p tsconfig.doc.json -d compodoc --theme readthedocs -s",
 		"prepare": "husky"
@@ -195,5 +252,8 @@
 		"prettier": "3.2.5",
 		"typescript": "^5.3.3",
 		"vscode-test": "^1.5.0"
+	},
+	"dependencies": {
+		"openai": "^4.26.1"
 	}
 }

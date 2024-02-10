@@ -25,6 +25,41 @@
 			],
 			"scope": "resource",
 			"description": "Glob patterns to exclude from the package. The default is node_modules, dist, out, build, and any hidden files."
+		},
+		"extension-starter-kit.openai.apiKey": {
+			"type": "string",
+			"default": "",
+			"scope": "resource",
+			"description": "OpenAI API Key. Get it from https://platform.openai.com/account/api-keys"
+		},
+		"extension-starter-kit.openai.model": {
+			"type": "string",
+			"default": "gpt-3.5-turbo",
+			"enum": [
+				"babbage-002",
+				"dall-e-2",
+				"dall-e-3",
+				"davinci-002",
+				"gpt-3.5-turbo",
+				"gpt-3.5-turbo-0301",
+				"gpt-3.5-turbo-1106",
+				"gpt-3.5-turbo-16k",
+				"gpt-3.5-turbo-instruct",
+				"gpt-4",
+				"gpt-4-32k",
+				"gpt-4-turbo-preview",
+				"gpt-4-vision-preview",
+				"text-embedding-3-large",
+				"text-embedding-3-small",
+				"text-embedding-ada-002",
+				"text-moderation-latest",
+				"text-moderation-stable",
+				"tts-1",
+				"tts-1-hd",
+				"whisper-1"
+			],
+			"scope": "resource",
+			"description": "OpenAI Model. The default is gpt-3.5-turbo. Get more information from https://platform.openai.com/docs/models/model-endpoint-compatibility"
 		}
 	}
 }

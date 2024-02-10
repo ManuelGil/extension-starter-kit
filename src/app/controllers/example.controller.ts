@@ -6,9 +6,8 @@ import {
   directoryMap,
   getPath,
   getRelativePath,
-  showError,
+  saveFile,
   showMessage,
-  writeFile,
 } from '../helpers';
 
 /**
@@ -18,23 +17,11 @@ import {
  * @classdesc The class that represents the example controller.
  * @export
  * @public
+ * @property {Config} config - The configuration
  * @example
  * const controller = new ExampleController(config);
  */
 export class ExampleController {
-  // -----------------------------------------------------------------
-  // Properties
-  // -----------------------------------------------------------------
-
-  // Public properties
-  /**
-   * The configuration.
-   * @type {Config}
-   * @public
-   * @memberof ExampleController
-   */
-  public config: Config;
-
   // -----------------------------------------------------------------
   // Constructor
   // -----------------------------------------------------------------
@@ -46,9 +33,7 @@ export class ExampleController {
    * @public
    * @memberof ExampleController
    */
-  constructor(config: Config) {
-    this.config = config;
-  }
+  constructor(private readonly config: Config) {}
 
   // -----------------------------------------------------------------
   // Methods
@@ -64,7 +49,7 @@ export class ExampleController {
    *
    * @returns {void} - No return value
    */
-  public helloWorld(): void {
+  helloWorld(): void {
     // Display a message box to the user
     showMessage('Hello World from extension-starter-kit!');
   }
@@ -80,7 +65,7 @@ export class ExampleController {
    *
    * @returns {Promise<void>} - The promise with no return value
    */
-  public async getFilesInFolder(path?: Uri): Promise<void> {
+  async getFilesInFolder(path?: Uri): Promise<void> {
     // Get the relative path
     const folderPath: string = path ? await getRelativePath(path.path) : '';
 
@@ -120,17 +105,12 @@ export class ExampleController {
       }
 
       // Write the content to a file
-      const result = await writeFile(folder, 'files.txt', content);
+      const result = await saveFile(folder, 'files.txt', content);
 
       // If the file is written, show a message
       if (result) {
         showMessage('Files found and saved to files.txt');
-      } else {
-        showError('Files found but not saved');
       }
     }
-
-    // If no files are found, show an error
-    showError('No files found');
   }
 }

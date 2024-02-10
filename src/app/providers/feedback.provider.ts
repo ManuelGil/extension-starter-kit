@@ -8,6 +8,7 @@ import {
 } from 'vscode';
 
 import { NodeModel } from '../models';
+import { FeedbackController } from '../controllers';
 
 /**
  * The FeedbackProvider class
@@ -17,6 +18,9 @@ import { NodeModel } from '../models';
  * @export
  * @public
  * @implements {TreeDataProvider<NodeModel>}
+ * @property {EventEmitter<NodeModel | undefined | null | void>} _onDidChangeTreeData - The onDidChangeTreeData event emitter
+ * @property {Event<NodeModel | undefined | null | void>} onDidChangeTreeData - The onDidChangeTreeData event
+ * @property {FeedbackController} controller - The feedback controller
  * @example
  * const provider = new FeedbackProvider();
  *
@@ -50,14 +54,12 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    * @public
    * @memberof FeedbackProvider
    * @example
-   * public readonly onDidChangeTreeData: Event<Node | undefined | null | void>;
+   * readonly onDidChangeTreeData: Event<Node | undefined | null | void>;
    * this.onDidChangeTreeData = this._onDidChangeTreeData.event;
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#Event
    */
-  public readonly onDidChangeTreeData: Event<
-    NodeModel | undefined | null | void
-  >;
+  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>;
 
   // -----------------------------------------------------------------
   // Constructor
@@ -69,7 +71,7 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    * @public
    * @memberof FeedbackProvider
    */
-  constructor() {
+  constructor(readonly controller: FeedbackController) {
     this._onDidChangeTreeData = new EventEmitter<
       NodeModel | undefined | null | void
     >();
