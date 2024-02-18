@@ -6,13 +6,15 @@
 			"type": "array",
 			"default": [
 				"ts",
+				"js",
+				"json",
 				"html",
 				"css",
 				"scss",
 				"less"
 			],
 			"scope": "resource",
-			"description": "Glob patterns to include in the package. The default is ts, html, css, scss, less."
+			"description": "Glob patterns to include in the package. The default is ts, js, json, html, css, scss, less."
 		},
 		"extension-starter-kit.files.exclude": {
 			"type": "array",

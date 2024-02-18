@@ -11,6 +11,18 @@
 export const EXTENSION_ID = 'extension-starter-kit';
 
 /**
+ * EXTENSION_NAME: The name of the extension.
+ * @type {string}
+ * @public
+ * @memberof Constants
+ * @example
+ * console.log(EXTENSION_NAME);
+ *
+ * @returns {string} - The name of the extension
+ */
+export const EXTENSION_NAME = 'MyExtension';
+
+/**
  * EXTENSION_HOMEPAGE_URL: The homepage URL of the extension.
  * @type {string}
  * @public

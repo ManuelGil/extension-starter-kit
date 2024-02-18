@@ -35,17 +35,17 @@ This is a starter kit for creating a new extension for Visual Studio Code. It in
   - `.nvmrc` - Node version manager configuration file
   - `.prettierrc` - Prettier configuration file
   - `commitlint.config.js` - Commit lint configuration file
-  - `package.json` - Package configuration for the extension
-  - `tsconfig.json` - TypeScript configuration for the extension
+  - `package.json` - Package configuration to manage dependencies
+  - `tsconfig.json` - TypeScript configuration to compile the source code
 - Basic structure for a new extension
-  - `app` - Source code for the extension
-    - `config` - Configuration files for the extension
-    - `controllers` - Controllers for the extension
-    - `helpers` - Helper functions for the extension
-    - `models` - Models for the extension
-    - `providers` - Providers for the extension
-    - `services` - Services for the extension
-  - `test` - Test files for the extension
+  - `app` - Source code to develop the extension
+    - `configs` - Configuration files and constants
+    - `controllers` - Controllers to listen to commands
+    - `helpers` - Helper functions with common tasks
+    - `models` - Models to represent data
+    - `providers` - Providers to provide data
+    - `services` - Services to provide functionality
+  - `test` - Test files to test the extension
 - JSON Schema validations for workspace settings
   - `settings.schema.json` - JSON schema for the workspace settings
 - Helper functions to get started with the extension
@@ -58,11 +58,16 @@ This is a starter kit for creating a new extension for Visual Studio Code. It in
   - `security.helper.ts` - Helper functions to create a new security provider
   - `text.helper.ts` - Helper functions to create a new text provider
 - Basic commands to get started with the extension
-  - `extension.ts` - Main file for the extension
-  - `commands` - Commands for the extension
-    - `example.controller.ts` - Example controller for the extension
-  - `providers` - Providers for the extension
-    - `feedback.provider.ts` - Feedback provider for the extension
+  - `extension.ts` - Main file to run the extension
+  - `example.controller.ts` - Example controller with basic commands
+- Basic views to get started with the extension
+  - `providers` - Providers for the extension views
+    - `feedback.provider.ts` - Provides feedback to the user
+    - `listFiles.provider.ts` - Provides a list of files from the workspace
+- Basic `OpenAI` integration to get started with the extension
+  - `openai` - OpenAI integration and chat provider
+    - `openai.service.ts` - OpenAI service to interact with the API
+    - `chat.provider.ts` - Provides chat functionality to the user
 
 ## Prerequisites
 

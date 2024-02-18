@@ -7,7 +7,7 @@ import {
   WebviewViewResolveContext,
 } from 'vscode';
 
-import { EXTENSION_ID } from '../config';
+import { EXTENSION_ID } from '../configs';
 import { getNonce } from '../helpers';
 import { OpenAIService } from '../services';
 
@@ -67,6 +67,7 @@ export class ChatProvider implements WebviewViewProvider {
   /**
    * Constructor for the ChatProvider class.
    *
+   * @constructor
    * @param {Uri} _extensionUri - The extension URI
    * @public
    * @memberof ChatProvider
@@ -81,6 +82,7 @@ export class ChatProvider implements WebviewViewProvider {
   /**
    * The resolveWebviewView method.
    *
+   * @function resolveWebviewView
    * @param {WebviewView} webviewView - The webview view
    * @param {WebviewViewResolveContext} context - The webview view resolve context
    * @param {CancellationToken} _token - The cancellation token
@@ -120,6 +122,7 @@ export class ChatProvider implements WebviewViewProvider {
   /**
    * The setService method.
    *
+   * @function setService
    * @param {OpenAIService} service - The service
    * @public
    * @memberof ChatProvider
@@ -135,6 +138,7 @@ export class ChatProvider implements WebviewViewProvider {
   /**
    * The response method.
    *
+   * @function response
    * @param {any} data - The data
    * @public
    * @memberof ChatProvider
@@ -158,6 +162,7 @@ export class ChatProvider implements WebviewViewProvider {
   /**
    * The _getHtmlForWebview method.
    *
+   * @function _getHtmlForWebview
    * @param {Webview} webview - The webview
    * @private
    * @memberof ChatProvider
@@ -169,52 +174,52 @@ export class ChatProvider implements WebviewViewProvider {
   private _getHtmlForWebview(webview: Webview): string {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
     const scriptUri = webview.asWebviewUri(
-      Uri.joinPath(this._extensionUri, 'src/assets', 'main.js'),
+      Uri.joinPath(this._extensionUri, './assets', 'main.js'),
     );
 
     // Do the same for the stylesheet.
     const styleMainUri = webview.asWebviewUri(
-      Uri.joinPath(this._extensionUri, 'src/assets', 'main.css'),
+      Uri.joinPath(this._extensionUri, './assets', 'main.css'),
     );
 
     // Use a nonce to only allow a specific script to be run.
     const nonce = getNonce();
 
     return `<!DOCTYPE html>
-            <html lang="en">
-              <head>
-                <meta charset="UTF-8" />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-                <!--
-                  Use a content security policy to only allow loading styles from our extension directory,
-                  and only allow scripts that have a specific nonce.
-                  (See the 'webview-sample' extension sample for img-src content security policy examples)
-                -->
-                <meta
-                  http-equiv="Content-Security-Policy"
-                  content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';"
-                />
+    <!--
+      Use a content security policy to only allow loading styles from our extension directory,
+      and only allow scripts that have a specific nonce.
+      (See the 'webview-sample' extension sample for img-src content security policy examples)
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';"
+    />
 
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-                <link href="${styleMainUri}" rel="stylesheet" />
+    <link href="${styleMainUri}" rel="stylesheet" />
 
-                <title>Chat</title>
-              </head>
-              <body>
-                <div class="messages">
-                  <ul class="message-list">
-                    <li class="message-item item-primary"><strong>Bot:</strong> How can I help you today?</li>
-                  </ul>
-                  <div class="message-input">
-                    <input type="text" placeholder="Type your message..." />
-                    <button type="button" class="btn">Send</button>
-                  </div>
-                </div>
+    <title>Chat</title>
+  </head>
+  <body>
+    <div class="messages">
+      <ul class="message-list">
+        <li class="message-item item-primary"><strong>Bot:</strong> How can I help you today?</li>
+      </ul>
+      <div class="message-input">
+        <input type="text" placeholder="Type your message..." />
+        <button type="button" class="btn">Send</button>
+      </div>
+    </div>
 
-                <script nonce="${nonce}" src="${scriptUri}"></script>
-              </body>
-            </html>
-            `;
+    <script nonce="${nonce}" src="${scriptUri}"></script>
+  </body>
+</html>
+`;
   }
 }

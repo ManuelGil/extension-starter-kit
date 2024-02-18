@@ -1,18 +1,16 @@
 /* screen configs */
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  max-width: 400px;
-  min-height: 400px;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin: 20px auto;
-  border-radius: 1rem;
+  height: 250px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
 }
 
 ul {
@@ -23,19 +21,19 @@ ul {
 .messages {
   display: flex;
   flex-direction: column;
+  height: 400px;
   justify-content: space-between;
-  height: 500px;
 }
 
 .message-list {
+  max-height: 400px;
   overflow-y: scroll;
-  max-height: 500px;
 }
 
 .message-item {
-  padding: 20px;
-  border-radius: 0.75rem;
-  margin: 20px 0;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px;
 }
 
 .message-item:last-child {
@@ -45,31 +43,38 @@ ul {
 .item-primary {
   background-color: #9e9e9e;
   color: #212121;
+  left: 5%;
+  position: relative;
+  width: 80%;
 }
 
 .item-secondary {
   background-color: #448aff;
   color: #f5f5f5;
+  position: relative;
+  left: 15%;
+  width: 80%;
 }
 
 /* messages input */
 .message-input {
   display: flex;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .message-input input {
-  width: 100%;
+  border-radius: 5px;
+  border: none;
   padding: 10px;
-  border-radius: 2rem;
-  border: 1px solid #bdbdbd;
+  width: 100%;
 }
 
 .message-input button {
-  padding: 10px;
-  margin-left: 10px;
+  background-color: #448aff;
   border-radius: 5px;
   border: none;
+  color: #f5f5f5;
   cursor: pointer;
-  background-color: #448aff;
+  margin-left: 5px;
+  padding: 10px;
 }

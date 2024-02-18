@@ -36,7 +36,7 @@
 		"template",
 		"typescript",
 		"vscode",
-		"workspace"
+		"vsxpert"
 	],
 	"homepage": "https://github.com/ManuelGil/extension-starter-kit",
 	"repository": {
@@ -56,13 +56,15 @@
 					"type": "array",
 					"default": [
 						"ts",
+						"js",
+						"json",
 						"html",
 						"css",
 						"scss",
 						"less"
 					],
 					"scope": "resource",
-					"description": "Glob patterns to include in the package. The default is ts, html, css, scss, less."
+					"description": "Glob patterns to include in the package. The default is ts, js, json, html, css, scss, less."
 				},
 				"extension-starter-kit.files.exclude": {
 					"type": "array",
@@ -153,23 +155,47 @@
 				"command": "extension-starter-kit.feedback.supportUs",
 				"title": "Support Us",
 				"category": "MyExtension"
+			},
+			{
+				"command": "extension-starter-kit.listFiles.refreshList",
+				"title": "Refresh List",
+				"category": "MyExtension",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "extension-starter-kit.listFiles.openFile",
+				"title": "Open File",
+				"category": "MyExtension"
 			}
 		],
 		"submenus": [
 			{
-				"id": "extension.submenu",
+				"id": "extension-starter-kit.explorer.submenu",
 				"label": "MyExtension"
 			}
 		],
 		"menus": {
+			"view/title": [
+				{
+					"command": "extension-starter-kit.listFiles.refreshList",
+					"when": "view == extension-starter-kit.listFilesView",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "extension-starter-kit.listFiles.openFile",
+					"when": "view == extension-starter-kit.listFilesView && viewItem == file"
+				}
+			],
 			"explorer/context": [
 				{
-					"submenu": "extension.submenu",
+					"submenu": "extension-starter-kit.explorer.submenu",
 					"group": "2_workspace",
 					"when": "explorerViewletFocus && explorerResourceIsFolder && !explorerResourceIsRoot"
 				}
 			],
-			"extension.submenu": [
+			"extension-starter-kit.explorer.submenu": [
 				{
 					"command": "extension-starter-kit.getFilesInFolder",
 					"alt": "Get Files in Folder",
@@ -177,16 +203,29 @@
 				}
 			]
 		},
+		"viewsWelcome": [
+			{
+				"view": "extension-starter-kit.listFilesView",
+				"contents": "To effectively capture files, ensure you include the file type within the workspace settings.\n[Open Workspace Setting](command:workbench.action.openWorkspaceSettingsFile)\nTo learn more about how to use the Starter Kit [read our docs](https://github.com/ManuelGil/extension-starter-kit)."
+			}
+		],
 		"viewsContainers": {
 			"activitybar": [
 				{
 					"id": "chat-explorer",
-					"title": "Package Explorer",
-					"icon": "src/assets/dep.svg"
+					"title": "MyExtension",
+					"icon": "./assets/logo.svg"
 				}
 			]
 		},
 		"views": {
+			"explorer": [
+				{
+					"id": "extension-starter-kit.listFilesView",
+					"name": "List of Files",
+					"visibility": "collapsed"
+				}
+			],
 			"chat-explorer": [
 				{
 					"id": "extension-starter-kit.chatView",
@@ -209,7 +248,7 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
+		"compile": "rimraf out && tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"format": "prettier --write 'src/**/*.ts'",
@@ -220,8 +259,8 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^18.6.0",
-		"@commitlint/config-conventional": "^18.6.0",
+		"@commitlint/cli": "^18.6.1",
+		"@commitlint/config-conventional": "^18.6.2",
 		"@compodoc/compodoc": "^1.1.23",
 		"@types/glob": "^8.1.0",
 		"@types/minimatch": "^3.0.5",
@@ -240,6 +279,7 @@
 		"lint-staged": "^15.2.2",
 		"mocha": "^10.2.0",
 		"prettier": "3.2.5",
+		"rimraf": "^5.0.5",
 		"typescript": "^5.3.3",
 		"vscode-test": "^1.5.0"
 	},

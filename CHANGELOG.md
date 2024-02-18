@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2024-02-18
+
+### Added
+
+- Add `list-files.controller.ts` file to handle the list of files view
+- Add `ListFilesProvider` to display the list of files view
+- Add `setChildren` method to `NodeModel` class to set the children of the node
+
+### Changed
+
+- Move `assets` folder to the root of the project for improved the development experience
+- Rename `constants.ts` file to `constants.config.ts` to define the extension constants
+- Rename `config.ts` file to `extension.config.ts` to define the extension configuration
+- Rename `config` folder to `configs` to define the extension settings
+- Update `getFilesInFolder` method in `ExampleController` to use save content to a json file
+- Update `ChatProvider` to use the `assets` folder to handle the chat view
+- Update `FeedbackProvider` to use the `EXTENSION_ID` constant to handle the feedback view
+- Update `package.json` to include the list of files view in the contributes section
+- Update `extension.ts` to include the list of files view in the extension
+- Update the formatting files to improve the development experience
+- Improve the documentation of the extension
+
 ## [1.3.0] - 2024-02-10
 
 ### Added
@@ -99,7 +121,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.3.0...HEAD
+[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.0.0...v1.1.0

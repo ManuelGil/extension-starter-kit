@@ -31,6 +31,21 @@ import {
  */
 export class NodeModel extends TreeItem {
   // -----------------------------------------------------------------
+  // Properties
+  // -----------------------------------------------------------------
+
+  // Public properties
+  /**
+   * The children.
+   * @type {NodeModel[]}
+   * @public
+   * @memberof NodeModel
+   * @example
+   * node.children = [];
+   */
+  children?: NodeModel[];
+
+  // -----------------------------------------------------------------
   // Constructor
   // -----------------------------------------------------------------
 
@@ -60,7 +75,7 @@ export class NodeModel extends TreeItem {
     readonly command?: Command,
     readonly resourceUri?: Uri,
     readonly contextValue?: string,
-    readonly children?: NodeModel[],
+    children?: NodeModel[],
   ) {
     super(
       label,
@@ -73,5 +88,42 @@ export class NodeModel extends TreeItem {
     this.command = command;
     this.contextValue = contextValue;
     this.children = children;
+  }
+
+  // -----------------------------------------------------------------
+  // Methods
+  // -----------------------------------------------------------------
+
+  // Public methods
+  /**
+   * The setChildren method
+   *
+   * @function setChildren
+   * @param {NodeModel[]} children - The children
+   * @public
+   * @memberof NodeModel
+   * @example
+   * node.setChildren([]);
+   *
+   * @returns {void} The result
+   */
+  setChildren(children: NodeModel[]): void {
+    this.collapsibleState = TreeItemCollapsibleState.Expanded;
+    this.children = children;
+  }
+
+  /**
+   * The hasChildren method
+   *
+   * @function hasChildren
+   * @public
+   * @memberof NodeModel
+   * @example
+   * const hasChildren = node.hasChildren();
+   *
+   * @returns {boolean} The result
+   */
+  hasChildren(): boolean {
+    return !!(this.children && this.children.length);
   }
 }

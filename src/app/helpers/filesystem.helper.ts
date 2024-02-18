@@ -1,11 +1,4 @@
-import {
-  access,
-  existsSync,
-  mkdirSync,
-  open,
-  writeFile,
-  writeFileSync,
-} from 'fs';
+import { access, existsSync, mkdirSync, open, writeFile } from 'fs';
 import { dirname, join } from 'path';
 import { FilePermission, FileStat, Uri, window, workspace } from 'vscode';
 
@@ -24,12 +17,12 @@ import { FilePermission, FileStat, Uri, window, workspace } from 'vscode';
  *   maxResults: 100,
  * });
  *
- * @returns {Promise<Thenable<Uri[]>>} - Array of files
+ * @returns {Promise<Uri[]>} - Array of files
  */
 export const directoryMap = async (
   path: string,
   options?: { extensions?: string[]; ignore?: string[]; maxResults?: number },
-): Promise<Thenable<Uri[]>> => {
+): Promise<Uri[]> => {
   let includes = path === '/' ? '**/*' : `${path}/**/*`;
   let exclude = '';
 

@@ -1,7 +1,7 @@
 import { Uri } from 'vscode';
 
 // Import the Config and helper functions
-import { Config } from '../config';
+import { ExtensionConfig } from '../configs';
 import {
   directoryMap,
   getPath,
@@ -17,7 +17,7 @@ import {
  * @classdesc The class that represents the example controller.
  * @export
  * @public
- * @property {Config} config - The configuration
+ * @property {ExtensionConfig} config - The configuration
  * @example
  * const controller = new ExampleController(config);
  */
@@ -29,19 +29,22 @@ export class ExampleController {
   /**
    * Constructor for the ExampleController class.
    *
-   * @param {Config} config - The configuration
+   * @constructor
+   * @param {ExtensionConfig} config - The configuration
    * @public
    * @memberof ExampleController
    */
-  constructor(private readonly config: Config) {}
+  constructor(private readonly config: ExtensionConfig) {}
 
   // -----------------------------------------------------------------
   // Methods
   // -----------------------------------------------------------------
 
+  // Public methods
   /**
    * The helloWorld method.
    *
+   * @function helloWorld
    * @public
    * @memberof ExampleController
    * @example
@@ -57,8 +60,10 @@ export class ExampleController {
   /**
    * The getFilesInFolder method.
    *
+   * @function getFilesInFolder
    * @param {Uri} [path] - The path to the folder
    * @public
+   * @async
    * @memberof ExampleController
    * @example
    * controller.getFilesInFolder();
@@ -96,20 +101,16 @@ export class ExampleController {
 
     // If files are found, save them to a file
     if (files.length > 0) {
-      let content = '';
-
-      // Add the files to the content
-      for (const file of files) {
-        const path = await getRelativePath(file.path);
-        content += `${path}\n`;
-      }
-
       // Write the content to a file
-      const result = await saveFile(folder, 'files.txt', content);
+      const result = await saveFile(
+        folder,
+        'files.json',
+        JSON.stringify(files, null, 2),
+      );
 
       // If the file is written, show a message
       if (result) {
-        showMessage('Files found and saved to files.txt');
+        showMessage('Files found and saved to files.json');
       }
     }
   }

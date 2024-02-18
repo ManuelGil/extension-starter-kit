@@ -1,7 +1,8 @@
-/node_modules
-/out
+/.vscode
+/compodoc
 /coverage
 /docs
-/.vscode
+/node_modules
+/out
+/tests
 commitlint.config.js
-tsconfig.json

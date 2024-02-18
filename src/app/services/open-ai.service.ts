@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import { ChatCompletion } from 'openai/resources';
 
-import { Config } from '../config';
+import { ExtensionConfig } from '../configs';
 
 /**
  * The OpenAIService class.
@@ -30,6 +30,7 @@ export class OpenAIService {
    * @example
    * const service = new OpenAIService(config);
    * console.log(service.openai);
+   *
    * @returns {OpenAI} - The OpenAI instance
    */
   private openai?: OpenAI;
@@ -41,10 +42,11 @@ export class OpenAIService {
   /**
    * Constructor for the OpenAIService class
    *
+   * @constructor
    * @public
    * @memberof OpenAIService
    */
-  constructor(private readonly config: Config) {}
+  constructor(private readonly config: ExtensionConfig) {}
 
   // -----------------------------------------------------------------
   // Methods
@@ -54,11 +56,14 @@ export class OpenAIService {
   /**
    * The completion method
    *
+   * @function completion
    * @param {string} prompt - The prompt
    * @public
+   * @async
    * @memberof OpenAIService
    * @example
    * service.completion('Once upon a time', 'davinci');
+   *
    * @returns {Promise<ChatCompletion>} - The completion
    */
   async completion(prompt: string): Promise<ChatCompletion> {
@@ -75,10 +80,11 @@ export class OpenAIService {
   /**
    * The getInstance method
    *
-   * @public
+   * @function getInstance
    * @memberof OpenAIService
    * @example
    * service.getInstance();
+   *
    * @returns {OpenAI} - The OpenAI instance
    */
   private getInstance(): OpenAI {

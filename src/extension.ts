@@ -2,10 +2,18 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// Import the Config, Controllers, and Providers
-import { Config, EXTENSION_ID } from './app/config';
-import { ExampleController, FeedbackController } from './app/controllers';
-import { ChatProvider, FeedbackProvider } from './app/providers';
+// Import the Configs, Controllers, and Providers
+import { ExtensionConfig, EXTENSION_ID } from './app/configs';
+import {
+  ExampleController,
+  FeedbackController,
+  ListFilesController,
+} from './app/controllers';
+import {
+  ChatProvider,
+  FeedbackProvider,
+  ListFilesProvider,
+} from './app/providers';
 import { OpenAIService } from './app/services';
 
 // this method is called when your extension is activated
@@ -24,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
   // -----------------------------------------------------------------
 
   // Get the configuration for the extension
-  const config = new Config(
+  const config = new ExtensionConfig(
     vscode.workspace.getConfiguration(EXTENSION_ID, resource ?? null),
   );
 
@@ -38,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
+  const disposableHelloWorld = vscode.commands.registerCommand(
     `${EXTENSION_ID}.helloWorld`,
     () => {
       // The code you place here will be executed every time your command is executed
@@ -51,13 +59,71 @@ export function activate(context: vscode.ExtensionContext) {
   // Register the command to get the files in a folder
   // The commandId parameter must match the command field in package.json
   // The args parameter is the path to the folder
-  const getFilesInFolder = vscode.commands.registerCommand(
+  const disposableGetFilesInFolder = vscode.commands.registerCommand(
     `${EXTENSION_ID}.getFilesInFolder`,
-    async (args) => await exampleController.getFilesInFolder(args),
+    (args) => exampleController.getFilesInFolder(args),
   );
 
-  context.subscriptions.push(disposable);
-  context.subscriptions.push(getFilesInFolder);
+  context.subscriptions.push(disposableHelloWorld, disposableGetFilesInFolder);
+
+  // -----------------------------------------------------------------
+  // Register ListFilesController
+  // -----------------------------------------------------------------
+
+  // Create a new ListFilesController
+  const listFilesController = new ListFilesController(config);
+
+  // -----------------------------------------------------------------
+  // Register ListFilesProvider and list commands
+  // -----------------------------------------------------------------
+
+  // Create a new ListFilesProvider
+  const listFilesProvider = new ListFilesProvider(listFilesController);
+
+  // Register the list provider
+  const listFilesTreeView = vscode.window.createTreeView(
+    `${EXTENSION_ID}.listFilesView`,
+    {
+      treeDataProvider: listFilesProvider,
+      showCollapseAll: true,
+    },
+  );
+
+  const disposableRefreshList = vscode.commands.registerCommand(
+    `${EXTENSION_ID}.listFiles.refreshList`,
+    () => listFilesProvider.refresh(),
+  );
+
+  const disposableOpenFile = vscode.commands.registerCommand(
+    `${EXTENSION_ID}.listFiles.openFile`,
+    (uri) => listFilesProvider.controller.openFile(uri),
+  );
+
+  context.subscriptions.push(
+    listFilesTreeView,
+    disposableRefreshList,
+    disposableOpenFile,
+  );
+
+  // -----------------------------------------------------------------
+  // Register ListFilesProvider and ListMethodsProvider events
+  // -----------------------------------------------------------------
+
+  vscode.workspace.onDidChangeTextDocument(() => {
+    listFilesProvider.refresh();
+  });
+  vscode.workspace.onDidCreateFiles(() => {
+    listFilesProvider.refresh();
+  });
+  vscode.workspace.onDidDeleteFiles(() => {
+    listFilesProvider.refresh();
+  });
+  vscode.workspace.onDidRenameFiles(() => {
+    listFilesProvider.refresh();
+  });
+  vscode.workspace.onDidSaveTextDocument(() => {
+    listFilesProvider.refresh();
+  });
 
   // -----------------------------------------------------------------
   // Register FeedbackProvider and Feedback commands
@@ -75,38 +141,40 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   // Register the commands
-  const aboutUs = vscode.commands.registerCommand(
+  const disposableAboutUs = vscode.commands.registerCommand(
     `${EXTENSION_ID}.feedback.aboutUs`,
     () => feedbackProvider.controller.aboutUs(),
   );
-  const documentation = vscode.commands.registerCommand(
+  const disposableDocumentation = vscode.commands.registerCommand(
     `${EXTENSION_ID}.feedback.documentation`,
     () => feedbackProvider.controller.documentation(),
   );
-  const reportIssues = vscode.commands.registerCommand(
+  const disposableReportIssues = vscode.commands.registerCommand(
     `${EXTENSION_ID}.feedback.reportIssues`,
     () => feedbackProvider.controller.reportIssues(),
   );
-  const rateUs = vscode.commands.registerCommand(
+  const disposableRateUs = vscode.commands.registerCommand(
     `${EXTENSION_ID}.feedback.rateUs`,
     () => feedbackProvider.controller.rateUs(),
   );
-  const followUs = vscode.commands.registerCommand(
+  const disposableFollowUs = vscode.commands.registerCommand(
     `${EXTENSION_ID}.feedback.followUs`,
     () => feedbackProvider.controller.followUs(),
   );
-  const supportUs = vscode.commands.registerCommand(
+  const disposableSupportUs = vscode.commands.registerCommand(
     `${EXTENSION_ID}.feedback.supportUs`,
     () => feedbackProvider.controller.supportUs(),
   );
 
-  context.subscriptions.push(feedbackTreeView);
-  context.subscriptions.push(aboutUs);
-  context.subscriptions.push(documentation);
-  context.subscriptions.push(reportIssues);
-  context.subscriptions.push(rateUs);
-  context.subscriptions.push(followUs);
-  context.subscriptions.push(supportUs);
+  context.subscriptions.push(
+    feedbackTreeView,
+    disposableAboutUs,
+    disposableDocumentation,
+    disposableReportIssues,
+    disposableRateUs,
+    disposableFollowUs,
+    disposableSupportUs,
+  );
 
   // -----------------------------------------------------------------
   // Register the ChatProvider

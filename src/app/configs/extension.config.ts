@@ -1,5 +1,6 @@
 import { WorkspaceConfiguration } from 'vscode';
-import { EXCLUDE, INCLUDE } from './constants';
+
+import { EXCLUDE, INCLUDE } from './constants.config';
 
 /**
  * The Config class.
@@ -17,7 +18,7 @@ import { EXCLUDE, INCLUDE } from './constants';
  * console.log(config.include);
  * console.log(config.exclude);
  */
-export class Config {
+export class ExtensionConfig {
   // -----------------------------------------------------------------
   // Properties
   // -----------------------------------------------------------------
@@ -64,6 +65,7 @@ export class Config {
   /**
    * Constructor for the Config class.
    *
+   * @constructor
    * @param {WorkspaceConfiguration} config - The workspace configuration
    * @public
    * @memberof Config
@@ -85,6 +87,7 @@ export class Config {
   /**
    * The update method.
    *
+   * @function update
    * @param {WorkspaceConfiguration} config - The workspace configuration
    * @public
    * @memberof Config

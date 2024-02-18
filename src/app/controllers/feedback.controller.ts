@@ -5,10 +5,11 @@ import {
   EXTENSION_DOCUMENTATION_URL,
   EXTENSION_HOMEPAGE_URL,
   EXTENSION_MARKETPLACE_URL,
+  EXTENSION_NAME,
   EXTENSION_PAYPAL_URL,
   EXTENSION_SOCIAL_MEDIA_URL,
   EXTENSION_SPONSOR_URL,
-} from '../config';
+} from '../configs';
 
 /**
  * The FeedbackController class.
@@ -28,6 +29,7 @@ export class FeedbackController {
   /**
    * Constructor for the FeedbackController class.
    *
+   * @constructor
    * @public
    * @memberof FeedbackController
    */
@@ -41,40 +43,52 @@ export class FeedbackController {
   /**
    * The aboutUs method.
    *
+   * @function aboutUs
    * @public
    * @memberof FeedbackController
+   *
+   * @returns {void} - No return value
    */
-  aboutUs() {
+  aboutUs(): void {
     env.openExternal(Uri.parse(EXTENSION_HOMEPAGE_URL));
   }
 
   /**
    * The documentation method.
    *
+   * @function documentation
    * @public
    * @memberof FeedbackController
+   *
+   * @returns {void} - No return value
    */
-  documentation() {
+  documentation(): void {
     env.openExternal(Uri.parse(EXTENSION_DOCUMENTATION_URL));
   }
 
   /**
    * The reportIssues method.
    *
+   * @function reportIssues
    * @public
    * @memberof FeedbackController
+   *
+   * @returns {void} - No return value
    */
-  reportIssues() {
+  reportIssues(): void {
     env.openExternal(Uri.parse(EXTENSION_BUGS_URL));
   }
 
   /**
    * The rateUs method.
    *
+   * @function rateUs
    * @public
    * @memberof FeedbackController
+   *
+   * @returns {void} - No return value
    */
-  rateUs() {
+  rateUs(): void {
     env.openExternal(
       Uri.parse(`${EXTENSION_MARKETPLACE_URL}&ssr=false#review-details`),
     );
@@ -83,20 +97,27 @@ export class FeedbackController {
   /**
    * The followUs method.
    *
+   * @function followUs
    * @public
    * @memberof FeedbackController
+   *
+   * @returns {void} - No return value
    */
-  followUs() {
+  followUs(): void {
     env.openExternal(Uri.parse(EXTENSION_SOCIAL_MEDIA_URL));
   }
 
   /**
    * The supportUs method.
    *
+   * @function supportUs
    * @public
+   * @async
    * @memberof FeedbackController
+   *
+   * @returns {Promise<void>} - The promise that resolves with no value
    */
-  async supportUs() {
+  async supportUs(): Promise<void> {
     // Create the actions
     const actions: MessageItem[] = [
       { title: 'Become a Sponsor' },
@@ -105,8 +126,8 @@ export class FeedbackController {
 
     // Show the message
     const option = await window.showInformationMessage(
-      `While Project Manager is offered for free, if you
-        find it useful, please consider supporting it. Thank you!`,
+      `Although ${EXTENSION_NAME} is offered at no cost, your support is
+        deeply appreciated if you find it beneficial. Thank you for considering!`,
       ...actions,
     );
 

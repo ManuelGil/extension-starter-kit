@@ -1,6 +1,6 @@
-out
+.vscode-test/
+*.vsix
+compodoc/
 dist
 node_modules
-.vscode-test/
-compodoc/
-*.vsix
+out
