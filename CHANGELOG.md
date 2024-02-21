@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2024-02-21
+
 ### Added
 
 - Add `covertToTS` method to `example.controller.ts` file to convert a JSON Schema to TypeScript
@@ -134,7 +136,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.4.0...HEAD
+[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.1.0...v1.2.0
