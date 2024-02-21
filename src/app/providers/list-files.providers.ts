@@ -149,13 +149,13 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    * @example
    * const files = provider.getListFiles();
    *
-   * @returns {Promise<NodeModel[]>} - The list of files
+   * @returns {Promise<NodeModel[] | undefined>} - The list of files
    */
-  private async getListFiles(): Promise<NodeModel[]> {
+  private async getListFiles(): Promise<NodeModel[] | undefined> {
     const files = await this.controller.getFiles();
 
     if (!files) {
-      return [];
+      return;
     }
 
     const nodes: NodeModel[] = [];
@@ -166,15 +166,23 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
       const children = files.filter((file) =>
         file.label.toString().endsWith(`.${fileType}`),
       );
-      const node = new NodeModel(
-        `${fileType}: ${children.length}`,
-        new ThemeIcon('folder-opened'),
-        undefined,
-        undefined,
-        fileType,
-        children,
-      );
-      nodes.push(node);
+
+      if (children.length !== 0) {
+        const node = new NodeModel(
+          `${fileType}: ${children.length}`,
+          new ThemeIcon('folder-opened'),
+          undefined,
+          undefined,
+          fileType,
+          children,
+        );
+
+        nodes.push(node);
+      }
+    }
+
+    if (nodes.length === 0) {
+      return;
     }
 
     return nodes;

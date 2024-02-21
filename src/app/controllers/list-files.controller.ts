@@ -66,7 +66,7 @@ export class ListFilesController {
       maxResults,
     });
 
-    if (files.length > 0) {
+    if (files.length !== 0) {
       let nodes: NodeModel[] = [];
 
       files.sort((a, b) => a.path.localeCompare(b.path));

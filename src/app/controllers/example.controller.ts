@@ -1,4 +1,5 @@
-import { Uri } from 'vscode';
+import JsonToTS from 'json-to-ts';
+import { Range, TextEditor, Uri, window, workspace } from 'vscode';
 
 // Import the Config and helper functions
 import { ExtensionConfig } from '../configs';
@@ -7,6 +8,7 @@ import {
   getPath,
   getRelativePath,
   saveFile,
+  showError,
   showMessage,
 } from '../helpers';
 
@@ -100,7 +102,7 @@ export class ExampleController {
     });
 
     // If files are found, save them to a file
-    if (files.length > 0) {
+    if (files.length !== 0) {
       // Write the content to a file
       const result = await saveFile(
         folder,
@@ -113,5 +115,89 @@ export class ExampleController {
         showMessage('Files found and saved to files.json');
       }
     }
+  }
+
+  /**
+   * The convertToTS method.
+   *
+   * @function convertToTS
+   * @public
+   * @async
+   * @memberof ConvertController
+   * @example
+   * await controller.convertToTS();
+   *
+   * @returns {Promise<TextEditor | void>} The result
+   */
+  async convertToTS(): Promise<TextEditor | void> {
+    let editor;
+
+    if (workspace.workspaceFolders) {
+      editor = window.activeTextEditor;
+    } else {
+      showError('No text editor is active.');
+      return;
+    }
+
+    const selection = editor?.selection;
+
+    if (selection && !selection.isEmpty) {
+      const selectionRange = new Range(
+        selection.start.line,
+        selection.start.character,
+        selection.end.line,
+        selection.end.character,
+      );
+
+      const text = editor?.document.getText(selectionRange) || '';
+
+      const jsonSchema = this.tryParseJSONObject(text);
+
+      if (!jsonSchema) {
+        showError('Invalid JSON Schema!');
+        return;
+      }
+
+      const tsSchema = JsonToTS(jsonSchema)
+        .map((itf) => `export ${itf}\n`)
+        .join('\n');
+
+      const document = await workspace.openTextDocument({
+        language: 'typescript',
+        content: tsSchema,
+      });
+
+      return await window.showTextDocument(document);
+    }
+
+    showError('No text is selected!');
+    return;
+  }
+
+  // Private methods
+  /**
+   * The tryParseJSONObject method.
+   *
+   * @private
+   * @memberof ConvertController
+   * @param {string} str - The string to parse
+   * @returns {boolean | object} The result
+   * @example
+   * const object = controller.tryParseJSONObject(str);
+   *
+   * @returns {boolean | object} The result
+   */
+  private tryParseJSONObject(str: string): boolean | object {
+    try {
+      var object = JSON.parse(str);
+
+      if (object && typeof object === 'object') {
+        return object;
+      }
+    } catch (e) {
+      return false;
+    }
+
+    return false;
   }
 }

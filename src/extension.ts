@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 
 // Import the Configs, Controllers, and Providers
-import { ExtensionConfig, EXTENSION_ID } from './app/configs';
+import { EXTENSION_ID, ExtensionConfig } from './app/configs';
 import {
   ExampleController,
   FeedbackController,
@@ -20,11 +20,15 @@ import { OpenAIService } from './app/services';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   // The code you place here will be executed every time your command is executed
-  let resource: vscode.Uri | null = null;
+  let resource:
+    | vscode.Uri
+    | vscode.TextDocument
+    | vscode.WorkspaceFolder
+    | undefined;
 
   // Get the resource for the workspace
   if (vscode.workspace.workspaceFolders) {
-    resource = vscode.workspace.workspaceFolders[0].uri;
+    resource = vscode.workspace.workspaceFolders[0];
   }
 
   // -----------------------------------------------------------------
@@ -33,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Get the configuration for the extension
   const config = new ExtensionConfig(
-    vscode.workspace.getConfiguration(EXTENSION_ID, resource ?? null),
+    vscode.workspace.getConfiguration(EXTENSION_ID, resource),
   );
 
   // -----------------------------------------------------------------
@@ -64,7 +68,16 @@ export function activate(context: vscode.ExtensionContext) {
     (args) => exampleController.getFilesInFolder(args),
   );
 
-  context.subscriptions.push(disposableHelloWorld, disposableGetFilesInFolder);
+  const disposableConvertToTS = vscode.commands.registerCommand(
+    `${EXTENSION_ID}.convertToTS`,
+    () => exampleController.convertToTS(),
+  );
+
+  context.subscriptions.push(
+    disposableHelloWorld,
+    disposableGetFilesInFolder,
+    disposableConvertToTS,
+  );
 
   // -----------------------------------------------------------------
   // Register ListFilesController

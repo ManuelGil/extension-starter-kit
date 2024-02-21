@@ -127,6 +127,11 @@
 				"category": "MyExtension"
 			},
 			{
+				"command": "extension-starter-kit.convertToTS",
+				"title": "Convert JSON to TypeScript",
+				"category": "MyExtension"
+			},
+			{
 				"command": "extension-starter-kit.feedback.aboutUs",
 				"title": "About Us",
 				"category": "MyExtension"
@@ -172,6 +177,10 @@
 			{
 				"id": "extension-starter-kit.explorer.submenu",
 				"label": "MyExtension"
+			},
+			{
+				"id": "extension-starter-kit.editor.submenu",
+				"label": "MyExtension"
 			}
 		],
 		"menus": {
@@ -195,11 +204,25 @@
 					"when": "explorerViewletFocus && explorerResourceIsFolder && !explorerResourceIsRoot"
 				}
 			],
+			"editor/context": [
+				{
+					"submenu": "extension-starter-kit.editor.submenu",
+					"group": "1_modification",
+					"when": "editorHasSelection"
+				}
+			],
 			"extension-starter-kit.explorer.submenu": [
 				{
 					"command": "extension-starter-kit.getFilesInFolder",
 					"alt": "Get Files in Folder",
 					"group": "extension-starter-kit@1"
+				}
+			],
+			"extension-starter-kit.editor.submenu": [
+				{
+					"command": "extension-starter-kit.convertToTS",
+					"alt": "Convert JSON to TypeScript",
+					"group": "extension-starter-kit@2"
 				}
 			]
 		},
@@ -284,6 +307,7 @@
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
+		"json-to-ts": "^1.7.0",
 		"openai": "^4.26.1"
 	}
 }

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `covertToTS` method to `example.controller.ts` file to convert a JSON Schema to TypeScript
+- Add Convert to TypeScript command to convert a JSON Schema to TypeScript
+
+### Changed
+
+- Update `package.json` to include the Convert to TypeScript command in the contributes section
+
+### Fixed
+
+- Fix `getListFiles` method in `list-files.provider.ts` file to show a message when there are no files
+
 ## [1.4.0] - 2024-02-18
 
 ### Added
