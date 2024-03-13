@@ -82,7 +82,7 @@ export class ExampleController {
       'Folder name',
       folderPath,
       (path: string) => {
-        if (!/^\/|([\/\w-]+)+$/.test(path)) {
+        if (!/^\/|([\w\d\-_]+\/?(?!\/))+$/.test(path)) {
           return 'The folder name must be a valid name';
         }
         return;

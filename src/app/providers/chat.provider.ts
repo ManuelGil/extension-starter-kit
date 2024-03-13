@@ -39,7 +39,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @memberof ChatProvider
    * @type {string}
    */
-  public static readonly viewType = `${EXTENSION_ID}.chatView`;
+  static readonly viewType: string = `${EXTENSION_ID}.chatView`;
 
   // Private properties
   /**
@@ -131,7 +131,7 @@ export class ChatProvider implements WebviewViewProvider {
    *
    * @returns {void} - No return value
    */
-  public setService(service: OpenAIService): void {
+  setService(service: OpenAIService): void {
     this.openAISservice = service;
   }
 

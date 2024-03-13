@@ -1,6 +1,6 @@
 import { WorkspaceConfiguration } from 'vscode';
 
-import { EXCLUDE, INCLUDE } from './constants.config';
+import { EXCLUDE, INCLUDE, SHOW_PATH } from './constants.config';
 
 /**
  * The Config class.
@@ -45,6 +45,16 @@ export class ExtensionConfig {
    */
   exclude: string[];
   /**
+   * Whether to show the path or not.
+   * @type {boolean}
+   * @public
+   * @memberof Config
+   * @example
+   * const config = new Config(workspace.getConfiguration());
+   * console.log(config.showPath);
+   */
+  showPath: boolean;
+  /**
    * The OpenAI API key.
    * @type {string}
    * @public
@@ -73,6 +83,7 @@ export class ExtensionConfig {
   constructor(readonly config: WorkspaceConfiguration) {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
+    this.showPath = config.get<boolean>('showPath') ?? SHOW_PATH;
     this.openai = {
       apiKey: config.get<string>('openai.apiKey') ?? '',
       model: config.get<string>('openai.model') ?? '',
@@ -98,6 +109,7 @@ export class ExtensionConfig {
   update(config: WorkspaceConfiguration): void {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
+    this.showPath = config.get<boolean>('showPath') ?? SHOW_PATH;
     this.openai = {
       apiKey: config.get<string>('openai.apiKey') ?? '',
       model: config.get<string>('openai.model') ?? '',

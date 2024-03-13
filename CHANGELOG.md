@@ -7,11 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2024-03-12
+
+### Added
+
+- Add Show Path In File Name setting to show the path in the file name
+
+### Changed
+
+- Update the `ListFileController` class to use the `showPath` setting
+
+### Fixed
+
+- Fix the regex pattern to match the folder name to generate the file
+
 ## [1.5.0] - 2024-02-21
 
 ### Added
 
-- Add `covertToTS` method to `example.controller.ts` file to convert a JSON Schema to TypeScript
+- Add `convertToTS` method to `example.controller.ts` file to convert a JSON Schema to TypeScript
 - Add Convert to TypeScript command to convert a JSON Schema to TypeScript
 
 ### Changed
@@ -136,7 +150,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.5.0...HEAD
+[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.2.0...v1.3.0

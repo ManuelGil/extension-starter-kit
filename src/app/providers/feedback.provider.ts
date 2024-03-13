@@ -32,6 +32,20 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
   // Properties
   // -----------------------------------------------------------------
 
+  // Public properties
+  /**
+   * The onDidChangeTreeData event.
+   * @type {Event<NodeModel | undefined | null | void>}
+   * @public
+   * @memberof FeedbackProvider
+   * @example
+   * readonly onDidChangeTreeData: Event<Node | undefined | null | void>;
+   * this.onDidChangeTreeData = this._onDidChangeTreeData.event;
+   *
+   * @see https://code.visualstudio.com/api/references/vscode-api#Event
+   */
+  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>;
+
   // Private properties
   /**
    * The onDidChangeTreeData event emitter.
@@ -47,20 +61,6 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
   private _onDidChangeTreeData: EventEmitter<
     NodeModel | undefined | null | void
   >;
-
-  // Public properties
-  /**
-   * The onDidChangeTreeData event.
-   * @type {Event<NodeModel | undefined | null | void>}
-   * @public
-   * @memberof FeedbackProvider
-   * @example
-   * readonly onDidChangeTreeData: Event<Node | undefined | null | void>;
-   * this.onDidChangeTreeData = this._onDidChangeTreeData.event;
-   *
-   * @see https://code.visualstudio.com/api/references/vscode-api#Event
-   */
-  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>;
 
   // -----------------------------------------------------------------
   // Constructor

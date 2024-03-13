@@ -86,6 +86,13 @@ export function activate(context: vscode.ExtensionContext) {
   // Create a new ListFilesController
   const listFilesController = new ListFilesController(config);
 
+  const disposableOpenFile = vscode.commands.registerCommand(
+    `${EXTENSION_ID}.listFiles.openFile`,
+    (uri) => listFilesController.openFile(uri),
+  );
+
+  context.subscriptions.push(disposableOpenFile);
+
   // -----------------------------------------------------------------
   // Register ListFilesProvider and list commands
   // -----------------------------------------------------------------
@@ -107,16 +114,7 @@ export function activate(context: vscode.ExtensionContext) {
     () => listFilesProvider.refresh(),
   );
 
-  const disposableOpenFile = vscode.commands.registerCommand(
-    `${EXTENSION_ID}.listFiles.openFile`,
-    (uri) => listFilesProvider.controller.openFile(uri),
-  );
-
-  context.subscriptions.push(
-    listFilesTreeView,
-    disposableRefreshList,
-    disposableOpenFile,
-  );
+  context.subscriptions.push(listFilesTreeView, disposableRefreshList);
 
   // -----------------------------------------------------------------
   // Register ListFilesProvider and ListMethodsProvider events
