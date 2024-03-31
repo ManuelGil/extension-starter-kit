@@ -52,7 +52,7 @@
 		"configuration": {
 			"title": "MyExtension",
 			"properties": {
-				"extension-starter-kit.files.include": {
+				"extensionID.files.include": {
 					"type": "array",
 					"default": [
 						"ts",
@@ -66,7 +66,7 @@
 					"scope": "resource",
 					"description": "Glob patterns to include in the package. The default is ts, js, json, html, css, scss, less."
 				},
-				"extension-starter-kit.files.exclude": {
+				"extensionID.files.exclude": {
 					"type": "array",
 					"default": [
 						"**/node_modules/**",
@@ -78,19 +78,19 @@
 					"scope": "resource",
 					"description": "Glob patterns to exclude from the package. The default is node_modules, dist, out, build, and any hidden files."
 				},
-				"extension-starter-kit.files.showPath": {
+				"extensionID.files.showPath": {
 					"type": "boolean",
 					"default": true,
 					"scope": "resource",
 					"description": "Show the path of the file in the name of the list of generated files"
 				},
-				"extension-starter-kit.openai.apiKey": {
+				"extensionID.openai.apiKey": {
 					"type": "string",
 					"default": "",
 					"scope": "resource",
 					"description": "OpenAI API Key. Get it from https://platform.openai.com/account/api-keys"
 				},
-				"extension-starter-kit.openai.model": {
+				"extensionID.openai.model": {
 					"type": "string",
 					"default": "gpt-3.5-turbo",
 					"enum": [
@@ -123,68 +123,68 @@
 		},
 		"commands": [
 			{
-				"command": "extension-starter-kit.helloWorld",
+				"command": "extensionID.helloWorld",
 				"title": "Hello World",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.getFilesInFolder",
+				"command": "extensionID.getFilesInFolder",
 				"title": "Get Files in Folder",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.convertToTS",
+				"command": "extensionID.convertToTS",
 				"title": "Convert JSON to TypeScript",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.feedback.aboutUs",
+				"command": "extensionID.feedback.aboutUs",
 				"title": "About Us",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.feedback.documentation",
+				"command": "extensionID.feedback.documentation",
 				"title": "Documentation",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.feedback.reportIssues",
+				"command": "extensionID.feedback.reportIssues",
 				"title": "Report Issues",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.feedback.rateUs",
+				"command": "extensionID.feedback.rateUs",
 				"title": "Rate Us",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.feedback.followUs",
+				"command": "extensionID.feedback.followUs",
 				"title": "Follow Us",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.feedback.supportUs",
+				"command": "extensionID.feedback.supportUs",
 				"title": "Support Us",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.listFiles.refreshList",
+				"command": "extensionID.listFiles.refreshList",
 				"title": "Refresh List",
 				"category": "MyExtension",
 				"icon": "$(refresh)"
 			},
 			{
-				"command": "extension-starter-kit.listFiles.openFile",
+				"command": "extensionID.listFiles.openFile",
 				"title": "Open File",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.colors.addColor",
+				"command": "extensionID.colors.addColor",
 				"title": "Add Color",
 				"category": "MyExtension"
 			},
 			{
-				"command": "extension-starter-kit.colors.clearColors",
+				"command": "extensionID.colors.clearColors",
 				"title": "Clear Colors",
 				"icon": "$(clear-all)",
 				"category": "MyExtension"
@@ -192,7 +192,7 @@
 		],
 		"keybindings": [
 			{
-				"command": "extension-starter-kit.convertToTS",
+				"command": "extensionID.convertToTS",
 				"key": "ctrl+alt+t",
 				"mac": "cmd+alt+t",
 				"when": "editorTextFocus && editorHasSelection"
@@ -200,57 +200,57 @@
 		],
 		"submenus": [
 			{
-				"id": "extension-starter-kit.explorer.submenu",
+				"id": "extensionID.explorer.submenu",
 				"label": "MyExtension"
 			},
 			{
-				"id": "extension-starter-kit.editor.submenu",
+				"id": "extensionID.editor.submenu",
 				"label": "MyExtension"
 			}
 		],
 		"menus": {
 			"view/title": [
 				{
-					"command": "extension-starter-kit.listFiles.refreshList",
-					"when": "view == extension-starter-kit.listFilesView",
+					"command": "extensionID.listFiles.refreshList",
+					"when": "view == extensionID.listFilesView",
 					"group": "navigation"
 				},
 				{
-					"command": "extension-starter-kit.colors.clearColors",
-					"when": "view == extension-starter-kit.colorView",
+					"command": "extensionID.colors.clearColors",
+					"when": "view == extensionID.colorView",
 					"group": "navigation"
 				}
 			],
 			"view/item/context": [
 				{
-					"command": "extension-starter-kit.listFiles.openFile",
-					"when": "view == extension-starter-kit.listFilesView && viewItem == file"
+					"command": "extensionID.listFiles.openFile",
+					"when": "view == extensionID.listFilesView && viewItem == file"
 				}
 			],
 			"explorer/context": [
 				{
-					"submenu": "extension-starter-kit.explorer.submenu",
+					"submenu": "extensionID.explorer.submenu",
 					"group": "2_workspace",
 					"when": "explorerViewletFocus && explorerResourceIsFolder && !explorerResourceIsRoot"
 				}
 			],
 			"editor/context": [
 				{
-					"submenu": "extension-starter-kit.editor.submenu",
+					"submenu": "extensionID.editor.submenu",
 					"group": "1_modification",
 					"when": "editorHasSelection"
 				}
 			],
-			"extension-starter-kit.explorer.submenu": [
+			"extensionID.explorer.submenu": [
 				{
-					"command": "extension-starter-kit.getFilesInFolder",
+					"command": "extensionID.getFilesInFolder",
 					"alt": "Get Files in Folder",
 					"group": "extension-starter-kit@1"
 				}
 			],
-			"extension-starter-kit.editor.submenu": [
+			"extensionID.editor.submenu": [
 				{
-					"command": "extension-starter-kit.convertToTS",
+					"command": "extensionID.convertToTS",
 					"alt": "Convert JSON to TypeScript",
 					"group": "extension-starter-kit@2"
 				}
@@ -258,7 +258,7 @@
 		},
 		"viewsWelcome": [
 			{
-				"view": "extension-starter-kit.listFilesView",
+				"view": "extensionID.listFilesView",
 				"contents": "To effectively capture files, ensure you include the file type within the workspace settings.\n[Open Workspace Setting](command:workbench.action.openWorkspaceSettingsFile)\nTo learn more about how to use the Starter Kit [read our docs](https://github.com/ManuelGil/extension-starter-kit)."
 			}
 		],
@@ -279,26 +279,26 @@
 		"views": {
 			"explorer": [
 				{
-					"id": "extension-starter-kit.listFilesView",
+					"id": "extensionID.listFilesView",
 					"name": "List of Files",
 					"visibility": "collapsed"
 				}
 			],
 			"chat-view": [
 				{
-					"id": "extension-starter-kit.chatView",
+					"id": "extensionID.chatView",
 					"name": "Chat View",
 					"type": "webview"
 				}
 			],
 			"secondary-view": [
 				{
-					"id": "extension-starter-kit.colorView",
+					"id": "extensionID.colorView",
 					"name": "Color View",
 					"type": "webview"
 				},
 				{
-					"id": "extension-starter-kit.feedbackView",
+					"id": "extensionID.feedbackView",
 					"name": "Help and Feedback",
 					"visibility": "visible"
 				}

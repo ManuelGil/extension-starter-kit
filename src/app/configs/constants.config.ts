@@ -8,7 +8,7 @@
  *
  * @returns {string} - The unique identifier of the extension
  */
-export const EXTENSION_ID: string = 'extension-starter-kit';
+export const EXTENSION_ID: string = 'extensionID';
 
 /**
  * EXTENSION_NAME: The name of the extension.

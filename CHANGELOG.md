@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2024-03-31
+
+### Added
+
+- Add `ColorProvider` to display the color view in the extension
+- Add `assets/color` folder to handle the color view
+- Add `reset.css` and `vscode.css` files to style the color view
+- Add `codicons` of the `vscode` module to use the icons in the extension
+
+### Changed
+
+- Change the `EXTENSION_ID` to improve the development experience
+- Move the assets of the chat view to the `assets/chat` folder
+- Upgrade dependencies to the latest versions available
+
+### Fixed
+
+- Fix the loading of the `showPath` setting in the configurations file
+- Fix the file path when listing the files in the `ListFilesController` class
+
 ## [1.6.0] - 2024-03-12
 
 ### Added
@@ -150,7 +170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.6.0...HEAD
+[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.3.0...v1.4.0

@@ -6,10 +6,9 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
   height: 100ch;
   margin: 0 auto;
-  padding: 10px;
+  padding: 0 5px;
   width: 100%;
 }
 
@@ -31,9 +30,9 @@ ul {
 }
 
 .message-item {
-  border-radius: 10px;
-  margin: 10px 0;
-  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 5px 10px;
 }
 
 .message-item:last-child {
