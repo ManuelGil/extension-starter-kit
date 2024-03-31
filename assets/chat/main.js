@@ -35,6 +35,7 @@
    * @emits onBtnClicked
    */
   btn.addEventListener('click', () => {
+    if (!input.value) return;
     onBtnClicked(input.value);
     sendMessage(input.value);
   });

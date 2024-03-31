@@ -164,7 +164,7 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
 
     for (const fileType of fileTypes) {
       const children = files.filter((file) =>
-        file.label.toString().endsWith(`.${fileType}`),
+        file.label.toString().includes(`.${fileType}`),
       );
 
       if (children.length !== 0) {

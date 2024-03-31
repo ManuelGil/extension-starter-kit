@@ -1,18 +1,19 @@
 import {
   CancellationToken,
+  SnippetString,
   Uri,
   Webview,
   WebviewView,
   WebviewViewProvider,
   WebviewViewResolveContext,
+  window,
 } from 'vscode';
 
 import { EXTENSION_ID } from '../configs';
 import { getNonce } from '../helpers';
-import { OpenAIService } from '../services';
 
 /**
- * The ChatProvider class.
+ * The ColorProvider class.
  *
  * @class
  * @classdesc The class that represents the chat provider.
@@ -23,9 +24,9 @@ import { OpenAIService } from '../services';
  * @property {WebviewView} [_view] - The view
  * @property {OpenAIService} [openAISservice] - The OpenAI service
  * @example
- * const provider = new ChatProvider(extensionUri);
+ * const provider = new ColorProvider(extensionUri);
  */
-export class ChatProvider implements WebviewViewProvider {
+export class ColorProvider implements WebviewViewProvider {
   // -----------------------------------------------------------------
   // Properties
   // -----------------------------------------------------------------
@@ -36,41 +37,32 @@ export class ChatProvider implements WebviewViewProvider {
    *
    * @public
    * @static
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    * @type {string}
    */
-  static readonly viewType: string = `${EXTENSION_ID}.chatView`;
+  static readonly viewType: string = `${EXTENSION_ID}.colorView`;
 
   // Private properties
   /**
    * The view.
    *
    * @private
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    * @type {WebviewView}
    */
   private _view?: WebviewView;
-
-  /**
-   * The OpenAI service.
-   *
-   * @private
-   * @memberof ChatProvider
-   * @type {OpenAIService}
-   */
-  private openAISservice?: OpenAIService;
 
   // -----------------------------------------------------------------
   // Constructor
   // -----------------------------------------------------------------
 
   /**
-   * Constructor for the ChatProvider class.
+   * Constructor for the ColorProvider class.
    *
    * @constructor
    * @param {Uri} _extensionUri - The extension URI
    * @public
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    */
   constructor(private readonly _extensionUri: Uri) {}
 
@@ -87,7 +79,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @param {WebviewViewResolveContext} context - The webview view resolve context
    * @param {CancellationToken} _token - The cancellation token
    * @public
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    * @example
    * provider.resolveWebviewView(webviewView, context, _token);
    *
@@ -111,8 +103,10 @@ export class ChatProvider implements WebviewViewProvider {
 
     webviewView.webview.onDidReceiveMessage((data) => {
       switch (data.type) {
-        case 'sendMessage': {
-          this.response(data);
+        case 'colorSelected': {
+          window.activeTextEditor?.insertSnippet(
+            new SnippetString(`#${data.value}`),
+          );
           break;
         }
       }
@@ -120,41 +114,37 @@ export class ChatProvider implements WebviewViewProvider {
   }
 
   /**
-   * The setService method.
+   * The addColor method.
    *
-   * @function setService
-   * @param {OpenAIService} service - The service
+   * @function addColor
    * @public
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    * @example
-   * provider.setService(service);
+   * provider.addColor();
    *
    * @returns {void} - No return value
    */
-  setService(service: OpenAIService): void {
-    this.openAISservice = service;
+  addColor() {
+    if (this._view) {
+      this._view.show?.(true); // `show` is not implemented in 1.49 but is for 1.50 insiders
+      this._view.webview.postMessage({ type: 'addColor' });
+    }
   }
 
   /**
-   * The response method.
+   * The clearColors method.
    *
-   * @function response
-   * @param {any} data - The data
+   * @function clearColors
    * @public
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    * @example
-   * provider.response(data);
+   * provider.clearColors();
    *
    * @returns {void} - No return value
    */
-  response(data: any): void {
+  clearColors() {
     if (this._view) {
-      this.openAISservice?.completion(data.value).then((response) => {
-        this._view?.webview.postMessage({
-          type: 'receiveMessage',
-          value: response.choices[0].message.content,
-        });
-      });
+      this._view.webview.postMessage({ type: 'clearColors' });
     }
   }
 
@@ -165,7 +155,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @function _getHtmlForWebview
    * @param {Webview} webview - The webview
    * @private
-   * @memberof ChatProvider
+   * @memberof ColorProvider
    * @example
    * const html = provider._getHtmlForWebview(webview);
    *
@@ -174,7 +164,7 @@ export class ChatProvider implements WebviewViewProvider {
   private _getHtmlForWebview(webview: Webview): string {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
     const scriptUri = webview.asWebviewUri(
-      Uri.joinPath(this._extensionUri, './assets/chat', 'main.js'),
+      Uri.joinPath(this._extensionUri, './assets/color', 'main.js'),
     );
 
     // Do the same for the stylesheet.
@@ -185,7 +175,7 @@ export class ChatProvider implements WebviewViewProvider {
       Uri.joinPath(this._extensionUri, './assets', 'vscode.css'),
     );
     const styleMainUri = webview.asWebviewUri(
-      Uri.joinPath(this._extensionUri, './assets/chat', 'main.css'),
+      Uri.joinPath(this._extensionUri, './assets/color', 'main.css'),
     );
 
     // And the codicons.
@@ -228,15 +218,10 @@ export class ChatProvider implements WebviewViewProvider {
     <title>Chat</title>
   </head>
   <body>
-    <div class="messages">
-      <ul class="message-list">
-        <li class="message-item item-primary"><strong>Bot:</strong> How can I help you today?</li>
-      </ul>
-      <div class="message-input">
-        <input type="text" placeholder="Type your message..." />
-        <button type="button" class="btn"><i class="codicon codicon-send"></i></button>
-      </div>
-    </div>
+    <ul class="color-list">
+    </ul>
+
+    <button class="add-color-button">Add Color</button>
 
     <script nonce="${nonce}" src="${scriptUri}"></script>
   </body>

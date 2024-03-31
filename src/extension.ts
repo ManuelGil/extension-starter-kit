@@ -11,6 +11,7 @@ import {
 } from './app/controllers';
 import {
   ChatProvider,
+  ColorProvider,
   FeedbackProvider,
   ListFilesProvider,
 } from './app/providers';
@@ -202,6 +203,39 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(chatWebviewProvider);
+
+  // -----------------------------------------------------------------
+  // Register the ColorProvider
+  // -----------------------------------------------------------------
+
+  // Create a new ColorProvider
+  const colorProvider = new ColorProvider(context.extensionUri);
+
+  // Register the ColorProvider
+  const colorWebviewProvider = vscode.window.registerWebviewViewProvider(
+    ColorProvider.viewType,
+    colorProvider,
+  );
+
+  const disposableAddColor = vscode.commands.registerCommand(
+    `${EXTENSION_ID}.colors.addColor`,
+    () => {
+      colorProvider.addColor();
+    },
+  );
+
+  const disposableClearColors = vscode.commands.registerCommand(
+    `${EXTENSION_ID}.colors.clearColors`,
+    () => {
+      colorProvider.clearColors();
+    },
+  );
+
+  context.subscriptions.push(
+    colorWebviewProvider,
+    disposableAddColor,
+    disposableClearColors,
+  );
 }
 
 // this method is called when your extension is deactivated

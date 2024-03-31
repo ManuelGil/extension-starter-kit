@@ -83,7 +83,7 @@ export class ExtensionConfig {
   constructor(readonly config: WorkspaceConfiguration) {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
-    this.showPath = config.get<boolean>('showPath') ?? SHOW_PATH;
+    this.showPath = config.get<boolean>('files.showPath') ?? SHOW_PATH;
     this.openai = {
       apiKey: config.get<string>('openai.apiKey') ?? '',
       model: config.get<string>('openai.model') ?? '',
@@ -109,7 +109,7 @@ export class ExtensionConfig {
   update(config: WorkspaceConfiguration): void {
     this.include = config.get<string[]>('files.include') ?? INCLUDE;
     this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
-    this.showPath = config.get<boolean>('showPath') ?? SHOW_PATH;
+    this.showPath = config.get<boolean>('files.showPath') ?? SHOW_PATH;
     this.openai = {
       apiKey: config.get<string>('openai.apiKey') ?? '',
       model: config.get<string>('openai.model') ?? '',

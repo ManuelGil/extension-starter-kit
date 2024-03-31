@@ -36,7 +36,7 @@ export class ListFilesController {
    * @public
    * @memberof ListFilesController
    */
-  constructor(public readonly config: ExtensionConfig) {}
+  constructor(readonly config: ExtensionConfig) {}
 
   // -----------------------------------------------------------------
   // Methods
@@ -78,7 +78,9 @@ export class ListFilesController {
         let filename = path.split('/').pop();
 
         if (filename && this.config.showPath) {
-          filename += ' (' + path.split('/').slice(0, -1).join('/') + ')';
+          const folder = path.split('/').slice(0, -1).join('/');
+
+          filename += folder ? ` (${folder})` : ' (root)';
         }
 
         nodes.push(
