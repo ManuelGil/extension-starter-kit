@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2024-05-01
+
 ### Changed
 
 - Refactor the constants file to improve the development experience
+- Refactor the `FeedbackController` class to improve the development experience
 - Update the `README.md` file to improve the documentation of the extension
+- Update the `package.json` file to improve the extension settings
+- Upgrade dependencies to the latest versions available
 
 ### Fixed
 
@@ -179,7 +184,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.7.0...HEAD
+[unreleased]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/ManuelGil/extension-starter-kit/compare/v1.4.0...v1.5.0
