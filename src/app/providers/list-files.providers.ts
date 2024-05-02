@@ -129,7 +129,7 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    *
    * @function refresh
    * @public
-   * @memberof FeedbackProvider
+   * @memberof ListFilesProviders
    * @example
    * provider.refresh();
    *

@@ -1,14 +1,10 @@
 import { MessageItem, Uri, env, window } from 'vscode';
 
 import {
-  EXTENSION_BUGS_URL,
-  EXTENSION_DOCUMENTATION_URL,
-  EXTENSION_HOMEPAGE_URL,
-  EXTENSION_MARKETPLACE_URL,
-  EXTENSION_NAME,
-  EXTENSION_PAYPAL_URL,
-  EXTENSION_SOCIAL_MEDIA_URL,
-  EXTENSION_SPONSOR_URL,
+  EXTENSION_DISPLAY_NAME,
+  MARKETPLACE_URL,
+  REPOSITORY_URL,
+  USER_NAME,
 } from '../configs';
 
 /**
@@ -50,7 +46,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   aboutUs(): void {
-    env.openExternal(Uri.parse(EXTENSION_HOMEPAGE_URL));
+    env.openExternal(Uri.parse(`${REPOSITORY_URL}#readme`));
   }
 
   /**
@@ -63,7 +59,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   documentation(): void {
-    env.openExternal(Uri.parse(EXTENSION_DOCUMENTATION_URL));
+    env.openExternal(Uri.parse(`${REPOSITORY_URL}/wiki`));
   }
 
   /**
@@ -76,7 +72,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   reportIssues(): void {
-    env.openExternal(Uri.parse(EXTENSION_BUGS_URL));
+    env.openExternal(Uri.parse(`${REPOSITORY_URL}/issues`));
   }
 
   /**
@@ -89,9 +85,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   rateUs(): void {
-    env.openExternal(
-      Uri.parse(`${EXTENSION_MARKETPLACE_URL}&ssr=false#review-details`),
-    );
+    env.openExternal(Uri.parse(`${MARKETPLACE_URL}&ssr=false#review-details`));
   }
 
   /**
@@ -104,7 +98,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   followUs(): void {
-    env.openExternal(Uri.parse(EXTENSION_SOCIAL_MEDIA_URL));
+    env.openExternal(Uri.parse('https://twitter.com/githubUsername'));
   }
 
   /**
@@ -126,7 +120,7 @@ export class FeedbackController {
 
     // Show the message
     const option = await window.showInformationMessage(
-      `Although ${EXTENSION_NAME} is offered at no cost, your support is
+      `Although ${EXTENSION_DISPLAY_NAME} is offered at no cost, your support is
         deeply appreciated if you find it beneficial. Thank you for considering!`,
       ...actions,
     );
@@ -134,11 +128,11 @@ export class FeedbackController {
     // Handle the actions
     switch (option?.title) {
       case actions[0].title:
-        env.openExternal(Uri.parse(EXTENSION_SPONSOR_URL));
+        env.openExternal(Uri.parse(`https://github.com/sponsors/${USER_NAME}`));
         break;
 
       case actions[1].title:
-        env.openExternal(Uri.parse(EXTENSION_PAYPAL_URL));
+        env.openExternal(Uri.parse(`https://patreon.com/${USER_NAME}`));
         break;
     }
   }

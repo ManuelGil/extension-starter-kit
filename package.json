@@ -1,7 +1,7 @@
 {
 	"name": "extension-starter-kit",
-	"displayName": "MyExtension",
-	"description": "My First VS Code Extension",
+	"displayName": "My Extension",
+	"description": "My First Extension for Visual Studio Code",
 	"version": "1.0.0",
 	"preview": true,
 	"icon": "icon.png",
@@ -11,14 +11,10 @@
 	},
 	"pricing": "Free",
 	"license": "MIT",
-	"publisher": "imgildev",
-	"author": {
-		"name": "Manuel Gil",
-		"email": "support@imgil.dev",
-		"url": "https://imgil.dev/"
-	},
+	"publisher": "extensionPublisher",
+	"author": "githubUsername",
 	"sponsor": {
-		"url": "https://github.com/sponsors/manuelgil"
+		"url": "https://github.com/sponsors/githubUsername"
 	},
 	"engines": {
 		"vscode": "^1.87.0"
@@ -29,30 +25,31 @@
 	"keywords": [
 		"boilerplate",
 		"extension",
-		"imgildev",
+		"kit",
 		"plugin",
 		"project",
 		"starter-kit",
+		"starter",
 		"template",
 		"typescript",
 		"vscode",
 		"vsxpert"
 	],
-	"homepage": "https://github.com/ManuelGil/extension-starter-kit",
+	"homepage": "https://github.com/githubUsername/extension-starter-kit",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ManuelGil/extension-starter-kit"
+		"url": "https://github.com/githubUsername/extension-starter-kit"
 	},
 	"bugs": {
-		"url": "https://github.com/ManuelGil/extension-starter-kit/issues"
+		"url": "https://github.com/githubUsername/extension-starter-kit/issues"
 	},
 	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
-			"title": "MyExtension",
+			"title": "My Extension",
 			"properties": {
-				"extensionID.files.include": {
+				"extensionIdentifier.files.include": {
 					"type": "array",
 					"default": [
 						"ts",
@@ -66,7 +63,7 @@
 					"scope": "resource",
 					"description": "Glob patterns to include in the package. The default is ts, js, json, html, css, scss, less."
 				},
-				"extensionID.files.exclude": {
+				"extensionIdentifier.files.exclude": {
 					"type": "array",
 					"default": [
 						"**/node_modules/**",
@@ -78,19 +75,19 @@
 					"scope": "resource",
 					"description": "Glob patterns to exclude from the package. The default is node_modules, dist, out, build, and any hidden files."
 				},
-				"extensionID.files.showPath": {
+				"extensionIdentifier.files.showPath": {
 					"type": "boolean",
 					"default": true,
 					"scope": "resource",
 					"description": "Show the path of the file in the name of the list of generated files"
 				},
-				"extensionID.openai.apiKey": {
+				"extensionIdentifier.openai.apiKey": {
 					"type": "string",
 					"default": "",
 					"scope": "resource",
 					"description": "OpenAI API Key. Get it from https://platform.openai.com/account/api-keys"
 				},
-				"extensionID.openai.model": {
+				"extensionIdentifier.openai.model": {
 					"type": "string",
 					"default": "gpt-3.5-turbo",
 					"enum": [
@@ -123,76 +120,76 @@
 		},
 		"commands": [
 			{
-				"command": "extensionID.helloWorld",
+				"command": "extensionIdentifier.helloWorld",
 				"title": "Hello World",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.getFilesInFolder",
+				"command": "extensionIdentifier.getFilesInFolder",
 				"title": "Get Files in Folder",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.convertToTS",
+				"command": "extensionIdentifier.convertToTS",
 				"title": "Convert JSON to TypeScript",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.feedback.aboutUs",
+				"command": "extensionIdentifier.feedback.aboutUs",
 				"title": "About Us",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.feedback.documentation",
+				"command": "extensionIdentifier.feedback.documentation",
 				"title": "Documentation",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.feedback.reportIssues",
+				"command": "extensionIdentifier.feedback.reportIssues",
 				"title": "Report Issues",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.feedback.rateUs",
+				"command": "extensionIdentifier.feedback.rateUs",
 				"title": "Rate Us",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.feedback.followUs",
+				"command": "extensionIdentifier.feedback.followUs",
 				"title": "Follow Us",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.feedback.supportUs",
+				"command": "extensionIdentifier.feedback.supportUs",
 				"title": "Support Us",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.listFiles.refreshList",
+				"command": "extensionIdentifier.listFiles.refreshList",
 				"title": "Refresh List",
-				"category": "MyExtension",
+				"category": "My Extension",
 				"icon": "$(refresh)"
 			},
 			{
-				"command": "extensionID.listFiles.openFile",
+				"command": "extensionIdentifier.listFiles.openFile",
 				"title": "Open File",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.colors.addColor",
+				"command": "extensionIdentifier.colors.addColor",
 				"title": "Add Color",
-				"category": "MyExtension"
+				"category": "My Extension"
 			},
 			{
-				"command": "extensionID.colors.clearColors",
+				"command": "extensionIdentifier.colors.clearColors",
 				"title": "Clear Colors",
 				"icon": "$(clear-all)",
-				"category": "MyExtension"
+				"category": "My Extension"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "extensionID.convertToTS",
+				"command": "extensionIdentifier.convertToTS",
 				"key": "ctrl+alt+t",
 				"mac": "cmd+alt+t",
 				"when": "editorTextFocus && editorHasSelection"
@@ -200,57 +197,57 @@
 		],
 		"submenus": [
 			{
-				"id": "extensionID.explorer.submenu",
-				"label": "MyExtension"
+				"id": "extensionIdentifier.explorer.submenu",
+				"label": "My Extension"
 			},
 			{
-				"id": "extensionID.editor.submenu",
-				"label": "MyExtension"
+				"id": "extensionIdentifier.editor.submenu",
+				"label": "My Extension"
 			}
 		],
 		"menus": {
 			"view/title": [
 				{
-					"command": "extensionID.listFiles.refreshList",
-					"when": "view == extensionID.listFilesView",
+					"command": "extensionIdentifier.listFiles.refreshList",
+					"when": "view == extensionIdentifier.listFilesView",
 					"group": "navigation"
 				},
 				{
-					"command": "extensionID.colors.clearColors",
-					"when": "view == extensionID.colorView",
+					"command": "extensionIdentifier.colors.clearColors",
+					"when": "view == extensionIdentifier.colorView",
 					"group": "navigation"
 				}
 			],
 			"view/item/context": [
 				{
-					"command": "extensionID.listFiles.openFile",
-					"when": "view == extensionID.listFilesView && viewItem == file"
+					"command": "extensionIdentifier.listFiles.openFile",
+					"when": "view == extensionIdentifier.listFilesView && viewItem == file"
 				}
 			],
 			"explorer/context": [
 				{
-					"submenu": "extensionID.explorer.submenu",
+					"submenu": "extensionIdentifier.explorer.submenu",
 					"group": "2_workspace",
 					"when": "explorerViewletFocus && explorerResourceIsFolder && !explorerResourceIsRoot"
 				}
 			],
 			"editor/context": [
 				{
-					"submenu": "extensionID.editor.submenu",
+					"submenu": "extensionIdentifier.editor.submenu",
 					"group": "1_modification",
 					"when": "editorHasSelection"
 				}
 			],
-			"extensionID.explorer.submenu": [
+			"extensionIdentifier.explorer.submenu": [
 				{
-					"command": "extensionID.getFilesInFolder",
+					"command": "extensionIdentifier.getFilesInFolder",
 					"alt": "Get Files in Folder",
 					"group": "extension-starter-kit@1"
 				}
 			],
-			"extensionID.editor.submenu": [
+			"extensionIdentifier.editor.submenu": [
 				{
-					"command": "extensionID.convertToTS",
+					"command": "extensionIdentifier.convertToTS",
 					"alt": "Convert JSON to TypeScript",
 					"group": "extension-starter-kit@2"
 				}
@@ -258,8 +255,8 @@
 		},
 		"viewsWelcome": [
 			{
-				"view": "extensionID.listFilesView",
-				"contents": "To effectively capture files, ensure you include the file type within the workspace settings.\n[Open Workspace Setting](command:workbench.action.openWorkspaceSettingsFile)\nTo learn more about how to use the Starter Kit [read our docs](https://github.com/ManuelGil/extension-starter-kit)."
+				"view": "extensionIdentifier.listFilesView",
+				"contents": "To effectively capture files, ensure you include the file type within the workspace settings.\n[Open Workspace Setting](command:workbench.action.openWorkspaceSettingsFile)\nTo learn more about how to use the Starter Kit [read our docs](https://github.com/githubUsername/extension-starter-kit)."
 			}
 		],
 		"viewsContainers": {
@@ -279,26 +276,26 @@
 		"views": {
 			"explorer": [
 				{
-					"id": "extensionID.listFilesView",
+					"id": "extensionIdentifier.listFilesView",
 					"name": "List of Files",
 					"visibility": "collapsed"
 				}
 			],
 			"chat-view": [
 				{
-					"id": "extensionID.chatView",
+					"id": "extensionIdentifier.chatView",
 					"name": "Chat View",
 					"type": "webview"
 				}
 			],
 			"secondary-view": [
 				{
-					"id": "extensionID.colorView",
+					"id": "extensionIdentifier.colorView",
 					"name": "Color View",
 					"type": "webview"
 				},
 				{
-					"id": "extensionID.feedbackView",
+					"id": "extensionIdentifier.feedbackView",
 					"name": "Help and Feedback",
 					"visibility": "visible"
 				}
@@ -324,14 +321,14 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.2.1",
-		"@commitlint/config-conventional": "^19.1.0",
-		"@compodoc/compodoc": "^1.1.23",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
+		"@compodoc/compodoc": "^1.1.24",
 		"@types/glob": "^8.1.0",
 		"@types/minimatch": "^3.0.5",
 		"@types/mocha": "^10.0.6",
-		"@types/node": "^20.11.30",
-		"@types/vscode": "^1.87.0",
+		"@types/node": "^20.12.8",
+		"@types/vscode": "^1.88.0",
 		"@typescript-eslint/eslint-plugin": "^6.21.0",
 		"@typescript-eslint/parser": "^6.21.0",
 		"eslint": "^8.57.0",
@@ -339,18 +336,18 @@
 		"eslint-plugin-import": "^2.29.1",
 		"eslint-plugin-n": "^16.6.2",
 		"eslint-plugin-promise": "^6.1.1",
-		"glob": "^10.3.10",
+		"glob": "^10.3.12",
 		"husky": "^9.0.11",
 		"lint-staged": "^15.2.2",
 		"mocha": "^10.4.0",
 		"prettier": "3.2.5",
 		"rimraf": "^5.0.5",
-		"typescript": "^5.4.3",
+		"typescript": "^5.4.5",
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
 		"@vscode/codicons": "^0.0.35",
-		"json-to-ts": "^1.7.0",
-		"openai": "^4.29.2"
+		"json-to-ts": "^2.1.0",
+		"openai": "^4.40.0"
 	}
 }

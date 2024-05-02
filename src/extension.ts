@@ -41,6 +41,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.getConfiguration(EXTENSION_ID, resource),
   );
 
+  // #region Example
+
   // -----------------------------------------------------------------
   // Register ExampleController and commands
   // -----------------------------------------------------------------
@@ -79,6 +81,10 @@ export function activate(context: vscode.ExtensionContext) {
     disposableGetFilesInFolder,
     disposableConvertToTS,
   );
+
+  // #endregion Example
+
+  // #region List Files
 
   // -----------------------------------------------------------------
   // Register ListFilesController
@@ -137,6 +143,10 @@ export function activate(context: vscode.ExtensionContext) {
     listFilesProvider.refresh();
   });
 
+  // #endregion List Files
+
+  // #region Feedback
+
   // -----------------------------------------------------------------
   // Register FeedbackProvider and Feedback commands
   // -----------------------------------------------------------------
@@ -188,6 +198,10 @@ export function activate(context: vscode.ExtensionContext) {
     disposableSupportUs,
   );
 
+  // #endregion Feedback
+
+  // #region Chat
+
   // -----------------------------------------------------------------
   // Register the ChatProvider
   // -----------------------------------------------------------------
@@ -203,6 +217,10 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(chatWebviewProvider);
+
+  // #endregion Chat
+
+  // #region Color
 
   // -----------------------------------------------------------------
   // Register the ColorProvider
@@ -236,6 +254,8 @@ export function activate(context: vscode.ExtensionContext) {
     disposableAddColor,
     disposableClearColors,
   );
+
+  // #endregion Color
 }
 
 // this method is called when your extension is deactivated

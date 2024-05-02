@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Refactor the constants file to improve the development experience
+- Update the `README.md` file to improve the documentation of the extension
+
+### Fixed
+
+- Fix the extension identifier in the `config.schema.json` file
+
 ## [1.7.0] - 2024-03-31
 
 ### Added

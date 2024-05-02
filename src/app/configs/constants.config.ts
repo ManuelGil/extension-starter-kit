@@ -8,123 +8,79 @@
  *
  * @returns {string} - The unique identifier of the extension
  */
-export const EXTENSION_ID: string = 'extensionID';
+export const EXTENSION_ID: string = 'extensionIdentifier';
 
 /**
- * EXTENSION_NAME: The name of the extension.
+ * EXTENSION_NAME: The repository ID of the extension.
  * @type {string}
  * @public
  * @memberof Constants
  * @example
  * console.log(EXTENSION_NAME);
  *
+ * @returns {string} - The repository ID of the extension
+ */
+export const EXTENSION_NAME: string = 'extension-starter-kit';
+
+/**
+ * EXTENSION_DISPLAY_NAME: The name of the extension.
+ * @type {string}
+ * @public
+ * @memberof Constants
+ * @example
+ * console.log(EXTENSION_DISPLAY_NAME);
+ *
  * @returns {string} - The name of the extension
  */
-export const EXTENSION_NAME: string = 'MyExtension';
+export const EXTENSION_DISPLAY_NAME: string = 'My Extension';
 
 /**
- * EXTENSION_HOMEPAGE_URL: The homepage URL of the extension.
+ * USER_NAME: The githubUsername of the extension.
  * @type {string}
  * @public
  * @memberof Constants
  * @example
- * console.log(EXTENSION_HOMEPAGE_URL);
+ * console.log(USER_NAME);
  *
- * @returns {string} - The homepage URL of the extension
+ * @returns {string} - The githubUsername of the extension
  */
-export const EXTENSION_HOMEPAGE_URL: string =
-  'https://github.com/ManuelGil/extension-starter-kit';
+export const USER_NAME: string = 'githubUsername';
 
 /**
- * EXTENSION_DOCUMENTATION_URL: The documentation URL of the extension.
+ * USER_PUBLISHER: The publisher of the extension.
  * @type {string}
  * @public
  * @memberof Constants
  * @example
- * console.log(EXTENSION_DOCUMENTATION_URL);
+ * console.log(USER_PUBLISHER);
+ *
+ * @returns {string} - The publisher of the extension
+ */
+export const USER_PUBLISHER: string = 'extensionPublisher';
+
+/**
+ * REPOSITORY_URL: The documentation URL of the extension.
+ * @type {string}
+ * @public
+ * @memberof Constants
+ * @example
+ * console.log(REPOSITORY_URL);
  *
  * @returns {string} - The documentation URL of the extension
  */
-export const EXTENSION_DOCUMENTATION_URL: string =
-  'https://github.com/ManuelGil/extension-starter-kit';
+export const REPOSITORY_URL: string = `https://github.com/${USER_NAME}/${EXTENSION_NAME}`;
 
 /**
- * EXTENSION_REPOSITORY_URL: The repository URL of the extension.
+ * MARKETPLACE_URL: The marketplace URL of the extension.
  * @type {string}
  * @public
  * @memberof Constants
  * @example
- * console.log(EXTENSION_REPOSITORY_URL);
- *
- * @returns {string} - The repository URL of the extension
- */
-export const EXTENSION_REPOSITORY_URL: string =
-  'https://github.com/ManuelGil/extension-starter-kit';
-
-/**
- * EXTENSION_MARKETPLACE_URL: The marketplace URL of the extension.
- * @type {string}
- * @public
- * @memberof Constants
- * @example
- * console.log(EXTENSION_MARKETPLACE_URL);
+ * console.log(MARKETPLACE_URL);
  *
  * @returns {string} - The marketplace URL of the extension
  */
-export const EXTENSION_MARKETPLACE_URL: string =
-  'https://marketplace.visualstudio.com/items?itemName=imgildev.extension-starter-kit';
-
-/**
- * EXTENSION_BUGS_URL: The bugs URL of the extension.
- * @type {string}
- * @public
- * @memberof Constants
- * @example
- * console.log(EXTENSION_BUGS_URL);
- *
- * @returns {string} - The bugs URL of the extension
- */
-export const EXTENSION_BUGS_URL: string =
-  'https://github.com/ManuelGil/extension-starter-kit/issues';
-
-/**
- * EXTENSION_SOCIAL_MEDIA_URL: The social media URL of the extension.
- * @type {string}
- * @public
- * @memberof Constants
- * @example
- * console.log(EXTENSION_SOCIAL_MEDIA_URL);
- *
- * @returns {string} - The social media URL of the extension
- */
-export const EXTENSION_SOCIAL_MEDIA_URL: string =
-  'https://github.com/ManuelGil';
-
-/**
- * EXTENSION_SPONSOR_URL: The sponsor URL of the extension.
- * @type {string}
- * @public
- * @memberof Constants
- * @example
- * console.log(EXTENSION_SPONSOR_URL);
- *
- * @returns {string} - The sponsor URL of the extension
- */
-export const EXTENSION_SPONSOR_URL: string =
-  'https://github.com/sponsors/ManuelGil';
-
-/**
- * EXTENSION_PAYPAL_URL: The PayPal URL of the extension.
- * @type {string}
- * @public
- * @memberof Constants
- * @example
- * console.log(EXTENSION_PAYPAL_URL);
- *
- * @returns {string} - The PayPal URL of the extension
- */
-export const EXTENSION_PAYPAL_URL: string =
-  'https://www.paypal.com/paypalme/ManuelFGil';
+export const MARKETPLACE_URL: string = `https://marketplace.visualstudio.com/items?itemName=${USER_PUBLISHER}.${EXTENSION_NAME}`;
 
 /**
  * INCLUDE: The files to include.
