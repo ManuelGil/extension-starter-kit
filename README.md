@@ -32,11 +32,9 @@ This is a starter kit for creating a new extension for Visual Studio Code. It in
 
 - Basic configuration for the development environment
   - `.editorconfig` - Editor configuration
-  - `.eslintignore` - ESLint ignore file
-  - `.eslintrc.json` - ESLint configuration file
   - `.linstagedrc` - Lint-staged configuration file
   - `.nvmrc` - Node version manager configuration file
-  - `.prettierrc` - Prettier configuration file
+  - `biome.json` - Biome configuration file
   - `commitlint.config.js` - Commit lint configuration file
   - `package.json` - Package configuration to manage dependencies
   - `tsconfig.json` - TypeScript configuration to compile the source code
@@ -169,7 +167,7 @@ This extension was created using [VSXpert](https://vsxpert.com), a template that
 
 ## Contributing
 
-Auto Barrel is open-source software, and we welcome contributions from the community. If you'd like to contribute, please fork the [GitHub repository](https://github.com/ManuelGil/extension-starter-kit) and submit a pull request with your changes.
+This extension is open-source software, and we welcome contributions from the community. If you'd like to contribute, please fork the [GitHub repository](https://github.com/ManuelGil/extension-starter-kit) and submit a pull request with your changes.
 
 Before contributing, please read our [Contribution Guidelines](./CONTRIBUTING.md) for instructions on coding standards, testing, and more.
 

@@ -5,11 +5,11 @@ import {
   WebviewView,
   WebviewViewProvider,
   WebviewViewResolveContext,
-} from 'vscode';
+} from 'vscode'
 
-import { EXTENSION_ID } from '../configs';
-import { getNonce } from '../helpers';
-import { OpenAIService } from '../services';
+import { EXTENSION_ID } from '../configs'
+import { getNonce } from '../helpers'
+import { OpenAIService } from '../services'
 
 /**
  * The ChatProvider class.
@@ -39,7 +39,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @memberof ChatProvider
    * @type {string}
    */
-  static readonly viewType: string = `${EXTENSION_ID}.chatView`;
+  static readonly viewType: string = `${EXTENSION_ID}.chatView`
 
   // Private properties
   /**
@@ -49,7 +49,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @memberof ChatProvider
    * @type {WebviewView}
    */
-  private _view?: WebviewView;
+  private _view?: WebviewView
 
   /**
    * The OpenAI service.
@@ -58,7 +58,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @memberof ChatProvider
    * @type {OpenAIService}
    */
-  private openAISservice?: OpenAIService;
+  private openAISservice?: OpenAIService
 
   // -----------------------------------------------------------------
   // Constructor
@@ -98,25 +98,25 @@ export class ChatProvider implements WebviewViewProvider {
     _: WebviewViewResolveContext,
     _token: CancellationToken,
   ): void {
-    this._view = webviewView;
+    this._view = webviewView
 
     webviewView.webview.options = {
       // Allow scripts in the webview
       enableScripts: true,
 
       localResourceRoots: [this._extensionUri],
-    };
+    }
 
-    webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
+    webviewView.webview.html = this._getHtmlForWebview(webviewView.webview)
 
     webviewView.webview.onDidReceiveMessage((data) => {
       switch (data.type) {
         case 'sendMessage': {
-          this.response(data);
-          break;
+          this.response(data)
+          break
         }
       }
-    });
+    })
   }
 
   /**
@@ -132,7 +132,7 @@ export class ChatProvider implements WebviewViewProvider {
    * @returns {void} - No return value
    */
   setService(service: OpenAIService): void {
-    this.openAISservice = service;
+    this.openAISservice = service
   }
 
   /**
@@ -153,8 +153,8 @@ export class ChatProvider implements WebviewViewProvider {
         this._view?.webview.postMessage({
           type: 'receiveMessage',
           value: response.choices[0].message.content,
-        });
-      });
+        })
+      })
     }
   }
 
@@ -175,18 +175,18 @@ export class ChatProvider implements WebviewViewProvider {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
     const scriptUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets/chat', 'main.js'),
-    );
+    )
 
     // Do the same for the stylesheet.
     const styleResetUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets', 'reset.css'),
-    );
+    )
     const styleVSCodeUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets', 'vscode.css'),
-    );
+    )
     const styleMainUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets/chat', 'main.css'),
-    );
+    )
 
     // And the codicons.
     const codiconsUri = webview.asWebviewUri(
@@ -197,10 +197,10 @@ export class ChatProvider implements WebviewViewProvider {
         'dist',
         'codicon.css',
       ),
-    );
+    )
 
     // Use a nonce to only allow a specific script to be run.
-    const nonce = getNonce();
+    const nonce = getNonce()
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -241,6 +241,6 @@ export class ChatProvider implements WebviewViewProvider {
     <script nonce="${nonce}" src="${scriptUri}"></script>
   </body>
 </html>
-`;
+`
   }
 }

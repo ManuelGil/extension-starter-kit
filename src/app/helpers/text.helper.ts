@@ -1,4 +1,4 @@
-type RandomStringType = 'alphanumeric' | 'alphabetic' | 'numeric' | 'hex';
+type RandomStringType = 'alphanumeric' | 'alphabetic' | 'numeric' | 'hex'
 
 /**
  * Generates a random string based on the type and length you specify.
@@ -15,23 +15,23 @@ export const randomString = (
   type: RandomStringType,
   length: number,
 ): string => {
-  let result = '';
+  let result = ''
   const characters = {
     alphanumeric:
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
     alphabetic: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
     numeric: '0123456789',
     hex: '0123456789abcdef',
-  };
+  }
 
   for (let i = 0; i < length; i++) {
     result += characters[type].charAt(
       Math.floor(Math.random() * characters[type].length),
-    );
+    )
   }
 
-  return result;
-};
+  return result
+}
 
 /**
  * Increments a string by appending a number to it or increasing the number.
@@ -50,14 +50,14 @@ export const incrementString = (
   separator: string,
   start: number,
 ): string => {
-  const matches = str.match(/(.*?)(\d+)$/);
+  const matches = str.match(/(.*?)(\d+)$/)
   if (matches) {
-    const base = matches[1];
-    const number = parseInt(matches[2], 10);
-    return base + separator + (number + 1);
+    const base = matches[1]
+    const number = parseInt(matches[2], 10)
+    return base + separator + (number + 1)
   }
-  return str + separator + start;
-};
+  return str + separator + start
+}
 
 /**
  * Alternates between two strings based on a boolean.
@@ -76,8 +76,8 @@ export const alternator = (
   str1: string,
   str2: string,
 ): string => {
-  return bool ? str1 : str2;
-};
+  return bool ? str1 : str2
+}
 
 /**
  * Reduces multiple slashes in a string to a single slash.
@@ -90,8 +90,8 @@ export const alternator = (
  * @returns {string} - The string with reduced slashes
  */
 export const reduceDoubleSlashes = (str: string): string => {
-  return str.replace(/\/+/g, '/');
-};
+  return str.replace(/\/+/g, '/')
+}
 
 /**
  * Strips slashes from a string.
@@ -104,8 +104,8 @@ export const reduceDoubleSlashes = (str: string): string => {
  * @returns {string} - The string with stripped slashes
  */
 export const stripSlashes = (str: string): string => {
-  return str.replace(/\//g, '');
-};
+  return str.replace(/\//g, '')
+}
 
 /**
  * Reduces multiple occurrences of a character in a string to a single occurrence.
@@ -119,8 +119,8 @@ export const stripSlashes = (str: string): string => {
  * @returns {string} - The string with reduced multiples
  */
 export const reduceMultiples = (str: string, char: string): string => {
-  return str.replace(new RegExp(`${char}+`, 'g'), char);
-};
+  return str.replace(new RegExp(`${char}+`, 'g'), char)
+}
 
 /**
  * Converts single and double quotes to HTML entities.
@@ -133,8 +133,8 @@ export const reduceMultiples = (str: string, char: string): string => {
  * @returns {string} - The string with converted quotes
  */
 export const quotesToEntities = (str: string): string => {
-  return str.replace(/['"]/g, (m) => `&${m === '"' ? 'quot' : 'apos'};`);
-};
+  return str.replace(/['"]/g, (m) => `&${m === '"' ? 'quot' : 'apos'};`)
+}
 
 /**
  * Strips single and double quotes from a string.
@@ -147,8 +147,8 @@ export const quotesToEntities = (str: string): string => {
  * @returns {string} - The string with stripped quotes
  */
 export const stripQuotes = (str: string): string => {
-  return str.replace(/['"]/g, '');
-};
+  return str.replace(/['"]/g, '')
+}
 
 /**
  * Limits the number of words in a string.
@@ -170,8 +170,8 @@ export const wordLimiter = (
   return (
     str.split(' ').slice(0, limit).join(' ') +
     (str.split(' ').length > limit ? append : '')
-  );
-};
+  )
+}
 
 /**
  * Truncates a string to the number of characters specified.
@@ -190,8 +190,8 @@ export const characterLimiter = (
   limit: number,
   append: string,
 ): string => {
-  return str.slice(0, limit) + (str.length > limit ? append : '');
-};
+  return str.slice(0, limit) + (str.length > limit ? append : '')
+}
 
 /**
  * Converts ASCII characters to HTML entities.
@@ -204,8 +204,8 @@ export const characterLimiter = (
  * @returns {string} - The string with converted ASCII characters
  */
 export const asciiToEntities = (str: string): string => {
-  return str.replace(/[\x00-\x7F]/g, (m) => `&#${m.charCodeAt(0)};`);
-};
+  return str.replace(/[\x00-\x7F]/g, (m) => `&#${m.charCodeAt(0)};`)
+}
 
 /**
  * Converts HTML entities to ASCII characters.
@@ -218,8 +218,8 @@ export const asciiToEntities = (str: string): string => {
  * @returns {string} - The string with converted HTML entities
  */
 export const entitiesToAscii = (str: string): string => {
-  return str.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n));
-};
+  return str.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n))
+}
 
 /**
  * Converts accented characters to their ASCII equivalents.
@@ -232,8 +232,8 @@ export const entitiesToAscii = (str: string): string => {
  * @returns {string} - The string with converted accented characters
  */
 export const convertAccentedCharacters = (str: string): string => {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-};
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
 
 /**
  * Censors words in a string by replacing them with asterisks.
@@ -249,8 +249,8 @@ export const convertAccentedCharacters = (str: string): string => {
 export const wordCensor = (str: string, words: string[]): string => {
   return str.replace(new RegExp(words.join('|'), 'gi'), (m) =>
     '*'.repeat(m.length),
-  );
-};
+  )
+}
 
 /**
  * Highlights code in a string by wrapping it in a code tag.
@@ -263,8 +263,8 @@ export const wordCensor = (str: string, words: string[]): string => {
  * @returns {string} - The string with highlighted code
  */
 export const highlightCode = (str: string): string => {
-  return `<code>${str}</code>`;
-};
+  return `<code>${str}</code>`
+}
 
 /**
  * Will highlight a phrase within a text string.
@@ -286,8 +286,8 @@ export const highlightPhrase = (
   tagOpen: string,
   tagClose: string,
 ): string => {
-  return str.replace(new RegExp(phrase, 'gi'), (m) => tagOpen + m + tagClose);
-};
+  return str.replace(new RegExp(phrase, 'gi'), (m) => tagOpen + m + tagClose)
+}
 
 /**
  * Wraps a string of words at a given number of characters.
@@ -309,8 +309,8 @@ export const wordWrap = (
   return str.replace(
     new RegExp(`(?![^\\n]{1,${limit}}$)([^\\n]{1,${limit}})\\s`, 'g'),
     `$1${breakChar}`,
-  );
-};
+  )
+}
 
 /**
  * Truncates a string to a specified length and appends an ellipsis to the end.
@@ -324,8 +324,8 @@ export const wordWrap = (
  * @returns {string} - The truncated string
  */
 export const ellipsize = (str: string, limit: number): string => {
-  return str.length > limit ? str.slice(0, limit) + '...' : str;
-};
+  return str.length > limit ? str.slice(0, limit) + '...' : str
+}
 
 /**
  * This function will extract $radius number of characters before and after the central `phrase` with an ellipsis before and after.
@@ -345,10 +345,10 @@ export const excerpt = (
   radius: number,
   ellipsis: string,
 ): string => {
-  const re = new RegExp(`(.{0,${radius}}${phrase}.{0,${radius}})`, 'gi');
-  const match = str.match(re);
-  return match ? ellipsis + match[0] + ellipsis : str;
-};
+  const re = new RegExp(`(.{0,${radius}}${phrase}.{0,${radius}})`, 'gi')
+  const match = str.match(re)
+  return match ? ellipsis + match[0] + ellipsis : str
+}
 
 /**
  * This function will extract $radius number of words before and after the central `phrase` with an ellipsis before and after.
@@ -371,7 +371,7 @@ export const excerptWords = (
   const re = new RegExp(
     `((?:\\w+\\W+){0,${radius}}${phrase}(?:\\W+\\w+){0,${radius}})`,
     'gi',
-  );
-  const match = str.match(re);
-  return match ? ellipsis + match[0] + ellipsis : str;
-};
+  )
+  const match = str.match(re)
+  return match ? ellipsis + match[0] + ellipsis : str
+}

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `biome` linting and formatting tool to the project
+- Add `biome` configuration file to define the linting and formatting rules
+
+### Changed
+
+- Update the `README.md` file to include the `biome` tool in the project
+- Update the `package.json` file to include the `biome` tool in the project
+- Update dependencies to the latest versions available
+
 ## [1.8.0] - 2024-05-01
 
 ### Changed

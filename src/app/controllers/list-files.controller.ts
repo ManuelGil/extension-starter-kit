@@ -6,11 +6,11 @@ import {
   ThemeIcon,
   window,
   workspace,
-} from 'vscode';
+} from 'vscode'
 
-import { ExtensionConfig } from '../configs';
-import { directoryMap, getRelativePath } from '../helpers';
-import { NodeModel } from '../models';
+import { ExtensionConfig } from '../configs'
+import { directoryMap, getRelativePath } from '../helpers'
+import { NodeModel } from '../models'
 
 /**
  * The ListFilesController class.
@@ -64,23 +64,23 @@ export class ListFilesController {
       extensions: this.config.include,
       ignore: this.config.exclude,
       maxResults,
-    });
+    })
 
     if (files.length !== 0) {
-      let nodes: NodeModel[] = [];
+      let nodes: NodeModel[] = []
 
-      files.sort((a, b) => a.path.localeCompare(b.path));
+      files.sort((a, b) => a.path.localeCompare(b.path))
 
       for (const file of files) {
-        const document = await workspace.openTextDocument(file);
+        const document = await workspace.openTextDocument(file)
 
-        const path = await getRelativePath(document.fileName);
-        let filename = path.split('/').pop();
+        const path = await getRelativePath(document.fileName)
+        let filename = path.split('/').pop()
 
         if (filename && this.config.showPath) {
-          const folder = path.split('/').slice(0, -1).join('/');
+          const folder = path.split('/').slice(0, -1).join('/')
 
-          filename += folder ? ` (${folder})` : ' (root)';
+          filename += folder ? ` (${folder})` : ' (root)'
         }
 
         nodes.push(
@@ -91,13 +91,13 @@ export class ListFilesController {
             document.uri,
             'file',
           ),
-        );
+        )
       }
 
-      return nodes;
+      return nodes
     }
 
-    return;
+    return
   }
 
   /**
@@ -115,8 +115,8 @@ export class ListFilesController {
   openFile(uri: NodeModel) {
     if (uri.resourceUri) {
       workspace.openTextDocument(uri.resourceUri).then((filename) => {
-        window.showTextDocument(filename);
-      });
+        window.showTextDocument(filename)
+      })
     }
   }
 
@@ -136,13 +136,13 @@ export class ListFilesController {
   gotoLine(uri: string, line: number) {
     workspace.openTextDocument(uri).then((document) => {
       window.showTextDocument(document).then((editor) => {
-        const pos = new Position(line, 0);
+        const pos = new Position(line, 0)
         editor.revealRange(
           new Range(pos, pos),
           TextEditorRevealType.InCenterIfOutsideViewport,
-        );
-        editor.selection = new Selection(pos, pos);
-      });
-    });
+        )
+        editor.selection = new Selection(pos, pos)
+      })
+    })
   }
 }

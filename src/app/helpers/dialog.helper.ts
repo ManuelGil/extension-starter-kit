@@ -1,4 +1,4 @@
-import { window } from 'vscode';
+import { window } from 'vscode'
 
 /**
  * Displays a message box with the provided message
@@ -26,8 +26,8 @@ export const getPath = async (
     placeHolder,
     value: currentPath,
     validateInput: validate,
-  });
-};
+  })
+}
 
 /**
  * Displays a message box with the provided message
@@ -52,8 +52,8 @@ export const getName = async (
     prompt,
     placeHolder,
     validateInput: validate,
-  });
-};
+  })
+}
 
 /**
  * Displays a message box with the provided message
@@ -71,8 +71,8 @@ export const pickItem = async (
 ): Promise<string | undefined> => {
   return await window.showQuickPick(items, {
     placeHolder,
-  });
-};
+  })
+}
 
 /**
  * Displays a message box with the provided message
@@ -84,8 +84,8 @@ export const pickItem = async (
  * @returns {Promise<void>} - No return value
  */
 export const showMessage = async (message: string): Promise<void> => {
-  window.showInformationMessage(message);
-};
+  window.showInformationMessage(message)
+}
 
 /**
  * Displays a message box with the provided message
@@ -97,8 +97,8 @@ export const showMessage = async (message: string): Promise<void> => {
  * @returns {Promise<void>} - No return value
  */
 export const showError = async (message: string): Promise<void> => {
-  window.showErrorMessage(message);
-};
+  window.showErrorMessage(message)
+}
 
 /**
  * Displays a message box with the provided message
@@ -110,5 +110,5 @@ export const showError = async (message: string): Promise<void> => {
  * @returns {Promise<void>} - No return value
  */
 export const showWarning = async (message: string): Promise<void> => {
-  window.showWarningMessage(message);
-};
+  window.showWarningMessage(message)
+}

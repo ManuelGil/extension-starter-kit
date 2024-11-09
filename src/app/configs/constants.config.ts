@@ -8,7 +8,7 @@
  *
  * @returns {string} - The unique identifier of the extension
  */
-export const EXTENSION_ID: string = 'extensionIdentifier';
+export const EXTENSION_ID: string = 'extensionIdentifier'
 
 /**
  * EXTENSION_NAME: The repository ID of the extension.
@@ -20,7 +20,7 @@ export const EXTENSION_ID: string = 'extensionIdentifier';
  *
  * @returns {string} - The repository ID of the extension
  */
-export const EXTENSION_NAME: string = 'extension-starter-kit';
+export const EXTENSION_NAME: string = 'extension-starter-kit'
 
 /**
  * EXTENSION_DISPLAY_NAME: The name of the extension.
@@ -32,7 +32,7 @@ export const EXTENSION_NAME: string = 'extension-starter-kit';
  *
  * @returns {string} - The name of the extension
  */
-export const EXTENSION_DISPLAY_NAME: string = 'My Extension';
+export const EXTENSION_DISPLAY_NAME: string = 'My Extension'
 
 /**
  * USER_NAME: The githubUsername of the extension.
@@ -44,7 +44,7 @@ export const EXTENSION_DISPLAY_NAME: string = 'My Extension';
  *
  * @returns {string} - The githubUsername of the extension
  */
-export const USER_NAME: string = 'githubUsername';
+export const USER_NAME: string = 'githubUsername'
 
 /**
  * USER_PUBLISHER: The publisher of the extension.
@@ -56,7 +56,7 @@ export const USER_NAME: string = 'githubUsername';
  *
  * @returns {string} - The publisher of the extension
  */
-export const USER_PUBLISHER: string = 'extensionPublisher';
+export const USER_PUBLISHER: string = 'extensionPublisher'
 
 /**
  * REPOSITORY_URL: The documentation URL of the extension.
@@ -68,7 +68,7 @@ export const USER_PUBLISHER: string = 'extensionPublisher';
  *
  * @returns {string} - The documentation URL of the extension
  */
-export const REPOSITORY_URL: string = `https://github.com/${USER_NAME}/${EXTENSION_NAME}`;
+export const REPOSITORY_URL: string = `https://github.com/${USER_NAME}/${EXTENSION_NAME}`
 
 /**
  * MARKETPLACE_URL: The marketplace URL of the extension.
@@ -80,7 +80,7 @@ export const REPOSITORY_URL: string = `https://github.com/${USER_NAME}/${EXTENSI
  *
  * @returns {string} - The marketplace URL of the extension
  */
-export const MARKETPLACE_URL: string = `https://marketplace.visualstudio.com/items?itemName=${USER_PUBLISHER}.${EXTENSION_NAME}`;
+export const MARKETPLACE_URL: string = `https://marketplace.visualstudio.com/items?itemName=${USER_PUBLISHER}.${EXTENSION_NAME}`
 
 /**
  * INCLUDE: The files to include.
@@ -92,7 +92,7 @@ export const MARKETPLACE_URL: string = `https://marketplace.visualstudio.com/ite
  *
  * @returns {string[]} - The files to include
  */
-export const INCLUDE: string[] = ['ts', 'html', 'css', 'scss', 'less'];
+export const INCLUDE: string[] = ['ts', 'html', 'css', 'scss', 'less']
 /**
  * EXCLUDE: The files to exclude.
  * @type {string[]}
@@ -109,7 +109,7 @@ export const EXCLUDE: string[] = [
   '**/out/**',
   '**/build/**',
   '**/.*/**',
-];
+]
 
 /**
  * SHOW_PATH: Whether to show the path or not.
@@ -121,4 +121,4 @@ export const EXCLUDE: string[] = [
  *
  * @returns {boolean} - Whether to show the path or not
  */
-export const SHOW_PATH: boolean = true;
+export const SHOW_PATH: boolean = true

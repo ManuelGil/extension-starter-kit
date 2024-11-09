@@ -1,6 +1,6 @@
-import { WorkspaceConfiguration } from 'vscode';
+import { WorkspaceConfiguration } from 'vscode'
 
-import { EXCLUDE, INCLUDE, SHOW_PATH } from './constants.config';
+import { EXCLUDE, INCLUDE, SHOW_PATH } from './constants.config'
 
 /**
  * The Config class.
@@ -33,7 +33,7 @@ export class ExtensionConfig {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.include);
    */
-  include: string[];
+  include: string[]
   /**
    * The files to exclude.
    * @type {string[]}
@@ -43,7 +43,7 @@ export class ExtensionConfig {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.exclude);
    */
-  exclude: string[];
+  exclude: string[]
   /**
    * Whether to show the path or not.
    * @type {boolean}
@@ -53,7 +53,7 @@ export class ExtensionConfig {
    * const config = new Config(workspace.getConfiguration());
    * console.log(config.showPath);
    */
-  showPath: boolean;
+  showPath: boolean
   /**
    * The OpenAI API key.
    * @type {string}
@@ -64,9 +64,9 @@ export class ExtensionConfig {
    * console.log(config.openai.apiKey);
    */
   openai: {
-    apiKey: string;
-    model: string;
-  };
+    apiKey: string
+    model: string
+  }
 
   // -----------------------------------------------------------------
   // Constructor
@@ -81,13 +81,13 @@ export class ExtensionConfig {
    * @memberof Config
    */
   constructor(readonly config: WorkspaceConfiguration) {
-    this.include = config.get<string[]>('files.include') ?? INCLUDE;
-    this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
-    this.showPath = config.get<boolean>('files.showPath') ?? SHOW_PATH;
+    this.include = config.get<string[]>('files.include') ?? INCLUDE
+    this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE
+    this.showPath = config.get<boolean>('files.showPath') ?? SHOW_PATH
     this.openai = {
       apiKey: config.get<string>('openai.apiKey') ?? '',
       model: config.get<string>('openai.model') ?? '',
-    };
+    }
   }
 
   // -----------------------------------------------------------------
@@ -107,12 +107,12 @@ export class ExtensionConfig {
    * config.update(workspace.getConfiguration());
    */
   update(config: WorkspaceConfiguration): void {
-    this.include = config.get<string[]>('files.include') ?? INCLUDE;
-    this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE;
-    this.showPath = config.get<boolean>('files.showPath') ?? SHOW_PATH;
+    this.include = config.get<string[]>('files.include') ?? INCLUDE
+    this.exclude = config.get<string[]>('files.exclude') ?? EXCLUDE
+    this.showPath = config.get<boolean>('files.showPath') ?? SHOW_PATH
     this.openai = {
       apiKey: config.get<string>('openai.apiKey') ?? '',
       model: config.get<string>('openai.model') ?? '',
-    };
+    }
   }
 }

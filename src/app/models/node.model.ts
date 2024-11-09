@@ -5,7 +5,7 @@ import {
   TreeItemCollapsibleState,
   TreeItemLabel,
   Uri,
-} from 'vscode';
+} from 'vscode'
 
 /**
  * The Node class
@@ -43,7 +43,7 @@ export class NodeModel extends TreeItem {
    * @example
    * node.children = [];
    */
-  children?: NodeModel[];
+  children?: NodeModel[]
 
   // -----------------------------------------------------------------
   // Constructor
@@ -82,12 +82,12 @@ export class NodeModel extends TreeItem {
       children
         ? TreeItemCollapsibleState.Expanded
         : TreeItemCollapsibleState.None,
-    );
-    this.iconPath = iconPath;
-    this.resourceUri = resourceUri;
-    this.command = command;
-    this.contextValue = contextValue;
-    this.children = children;
+    )
+    this.iconPath = iconPath
+    this.resourceUri = resourceUri
+    this.command = command
+    this.contextValue = contextValue
+    this.children = children
   }
 
   // -----------------------------------------------------------------
@@ -108,8 +108,8 @@ export class NodeModel extends TreeItem {
    * @returns {void} The result
    */
   setChildren(children: NodeModel[]): void {
-    this.collapsibleState = TreeItemCollapsibleState.Expanded;
-    this.children = children;
+    this.collapsibleState = TreeItemCollapsibleState.Expanded
+    this.children = children
   }
 
   /**
@@ -124,6 +124,6 @@ export class NodeModel extends TreeItem {
    * @returns {boolean} The result
    */
   hasChildren(): boolean {
-    return !!(this.children && this.children.length);
+    return !!(this.children && this.children.length)
   }
 }

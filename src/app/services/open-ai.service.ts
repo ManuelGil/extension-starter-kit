@@ -1,7 +1,7 @@
-import OpenAI from 'openai';
-import { ChatCompletion } from 'openai/resources';
+import OpenAI from 'openai'
+import { ChatCompletion } from 'openai/resources'
 
-import { ExtensionConfig } from '../configs';
+import { ExtensionConfig } from '../configs'
 
 /**
  * The OpenAIService class.
@@ -33,7 +33,7 @@ export class OpenAIService {
    *
    * @returns {OpenAI} - The OpenAI instance
    */
-  private openai?: OpenAI;
+  private openai?: OpenAI
 
   // -----------------------------------------------------------------
   // Constructor
@@ -73,7 +73,7 @@ export class OpenAIService {
         { role: 'user', content: prompt },
       ],
       model: this.config.openai.model,
-    });
+    })
   }
 
   // Private methods
@@ -89,9 +89,9 @@ export class OpenAIService {
    */
   private getInstance(): OpenAI {
     if (!this.openai) {
-      this.openai = new OpenAI({ apiKey: this.config.openai.apiKey });
+      this.openai = new OpenAI({ apiKey: this.config.openai.apiKey })
     }
 
-    return this.openai;
+    return this.openai
   }
 }

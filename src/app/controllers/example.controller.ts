@@ -1,8 +1,8 @@
-import JsonToTS from 'json-to-ts';
-import { Range, TextEditor, Uri, window, workspace } from 'vscode';
+import JsonToTS from 'json-to-ts'
+import { Range, TextEditor, Uri, window, workspace } from 'vscode'
 
 // Import the Config and helper functions
-import { ExtensionConfig } from '../configs';
+import { ExtensionConfig } from '../configs'
 import {
   directoryMap,
   getPath,
@@ -10,7 +10,7 @@ import {
   saveFile,
   showError,
   showMessage,
-} from '../helpers';
+} from '../helpers'
 
 /**
  * The ExampleController class.
@@ -56,7 +56,7 @@ export class ExampleController {
    */
   helloWorld(): void {
     // Display a message box to the user
-    showMessage('Hello World from extension-starter-kit!');
+    showMessage('Hello World from extension-starter-kit!')
   }
 
   /**
@@ -74,7 +74,7 @@ export class ExampleController {
    */
   async getFilesInFolder(path?: Uri): Promise<void> {
     // Get the relative path
-    const folderPath: string = path ? await getRelativePath(path.path) : '';
+    const folderPath: string = path ? await getRelativePath(path.path) : ''
 
     // Get the path to the folder
     const folder = await getPath(
@@ -83,15 +83,15 @@ export class ExampleController {
       folderPath,
       (path: string) => {
         if (!/^\/|([\w\d\-_]+\/?(?!\/))+$/.test(path)) {
-          return 'The folder name must be a valid name';
+          return 'The folder name must be a valid name'
         }
-        return;
+        return
       },
-    );
+    )
 
     // If the folder is not valid, return
     if (!folder) {
-      return;
+      return
     }
 
     // Get the files in the folder
@@ -99,7 +99,7 @@ export class ExampleController {
       extensions: this.config.include,
       ignore: this.config.exclude,
       maxResults: 512,
-    });
+    })
 
     // If files are found, save them to a file
     if (files.length !== 0) {
@@ -108,11 +108,11 @@ export class ExampleController {
         folder,
         'files.json',
         JSON.stringify(files, null, 2),
-      );
+      )
 
       // If the file is written, show a message
       if (result) {
-        showMessage('Files found and saved to files.json');
+        showMessage('Files found and saved to files.json')
       }
     }
   }
@@ -130,16 +130,16 @@ export class ExampleController {
    * @returns {Promise<TextEditor | void>} The result
    */
   async convertToTS(): Promise<TextEditor | void> {
-    let editor;
+    let editor
 
     if (workspace.workspaceFolders) {
-      editor = window.activeTextEditor;
+      editor = window.activeTextEditor
     } else {
-      showError('No text editor is active.');
-      return;
+      showError('No text editor is active.')
+      return
     }
 
-    const selection = editor?.selection;
+    const selection = editor?.selection
 
     if (selection && !selection.isEmpty) {
       const selectionRange = new Range(
@@ -147,31 +147,31 @@ export class ExampleController {
         selection.start.character,
         selection.end.line,
         selection.end.character,
-      );
+      )
 
-      const text = editor?.document.getText(selectionRange) || '';
+      const text = editor?.document.getText(selectionRange) || ''
 
-      const jsonSchema = this.tryParseJSONObject(text);
+      const jsonSchema = this.tryParseJSONObject(text)
 
       if (!jsonSchema) {
-        showError('Invalid JSON Schema!');
-        return;
+        showError('Invalid JSON Schema!')
+        return
       }
 
       const tsSchema = JsonToTS(jsonSchema)
         .map((itf) => `export ${itf}\n`)
-        .join('\n');
+        .join('\n')
 
       const document = await workspace.openTextDocument({
         language: 'typescript',
         content: tsSchema,
-      });
+      })
 
-      return await window.showTextDocument(document);
+      return await window.showTextDocument(document)
     }
 
-    showError('No text is selected!');
-    return;
+    showError('No text is selected!')
+    return
   }
 
   // Private methods
@@ -189,15 +189,15 @@ export class ExampleController {
    */
   private tryParseJSONObject(str: string): boolean | object {
     try {
-      var object = JSON.parse(str);
+      var object = JSON.parse(str)
 
       if (object && typeof object === 'object') {
-        return object;
+        return object
       }
     } catch (e) {
-      return false;
+      return false
     }
 
-    return false;
+    return false
   }
 }
