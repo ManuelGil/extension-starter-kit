@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add `biome` linting and formatting tool to the project
 - Add `biome` configuration file to define the linting and formatting rules
+- Add version extension check to show a message when the extension is outdated
 
 ### Changed
 

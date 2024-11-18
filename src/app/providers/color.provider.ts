@@ -7,10 +7,10 @@ import {
   WebviewViewProvider,
   WebviewViewResolveContext,
   window,
-} from 'vscode'
+} from 'vscode';
 
-import { EXTENSION_ID } from '../configs'
-import { getNonce } from '../helpers'
+import { EXTENSION_ID } from '../configs';
+import { getNonce } from '../helpers';
 
 /**
  * The ColorProvider class.
@@ -40,7 +40,7 @@ export class ColorProvider implements WebviewViewProvider {
    * @memberof ColorProvider
    * @type {string}
    */
-  static readonly viewType: string = `${EXTENSION_ID}.colorView`
+  static readonly viewType: string = `${EXTENSION_ID}.colorView`;
 
   // Private properties
   /**
@@ -50,7 +50,7 @@ export class ColorProvider implements WebviewViewProvider {
    * @memberof ColorProvider
    * @type {WebviewView}
    */
-  private _view?: WebviewView
+  private _view?: WebviewView;
 
   // -----------------------------------------------------------------
   // Constructor
@@ -90,27 +90,27 @@ export class ColorProvider implements WebviewViewProvider {
     _: WebviewViewResolveContext,
     _token: CancellationToken,
   ): void {
-    this._view = webviewView
+    this._view = webviewView;
 
     webviewView.webview.options = {
       // Allow scripts in the webview
       enableScripts: true,
 
       localResourceRoots: [this._extensionUri],
-    }
+    };
 
-    webviewView.webview.html = this._getHtmlForWebview(webviewView.webview)
+    webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
     webviewView.webview.onDidReceiveMessage((data) => {
       switch (data.type) {
         case 'colorSelected': {
           window.activeTextEditor?.insertSnippet(
             new SnippetString(`#${data.value}`),
-          )
-          break
+          );
+          break;
         }
       }
-    })
+    });
   }
 
   /**
@@ -126,8 +126,8 @@ export class ColorProvider implements WebviewViewProvider {
    */
   addColor() {
     if (this._view) {
-      this._view.show?.(true) // `show` is not implemented in 1.49 but is for 1.50 insiders
-      this._view.webview.postMessage({ type: 'addColor' })
+      this._view.show?.(true); // `show` is not implemented in 1.49 but is for 1.50 insiders
+      this._view.webview.postMessage({ type: 'addColor' });
     }
   }
 
@@ -144,7 +144,7 @@ export class ColorProvider implements WebviewViewProvider {
    */
   clearColors() {
     if (this._view) {
-      this._view.webview.postMessage({ type: 'clearColors' })
+      this._view.webview.postMessage({ type: 'clearColors' });
     }
   }
 
@@ -165,18 +165,18 @@ export class ColorProvider implements WebviewViewProvider {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
     const scriptUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets/color', 'main.js'),
-    )
+    );
 
     // Do the same for the stylesheet.
     const styleResetUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets', 'reset.css'),
-    )
+    );
     const styleVSCodeUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets', 'vscode.css'),
-    )
+    );
     const styleMainUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, './assets/color', 'main.css'),
-    )
+    );
 
     // And the codicons.
     const codiconsUri = webview.asWebviewUri(
@@ -187,10 +187,10 @@ export class ColorProvider implements WebviewViewProvider {
         'dist',
         'codicon.css',
       ),
-    )
+    );
 
     // Use a nonce to only allow a specific script to be run.
-    const nonce = getNonce()
+    const nonce = getNonce();
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -226,6 +226,6 @@ export class ColorProvider implements WebviewViewProvider {
     <script nonce="${nonce}" src="${scriptUri}"></script>
   </body>
 </html>
-`
+`;
   }
 }

@@ -5,10 +5,10 @@ import {
   ThemeIcon,
   TreeDataProvider,
   TreeItem,
-} from 'vscode'
+} from 'vscode';
 
-import { ListFilesController } from '../controllers'
-import { NodeModel } from '../models'
+import { ListFilesController } from '../controllers';
+import { NodeModel } from '../models';
 
 /**
  * The ListFilesProvider class
@@ -43,7 +43,7 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#Event
    */
-  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>
+  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>;
 
   // Private properties
   /**
@@ -59,7 +59,7 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    */
   private _onDidChangeTreeData: EventEmitter<
     NodeModel | undefined | null | void
-  >
+  >;
 
   // -----------------------------------------------------------------
   // Constructor
@@ -75,8 +75,8 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
   constructor(readonly controller: ListFilesController) {
     this._onDidChangeTreeData = new EventEmitter<
       NodeModel | undefined | null | void
-    >()
-    this.onDidChangeTreeData = this._onDidChangeTreeData.event
+    >();
+    this.onDidChangeTreeData = this._onDidChangeTreeData.event;
   }
 
   // -----------------------------------------------------------------
@@ -99,7 +99,7 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    * @see https://code.visualstudio.com/api/references/vscode-api#TreeDataProvider
    */
   getTreeItem(element: NodeModel): TreeItem | Thenable<TreeItem> {
-    return element
+    return element;
   }
 
   /**
@@ -118,10 +118,10 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    */
   getChildren(element?: NodeModel): ProviderResult<NodeModel[]> {
     if (element) {
-      return element.children
+      return element.children;
     }
 
-    return this.getListFiles()
+    return this.getListFiles();
   }
 
   /**
@@ -136,7 +136,7 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    * @returns {void} - No return value
    */
   refresh(): void {
-    this._onDidChangeTreeData.fire()
+    this._onDidChangeTreeData.fire();
   }
 
   // Private methods
@@ -152,20 +152,20 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
    * @returns {Promise<NodeModel[] | undefined>} - The list of files
    */
   private async getListFiles(): Promise<NodeModel[] | undefined> {
-    const files = await this.controller.getFiles()
+    const files = await this.controller.getFiles();
 
     if (!files) {
-      return
+      return;
     }
 
-    const nodes: NodeModel[] = []
+    const nodes: NodeModel[] = [];
 
-    const fileTypes = this.controller.config.include
+    const fileTypes = this.controller.config.include;
 
     for (const fileType of fileTypes) {
       const children = files.filter((file) =>
         file.label.toString().includes(`.${fileType}`),
-      )
+      );
 
       if (children.length !== 0) {
         const node = new NodeModel(
@@ -175,16 +175,16 @@ export class ListFilesProvider implements TreeDataProvider<NodeModel> {
           undefined,
           fileType,
           children,
-        )
+        );
 
-        nodes.push(node)
+        nodes.push(node);
       }
     }
 
     if (nodes.length === 0) {
-      return
+      return;
     }
 
-    return nodes
+    return nodes;
   }
 }

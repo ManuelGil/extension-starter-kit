@@ -5,11 +5,11 @@ import {
   ThemeIcon,
   TreeDataProvider,
   TreeItem,
-} from 'vscode'
+} from 'vscode';
 
-import { EXTENSION_ID } from '../configs'
-import { FeedbackController } from '../controllers'
-import { NodeModel } from '../models'
+import { EXTENSION_ID } from '../configs';
+import { FeedbackController } from '../controllers';
+import { NodeModel } from '../models';
 
 /**
  * The FeedbackProvider class
@@ -44,7 +44,7 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    *
    * @see https://code.visualstudio.com/api/references/vscode-api#Event
    */
-  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>
+  readonly onDidChangeTreeData: Event<NodeModel | undefined | null | void>;
 
   // Private properties
   /**
@@ -60,7 +60,7 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    */
   private _onDidChangeTreeData: EventEmitter<
     NodeModel | undefined | null | void
-  >
+  >;
 
   // -----------------------------------------------------------------
   // Constructor
@@ -76,8 +76,8 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
   constructor(readonly controller: FeedbackController) {
     this._onDidChangeTreeData = new EventEmitter<
       NodeModel | undefined | null | void
-    >()
-    this.onDidChangeTreeData = this._onDidChangeTreeData.event
+    >();
+    this.onDidChangeTreeData = this._onDidChangeTreeData.event;
   }
 
   // -----------------------------------------------------------------
@@ -100,7 +100,7 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    * @see https://code.visualstudio.com/api/references/vscode-api#TreeDataProvider
    */
   getTreeItem(element: NodeModel): TreeItem | Thenable<TreeItem> {
-    return element
+    return element;
   }
 
   /**
@@ -119,10 +119,10 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    */
   getChildren(element?: NodeModel): ProviderResult<NodeModel[]> {
     if (element) {
-      return element.children
+      return element.children;
     }
 
-    return this.getFeedbacks()
+    return this.getFeedbacks();
   }
 
   /**
@@ -137,7 +137,7 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
    * @returns {void} - No return value
    */
   refresh(): void {
-    this._onDidChangeTreeData.fire()
+    this._onDidChangeTreeData.fire();
   }
 
   // Private methods
@@ -178,6 +178,6 @@ export class FeedbackProvider implements TreeDataProvider<NodeModel> {
         title: 'Support Us',
         command: `${EXTENSION_ID}.feedback.supportUs`,
       }),
-    ]
+    ];
   }
 }

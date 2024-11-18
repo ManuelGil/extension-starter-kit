@@ -1,6 +1,6 @@
-import { access, existsSync, mkdirSync, open, writeFile } from 'fs'
-import { dirname, join } from 'path'
-import { FilePermission, FileStat, Uri, window, workspace } from 'vscode'
+import { access, existsSync, mkdirSync, open, writeFile } from 'fs';
+import { dirname, join } from 'path';
+import { FilePermission, FileStat, Uri, window, workspace } from 'vscode';
 
 /**
  * Reads the contents of the file specified in the path.
@@ -23,19 +23,19 @@ export const directoryMap = async (
   path: string,
   options?: { extensions?: string[]; ignore?: string[]; maxResults?: number },
 ): Promise<Uri[]> => {
-  let includes = path === '/' ? '**/*' : `${path}/**/*`
-  let exclude = ''
+  let includes = path === '/' ? '**/*' : `${path}/**/*`;
+  let exclude = '';
 
   if (options && options.extensions && options.extensions.length) {
-    includes += `.{${options.extensions.join(',')}}`
+    includes += `.{${options.extensions.join(',')}}`;
   }
 
   if (options && options.ignore && options.ignore.length) {
-    exclude = `{${options.ignore.join(',')}}`
+    exclude = `{${options.ignore.join(',')}}`;
   }
 
-  return workspace.findFiles(includes, exclude, options?.maxResults)
-}
+  return workspace.findFiles(includes, exclude, options?.maxResults);
+};
 
 /**
  * Writes data to the file specified in the path. If the file does not exist then the function will create it.
@@ -53,18 +53,18 @@ export const saveFile = async (
   filename: string,
   data: string,
 ): Promise<boolean> => {
-  let folder: string = ''
+  let folder: string = '';
 
   if (workspace.workspaceFolders) {
-    folder = workspace.workspaceFolders[0].uri.fsPath
+    folder = workspace.workspaceFolders[0].uri.fsPath;
   } else {
-    return false
+    return false;
   }
 
-  const file = join(folder, path, filename)
+  const file = join(folder, path, filename);
 
   if (!existsSync(dirname(file))) {
-    mkdirSync(dirname(file), { recursive: true })
+    mkdirSync(dirname(file), { recursive: true });
   }
 
   return new Promise((resolve, reject) => {
@@ -72,27 +72,27 @@ export const saveFile = async (
       if (err) {
         open(file, 'w+', (err: any, fd: any) => {
           if (err) {
-            reject(false)
+            reject(false);
           }
 
           writeFile(fd, data, 'utf8', (err: any) => {
             if (err) {
-              reject(false)
+              reject(false);
             }
 
-            const openPath = Uri.file(file)
+            const openPath = Uri.file(file);
 
             workspace.openTextDocument(openPath).then((filename) => {
-              window.showTextDocument(filename)
-            })
+              window.showTextDocument(filename);
+            });
 
-            resolve(true)
-          })
-        })
+            resolve(true);
+          });
+        });
       }
-    })
-  })
-}
+    });
+  });
+};
 
 /**
  * Deletes ALL files contained in the supplied path.
@@ -110,18 +110,18 @@ export const deleteFiles = async (
   path: string,
   options?: { recursive?: boolean; useTrash?: boolean },
 ): Promise<void> => {
-  const files = await workspace.findFiles(`${path}/**/*`)
+  const files = await workspace.findFiles(`${path}/**/*`);
 
   files.forEach((file) => {
     access(file.path, (err: any) => {
       if (err) {
-        throw err
+        throw err;
       }
 
-      workspace.fs.delete(file, options)
-    })
-  })
-}
+      workspace.fs.delete(file, options);
+    });
+  });
+};
 
 /**
  * Returns an array of filenames in the supplied path.
@@ -140,10 +140,10 @@ export const getFilenames = async (
   path: string,
   options?: { extensions?: string[]; ignore?: string[]; maxResults?: number },
 ): Promise<string[]> => {
-  const files = await directoryMap(path, options)
+  const files = await directoryMap(path, options);
 
-  return files.map((file) => file.path)
-}
+  return files.map((file) => file.path);
+};
 
 /**
  * Returns an object containing the file information for the supplied path.
@@ -155,8 +155,8 @@ export const getFilenames = async (
  * @returns {Promise<object>} - File information
  */
 export const getFileInfo = async (path: string): Promise<object> => {
-  return await workspace.fs.stat(Uri.file(path))
-}
+  return await workspace.fs.stat(Uri.file(path));
+};
 
 /**
  * Returns an object containing the directory information for the supplied path.
@@ -168,8 +168,8 @@ export const getFileInfo = async (path: string): Promise<object> => {
  * @returns {Promise<object>} - Directory information
  */
 export const getDirFileInfo = async (path: string): Promise<object> => {
-  return await workspace.fs.stat(Uri.file(path))
-}
+  return await workspace.fs.stat(Uri.file(path));
+};
 
 /**
  * Returns the symbolic permissions for the supplied path.
@@ -185,8 +185,8 @@ export const symbolicPermissions = async (
 ): Promise<FilePermission | undefined> => {
   return await workspace.fs
     .stat(Uri.file(path))
-    .then((file) => file.permissions)
-}
+    .then((file) => file.permissions);
+};
 
 /**
  * Returns the octal permissions for the supplied path.
@@ -202,10 +202,10 @@ export const octalPermissions = async (
 ): Promise<string | undefined> => {
   const file = await workspace.fs
     .stat(Uri.file(path))
-    .then((file) => file.permissions)
+    .then((file) => file.permissions);
 
-  return file?.toString(8)
-}
+  return file?.toString(8);
+};
 
 /**
  * Returns a boolean indicating whether the two supplied files are the same.
@@ -221,11 +221,11 @@ export const sameFile = async (
   file1: string,
   file2: string,
 ): Promise<boolean> => {
-  const file1Info = await getFileInfo(file1)
-  const file2Info = await getFileInfo(file2)
+  const file1Info = await getFileInfo(file1);
+  const file2Info = await getFileInfo(file2);
 
-  return file1Info === file2Info
-}
+  return file1Info === file2Info;
+};
 
 /**
  * Sets the realpath for the supplied path.
@@ -241,8 +241,8 @@ export const setRealpath = async (path: string): Promise<Uri | FileStat> => {
     ? await workspace.fs.stat(Uri.file(path))
     : await workspace
         .openTextDocument(Uri.file(path))
-        .then((filename) => filename.uri)
-}
+        .then((filename) => filename.uri);
+};
 
 /**
  * Returns the relative path from the workspace root to the supplied path.
@@ -254,8 +254,8 @@ export const setRealpath = async (path: string): Promise<Uri | FileStat> => {
  * @returns {Promise<string>} - Relative path
  */
 export const getRelativePath = async (path: string): Promise<string> => {
-  return workspace.asRelativePath(path)
-}
+  return workspace.asRelativePath(path);
+};
 
 /**
  * Returns the realpath for the supplied path.
@@ -267,8 +267,8 @@ export const getRelativePath = async (path: string): Promise<string> => {
  * @returns {Promise<string>} - Realpath
  */
 export const getRealpath = async (path: string): Promise<string> => {
-  return Uri.file(path).fsPath
-}
+  return Uri.file(path).fsPath;
+};
 
 /**
  * Returns a boolean indicating whether the supplied path exists.
@@ -280,8 +280,8 @@ export const getRealpath = async (path: string): Promise<string> => {
  * @returns {Promise<boolean>} - Confirmation of the existence
  */
 export const exists = async (path: string): Promise<boolean> => {
-  return existsSync(path)
-}
+  return existsSync(path);
+};
 
 // isDirectory
 /**
@@ -294,5 +294,5 @@ export const exists = async (path: string): Promise<boolean> => {
  * @returns {Promise<boolean>} - Confirmation of the directory
  */
 export const isDirectory = async (path: string): Promise<boolean> => {
-  return (await workspace.fs.stat(Uri.file(path))).type === 2
-}
+  return (await workspace.fs.stat(Uri.file(path))).type === 2;
+};

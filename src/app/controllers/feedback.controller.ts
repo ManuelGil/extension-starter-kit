@@ -1,11 +1,11 @@
-import { MessageItem, Uri, env, window } from 'vscode'
+import { MessageItem, Uri, env, window } from 'vscode';
 
 import {
   EXTENSION_DISPLAY_NAME,
   MARKETPLACE_URL,
   REPOSITORY_URL,
   USER_NAME,
-} from '../configs'
+} from '../configs';
 
 /**
  * The FeedbackController class.
@@ -46,7 +46,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   aboutUs(): void {
-    env.openExternal(Uri.parse(`${REPOSITORY_URL}#readme`))
+    env.openExternal(Uri.parse(`${REPOSITORY_URL}#readme`));
   }
 
   /**
@@ -59,7 +59,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   documentation(): void {
-    env.openExternal(Uri.parse(`${REPOSITORY_URL}/wiki`))
+    env.openExternal(Uri.parse(`${REPOSITORY_URL}/wiki`));
   }
 
   /**
@@ -72,7 +72,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   reportIssues(): void {
-    env.openExternal(Uri.parse(`${REPOSITORY_URL}/issues`))
+    env.openExternal(Uri.parse(`${REPOSITORY_URL}/issues`));
   }
 
   /**
@@ -85,7 +85,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   rateUs(): void {
-    env.openExternal(Uri.parse(`${MARKETPLACE_URL}&ssr=false#review-details`))
+    env.openExternal(Uri.parse(`${MARKETPLACE_URL}&ssr=false#review-details`));
   }
 
   /**
@@ -98,7 +98,7 @@ export class FeedbackController {
    * @returns {void} - No return value
    */
   followUs(): void {
-    env.openExternal(Uri.parse('https://twitter.com/githubUsername'))
+    env.openExternal(Uri.parse('https://twitter.com/githubUsername'));
   }
 
   /**
@@ -116,24 +116,24 @@ export class FeedbackController {
     const actions: MessageItem[] = [
       { title: 'Become a Sponsor' },
       { title: 'Donate via PayPal' },
-    ]
+    ];
 
     // Show the message
     const option = await window.showInformationMessage(
       `Although ${EXTENSION_DISPLAY_NAME} is offered at no cost, your support is
         deeply appreciated if you find it beneficial. Thank you for considering!`,
       ...actions,
-    )
+    );
 
     // Handle the actions
     switch (option?.title) {
       case actions[0].title:
-        env.openExternal(Uri.parse(`https://github.com/sponsors/${USER_NAME}`))
-        break
+        env.openExternal(Uri.parse(`https://github.com/sponsors/${USER_NAME}`));
+        break;
 
       case actions[1].title:
-        env.openExternal(Uri.parse(`https://patreon.com/${USER_NAME}`))
-        break
+        env.openExternal(Uri.parse(`https://patreon.com/${USER_NAME}`));
+        break;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { window } from 'vscode'
+import { window } from 'vscode';
 
 /**
  * Runs a command in the terminal
@@ -10,7 +10,7 @@ import { window } from 'vscode'
  * @returns {Promise<void>} - No return value
  */
 export const runCommand = async (command: string): Promise<void> => {
-  const terminal = window.createTerminal('Terminal')
-  terminal.show()
-  terminal.sendText(command)
-}
+  const terminal = window.createTerminal('Terminal');
+  terminal.show();
+  terminal.sendText(command);
+};

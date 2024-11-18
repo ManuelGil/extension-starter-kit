@@ -12,8 +12,8 @@ export const camelize = (str: string): string => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
       index === 0 ? word.toLowerCase() : word.toUpperCase(),
     )
-    .replace(/\s+/g, '')
-}
+    .replace(/\s+/g, '');
+};
 
 /**
  * Changes a string of words separated by spaces or underscores to pascal case.
@@ -27,8 +27,8 @@ export const camelize = (str: string): string => {
 export const pascalize = (str: string): string => {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word) => word.toUpperCase())
-    .replace(/\s+/g, '')
-}
+    .replace(/\s+/g, '');
+};
 
 /**
  * Changes a string of words separated by spaces or camel or pascal case.
@@ -44,8 +44,8 @@ export const underscore = (str: string): string => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
       index === 0 ? word.toLowerCase() : `_${word.toLowerCase()}`,
     )
-    .replace(/\s+/g, '_')
-}
+    .replace(/\s+/g, '_');
+};
 
 /**
  * Changes a string of words separated by spaces or camel or pascal case to lowercase with underscores.
@@ -61,8 +61,8 @@ export const decamelize = (str: string): string => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
       index === 0 ? word.toLowerCase() : `_${word.toLowerCase()}`,
     )
-    .replace(/\s+/g, '_')
-}
+    .replace(/\s+/g, '_');
+};
 
 /**
  * Changes a string of words separated by spaces or camel or pascal case to human readable form.
@@ -78,8 +78,8 @@ export const humanize = (str: string): string => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
       index === 0 ? word.toUpperCase() : ` ${word.toLowerCase()}`,
     )
-    .replace(/\s+/g, ' ')
-}
+    .replace(/\s+/g, ' ');
+};
 
 /**
  * Checks if a string is pluralizable.
@@ -91,8 +91,8 @@ export const humanize = (str: string): string => {
  * @returns {boolean} - Whether the string is pluralizable
  */
 export const isPluralizable = (str: string): boolean => {
-  return str.endsWith('s')
-}
+  return str.endsWith('s');
+};
 
 /**
  * Changes a string of words separated by spaces or camel or pascal case to lowercase with dashes.
@@ -108,8 +108,8 @@ export const dasherize = (str: string): string => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
       index === 0 ? word.toLowerCase() : `-${word.toLowerCase()}`,
     )
-    .replace(/\s+/g, '-')
-}
+    .replace(/\s+/g, '-');
+};
 
 /**
  * Changes a number to its ordinal form.
@@ -121,20 +121,20 @@ export const dasherize = (str: string): string => {
  * @returns {string} - The ordinalized number
  */
 export const ordinal = (num: number): string => {
-  const j = num % 10
-  const k = num % 100
+  const j = num % 10;
+  const k = num % 100;
 
   if (j === 1 && k !== 11) {
-    return `${num}st`
+    return `${num}st`;
   }
   if (j === 2 && k !== 12) {
-    return `${num}nd`
+    return `${num}nd`;
   }
   if (j === 3 && k !== 13) {
-    return `${num}rd`
+    return `${num}rd`;
   }
-  return `${num}th`
-}
+  return `${num}th`;
+};
 
 /**
  * Changes a number to its ordinal form.
@@ -146,8 +146,8 @@ export const ordinal = (num: number): string => {
  * @returns {string} - The ordinalized number
  */
 export const ordinalize = (num: number): string => {
-  return `${num}${ordinal(num)}`
-}
+  return `${num}${ordinal(num)}`;
+};
 
 /**
  * Changes a string to its plural form.
@@ -160,13 +160,13 @@ export const ordinalize = (num: number): string => {
  */
 export const pluralize = (str: string): string => {
   if (str.endsWith('y')) {
-    return str.slice(0, -1) + 'ies'
+    return str.slice(0, -1) + 'ies';
   }
   if (str.endsWith('s')) {
-    return str
+    return str;
   }
-  return str + 's'
-}
+  return str + 's';
+};
 
 /**
  * Changes a string to its singular form.
@@ -179,13 +179,13 @@ export const pluralize = (str: string): string => {
  */
 export const singularize = (str: string): string => {
   if (str.endsWith('ies')) {
-    return str.slice(0, -3) + 'y'
+    return str.slice(0, -3) + 'y';
   }
   if (str.endsWith('s')) {
-    return str.slice(0, -1)
+    return str.slice(0, -1);
   }
-  return str
-}
+  return str;
+};
 
 /**
  * Changes a string to its title case form.
@@ -200,5 +200,5 @@ export const titleize = (str: string): string => {
   return str
     .split(' ')
     .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join(' ')
-}
+    .join(' ');
+};
