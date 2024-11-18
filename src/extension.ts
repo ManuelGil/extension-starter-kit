@@ -3,7 +3,11 @@
 import * as vscode from 'vscode'
 
 // Import the Configs, Controllers, and Providers
-import { EXTENSION_ID, ExtensionConfig } from './app/configs'
+import {
+  EXTENSION_DISPLAY_NAME,
+  EXTENSION_ID,
+  ExtensionConfig,
+} from './app/configs'
 import {
   ExampleController,
   FeedbackController,
@@ -30,6 +34,38 @@ export function activate(context: vscode.ExtensionContext) {
   // Get the resource for the workspace
   if (vscode.workspace.workspaceFolders) {
     resource = vscode.workspace.workspaceFolders[0]
+  }
+
+  // -----------------------------------------------------------------
+  // Get version of the extension
+  // -----------------------------------------------------------------
+
+  // Get the previous version of the extension
+  const previousVersion = context.globalState.get('version')
+  // Get the current version of the extension
+  const currentVersion = context.extension.packageJSON.version
+
+  console.log('Previous version:', previousVersion)
+  console.log('Extension version:', currentVersion)
+
+  // Check if the extension is running for the first time
+  if (!previousVersion) {
+    vscode.window.showInformationMessage(
+      `Welcome to ${EXTENSION_DISPLAY_NAME}!`,
+    )
+
+    // Update the version in the global state
+    context.globalState.update('version', currentVersion)
+  }
+
+  // Check if the extension has been updated
+  if (previousVersion !== currentVersion) {
+    vscode.window.showInformationMessage(
+      `Looks like ${EXTENSION_DISPLAY_NAME} has been updated to version ${currentVersion}!`,
+    )
+
+    // Update the version in the global state
+    context.globalState.update('version', currentVersion)
   }
 
   // -----------------------------------------------------------------
