@@ -45,24 +45,22 @@ export function activate(context: vscode.ExtensionContext) {
   // Get the current version of the extension
   const currentVersion = context.extension.packageJSON.version;
 
-  console.log('Previous version:', previousVersion);
-  console.log('Extension version:', currentVersion);
-
   // Check if the extension is running for the first time
   if (!previousVersion) {
-    vscode.window.showInformationMessage(
-      `Welcome to ${EXTENSION_DISPLAY_NAME}!`,
-    );
+    const message = vscode.l10n.t('Welcome to {0}!', [EXTENSION_DISPLAY_NAME]);
+    vscode.window.showInformationMessage(message);
 
     // Update the version in the global state
     context.globalState.update('version', currentVersion);
   }
 
   // Check if the extension has been updated
-  if (previousVersion !== currentVersion) {
-    vscode.window.showInformationMessage(
-      `Looks like ${EXTENSION_DISPLAY_NAME} has been updated to version ${currentVersion}!`,
+  if (previousVersion && previousVersion !== currentVersion) {
+    const message = vscode.l10n.t(
+      'Looks like {0} has been updated to version {1}!',
+      [EXTENSION_DISPLAY_NAME, currentVersion],
     );
+    vscode.window.showInformationMessage(message);
 
     // Update the version in the global state
     context.globalState.update('version', currentVersion);

@@ -1,0 +1,9 @@
+{
+	"Welcome to {0}!": "¡Bienvenido a {0}!",
+	"Looks like {0} has been updated to version {1}!": "¡Parece que {0} se ha actualizado a la versión {1}!",
+	"Become a Sponsor": "Conviértete en Patrocinador",
+	"Donate via PayPal": "Donar a través de PayPal",
+	"Although {0} is offered at no cost, your support is deeply appreciated if you find it beneficial. Thank you for considering!": "Aunque {0} se ofrece sin costo, su apoyo es muy apreciado si lo encuentra beneficioso. ¡Gracias por considerarlo!",
+	"Hello World from {0}!": "¡Hola Mundo desde {0}!",
+	"Files found and saved to files.json": "Archivos encontrados y guardados en files.json"
+}

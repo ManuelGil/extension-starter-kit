@@ -1,4 +1,4 @@
-import { MessageItem, Uri, env, window } from 'vscode';
+import { MessageItem, Uri, env, l10n, window } from 'vscode';
 
 import {
   EXTENSION_DISPLAY_NAME,
@@ -114,16 +114,16 @@ export class FeedbackController {
   async supportUs(): Promise<void> {
     // Create the actions
     const actions: MessageItem[] = [
-      { title: 'Become a Sponsor' },
-      { title: 'Donate via PayPal' },
+      { title: l10n.t('Become a Sponsor') },
+      { title: l10n.t('Donate via PayPal') },
     ];
 
     // Show the message
-    const option = await window.showInformationMessage(
-      `Although ${EXTENSION_DISPLAY_NAME} is offered at no cost, your support is
-        deeply appreciated if you find it beneficial. Thank you for considering!`,
-      ...actions,
+    const message = l10n.t(
+      'Although {0} is offered at no cost, your support is deeply appreciated if you find it beneficial. Thank you for considering!',
+      EXTENSION_DISPLAY_NAME,
     );
+    const option = await window.showInformationMessage(message, ...actions);
 
     // Handle the actions
     switch (option?.title) {

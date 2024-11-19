@@ -12,11 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `biome` linting and formatting tool to the project
 - Add `biome` configuration file to define the linting and formatting rules
 - Add version extension check to show a message when the extension is outdated
+- Add localization support to the extension
 
 ### Changed
 
 - Update the `README.md` file to include the `biome` tool in the project
 - Update the `package.json` file to include the `biome` tool in the project
+- Update messages in the extension to use localization
 - Update dependencies to the latest versions available
 
 ## [1.8.0] - 2024-05-01

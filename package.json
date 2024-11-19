@@ -62,7 +62,7 @@
 						"less"
 					],
 					"scope": "resource",
-					"description": "Glob patterns to include in the package. The default is ts, js, json, html, css, scss, less."
+					"description": "%extensionIdentifier.files.include%"
 				},
 				"extensionIdentifier.files.exclude": {
 					"type": "array",
@@ -74,19 +74,19 @@
 						"**/.*/**"
 					],
 					"scope": "resource",
-					"description": "Glob patterns to exclude from the package. The default is node_modules, dist, out, build, and any hidden files."
+					"description": "%extensionIdentifier.files.exclude%"
 				},
 				"extensionIdentifier.files.showPath": {
 					"type": "boolean",
 					"default": true,
 					"scope": "resource",
-					"description": "Show the path of the file in the name of the list of generated files"
+					"description": "%extensionIdentifier.files.showPath%"
 				},
 				"extensionIdentifier.openai.apiKey": {
 					"type": "string",
 					"default": "",
 					"scope": "resource",
-					"description": "OpenAI API Key. Get it from https://platform.openai.com/account/api-keys"
+					"description": "%extensionIdentifier.openai.apiKey%"
 				},
 				"extensionIdentifier.openai.model": {
 					"type": "string",
@@ -115,75 +115,75 @@
 						"whisper-1"
 					],
 					"scope": "resource",
-					"description": "OpenAI Model. The default is gpt-3.5-turbo. Get more information from https://platform.openai.com/docs/models/model-endpoint-compatibility"
+					"description": "%extensionIdentifier.openai.model%"
 				}
 			}
 		},
 		"commands": [
 			{
 				"command": "extensionIdentifier.helloWorld",
-				"title": "Hello World",
+				"title": "%extensionIdentifier.helloWorld%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.getFilesInFolder",
-				"title": "Get Files in Folder",
+				"title": "%extensionIdentifier.getFilesInFolder%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.convertToTS",
-				"title": "Convert JSON to TypeScript",
+				"title": "%extensionIdentifier.convertToTS%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.feedback.aboutUs",
-				"title": "About Us",
+				"title": "%extensionIdentifier.feedback.aboutUs%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.feedback.documentation",
-				"title": "Documentation",
+				"title": "%extensionIdentifier.feedback.documentation%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.feedback.reportIssues",
-				"title": "Report Issues",
+				"title": "%extensionIdentifier.feedback.reportIssues%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.feedback.rateUs",
-				"title": "Rate Us",
+				"title": "%extensionIdentifier.feedback.rateUs%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.feedback.followUs",
-				"title": "Follow Us",
+				"title": "%extensionIdentifier.feedback.followUs%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.feedback.supportUs",
-				"title": "Support Us",
+				"title": "%extensionIdentifier.feedback.supportUs%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.listFiles.refreshList",
-				"title": "Refresh List",
+				"title": "%extensionIdentifier.listFiles.refreshList%",
 				"category": "My Extension",
 				"icon": "$(refresh)"
 			},
 			{
 				"command": "extensionIdentifier.listFiles.openFile",
-				"title": "Open File",
+				"title": "%extensionIdentifier.listFiles.openFile%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.colors.addColor",
-				"title": "Add Color",
+				"title": "%extensionIdentifier.colors.addColor%",
 				"category": "My Extension"
 			},
 			{
 				"command": "extensionIdentifier.colors.clearColors",
-				"title": "Clear Colors",
+				"title": "%extensionIdentifier.colors.clearColors%",
 				"icon": "$(clear-all)",
 				"category": "My Extension"
 			}
@@ -242,14 +242,14 @@
 			"extensionIdentifier.explorer.submenu": [
 				{
 					"command": "extensionIdentifier.getFilesInFolder",
-					"alt": "Get Files in Folder",
+					"alt": "%extensionIdentifier.getFilesInFolder%",
 					"group": "extension-starter-kit@1"
 				}
 			],
 			"extensionIdentifier.editor.submenu": [
 				{
 					"command": "extensionIdentifier.convertToTS",
-					"alt": "Convert JSON to TypeScript",
+					"alt": "%extensionIdentifier.convertToTS%",
 					"group": "extension-starter-kit@2"
 				}
 			]
@@ -257,19 +257,19 @@
 		"viewsWelcome": [
 			{
 				"view": "extensionIdentifier.listFilesView",
-				"contents": "To effectively capture files, ensure you include the file type within the workspace settings.\n[Open Workspace Setting](command:workbench.action.openWorkspaceSettingsFile)\nTo learn more about how to use the Starter Kit [read our docs](https://github.com/githubUsername/extension-starter-kit)."
+				"contents": "%extensionIdentifier.listFilesView.welcome%"
 			}
 		],
 		"viewsContainers": {
 			"activitybar": [
 				{
 					"id": "chat-view",
-					"title": "Chat View",
+					"title": "%chat-view%",
 					"icon": "./assets/logo.svg"
 				},
 				{
 					"id": "secondary-view",
-					"title": "Secondary View",
+					"title": "%secondary-view%",
 					"icon": "./assets/logo.svg"
 				}
 			]
@@ -278,26 +278,26 @@
 			"explorer": [
 				{
 					"id": "extensionIdentifier.listFilesView",
-					"name": "List of Files",
+					"name": "%extensionIdentifier.listFilesView%",
 					"visibility": "collapsed"
 				}
 			],
 			"chat-view": [
 				{
 					"id": "extensionIdentifier.chatView",
-					"name": "Chat View",
+					"name": "%extensionIdentifier.chatView%",
 					"type": "webview"
 				}
 			],
 			"secondary-view": [
 				{
 					"id": "extensionIdentifier.colorView",
-					"name": "Color View",
+					"name": "%extensionIdentifier.colorView%",
 					"type": "webview"
 				},
 				{
 					"id": "extensionIdentifier.feedbackView",
-					"name": "Help and Feedback",
+					"name": "%extensionIdentifier.feedbackView%",
 					"visibility": "visible"
 				}
 			]

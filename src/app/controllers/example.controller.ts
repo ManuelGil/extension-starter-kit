@@ -1,8 +1,8 @@
 import JsonToTS from 'json-to-ts';
-import { Range, TextEditor, Uri, window, workspace } from 'vscode';
+import { l10n, Range, TextEditor, Uri, window, workspace } from 'vscode';
 
 // Import the Config and helper functions
-import { ExtensionConfig } from '../configs';
+import { EXTENSION_NAME, ExtensionConfig } from '../configs';
 import {
   directoryMap,
   getPath,
@@ -56,7 +56,8 @@ export class ExampleController {
    */
   helloWorld(): void {
     // Display a message box to the user
-    showMessage('Hello World from extension-starter-kit!');
+    const message = l10n.t('Hello World from {0}!', [EXTENSION_NAME]);
+    showMessage(message);
   }
 
   /**
@@ -112,7 +113,8 @@ export class ExampleController {
 
       // If the file is written, show a message
       if (result) {
-        showMessage('Files found and saved to files.json');
+        const message = l10n.t('Files found and saved to files.json');
+        showMessage(message);
       }
     }
   }
