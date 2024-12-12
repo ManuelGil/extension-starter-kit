@@ -20,7 +20,7 @@ export const EXTENSION_ID: string = 'extensionIdentifier';
  *
  * @returns {string} - The repository ID of the extension
  */
-export const EXTENSION_NAME: string = 'extension-starter-kit';
+export const EXTENSION_NAME: string = 'vscode-extension-starter-advanced';
 
 /**
  * EXTENSION_DISPLAY_NAME: The name of the extension.

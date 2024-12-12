@@ -1,5 +1,5 @@
 {
-	"name": "extension-starter-kit",
+	"name": "vscode-extension-starter-advanced",
 	"displayName": "My Extension",
 	"description": "My First Extension for Visual Studio Code",
 	"version": "1.0.0",
@@ -35,13 +35,13 @@
 		"vscode",
 		"vsxpert"
 	],
-	"homepage": "https://github.com/githubUsername/extension-starter-kit",
+	"homepage": "https://github.com/githubUsername/vscode-extension-starter-advanced",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/githubUsername/extension-starter-kit"
+		"url": "https://github.com/githubUsername/vscode-extension-starter-advanced"
 	},
 	"bugs": {
-		"url": "https://github.com/githubUsername/extension-starter-kit/issues"
+		"url": "https://github.com/githubUsername/vscode-extension-starter-advanced/issues"
 	},
 	"activationEvents": [],
 	"main": "./out/extension.js",
@@ -243,14 +243,14 @@
 				{
 					"command": "extensionIdentifier.getFilesInFolder",
 					"alt": "%extensionIdentifier.getFilesInFolder%",
-					"group": "extension-starter-kit@1"
+					"group": "vscode-extension-starter-advanced@1"
 				}
 			],
 			"extensionIdentifier.editor.submenu": [
 				{
 					"command": "extensionIdentifier.convertToTS",
 					"alt": "%extensionIdentifier.convertToTS%",
-					"group": "extension-starter-kit@2"
+					"group": "vscode-extension-starter-advanced@2"
 				}
 			]
 		},

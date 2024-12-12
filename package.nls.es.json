@@ -17,7 +17,7 @@
 	"extensionIdentifier.listFiles.openFile": "Abrir Archivo",
 	"extensionIdentifier.colors.addColor": "Agregar Color",
 	"extensionIdentifier.colors.clearColors": "Limpiar Colores",
-	"extensionIdentifier.listFilesView.welcome": "Para capturar archivos de manera efectiva, asegúrese de incluir el tipo de archivo en la configuración del espacio de trabajo.\n[Abrir Configuración del Espacio de Trabajo](command:workbench.action.openWorkspaceSettingsFile)\nPara obtener más información sobre cómo usar el Kit de Inicio [lea nuestra documentación](https://github.com/githubUsername/extension-starter-kit).",
+	"extensionIdentifier.listFilesView.welcome": "Para capturar archivos de manera efectiva, asegúrese de incluir el tipo de archivo en la configuración del espacio de trabajo.\n[Abrir Configuración del Espacio de Trabajo](command:workbench.action.openWorkspaceSettingsFile)\nPara obtener más información sobre cómo usar el Kit de Inicio [lea nuestra documentación](https://github.com/githubUsername/vscode-extension-starter-advanced).",
 	"chat-view": "Vista de Chat",
 	"secondary-view": "Vista Secundaria",
 	"extensionIdentifier.listFilesView": "Lista de Archivos",

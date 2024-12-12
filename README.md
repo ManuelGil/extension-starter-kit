@@ -1,11 +1,11 @@
 # VS Code Extension - Starter Kit
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/extensionPublisher.extension-starter-kit?style=for-the-badge&label=VS%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.extension-starter-kit)
-[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/extensionPublisher.extension-starter-kit?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.extension-starter-kit)
-[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/extensionPublisher.extension-starter-kit?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.extension-starter-kit)
-[![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/extensionPublisher.extension-starter-kit?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.extension-starter-kit&ssr=false#review-details)
-[![GitHub Repo stars](https://img.shields.io/github/stars/githubUsername/extension-starter-kit?style=for-the-badge&logo=github)](https://github.com/githubUsername/extension-starter-kit)
-[![GitHub license](https://img.shields.io/github/license/githubUsername/extension-starter-kit?style=for-the-badge&logo=github)](https://github.com/githubUsername/extension-starter-kit/blob/main/LICENSE)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/extensionPublisher.vscode-extension-starter-advanced?style=for-the-badge&label=VS%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.vscode-extension-starter-advanced)
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/extensionPublisher.vscode-extension-starter-advanced?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.vscode-extension-starter-advanced)
+[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/extensionPublisher.vscode-extension-starter-advanced?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.vscode-extension-starter-advanced)
+[![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/extensionPublisher.vscode-extension-starter-advanced?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=extensionPublisher.vscode-extension-starter-advanced&ssr=false#review-details)
+[![GitHub Repo stars](https://img.shields.io/github/stars/githubUsername/vscode-extension-starter-advanced?style=for-the-badge&logo=github)](https://github.com/githubUsername/vscode-extension-starter-advanced)
+[![GitHub license](https://img.shields.io/github/license/githubUsername/vscode-extension-starter-advanced?style=for-the-badge&logo=github)](https://github.com/githubUsername/vscode-extension-starter-advanced/blob/main/LICENSE)
 
 This is a starter kit for creating a new extension for Visual Studio Code. It includes a basic structure and configuration to start developing a new extension.
 
@@ -83,7 +83,7 @@ To get started with the extension, follow these steps:
 
     ```bash
     git clone
-    cd extension-starter-kit
+    cd vscode-extension-starter-advanced
     npm install
     code .
     ```
@@ -101,7 +101,7 @@ To customize the extension, follow these steps:
 1. Update multiple instances of the following items in bulk:
 
     - `extensionIdentifier` - Replace with your extension identifier, e.g. `fileManager`
-    - `extension-starter-kit` - Replace with your extension name, e.g. `vscode-file-manager`
+    - `vscode-extension-starter-advanced` - Replace with your extension name, e.g. `vscode-file-manager`
     - `My Extension` - Replace with your extension display name, e.g. `VS Code File Manager`
     - `githubUsername` - Replace with your GitHub githubUsername, e.g. `ManuelGil`
     - `extensionPublisher` - Replace with your extension publisher, e.g. `imgildev`
@@ -167,7 +167,7 @@ This extension was created using [VSXpert](https://vsxpert.com), a template that
 
 ## Contributing
 
-This extension is open-source software, and we welcome contributions from the community. If you'd like to contribute, please fork the [GitHub repository](https://github.com/ManuelGil/extension-starter-kit) and submit a pull request with your changes.
+This extension is open-source software, and we welcome contributions from the community. If you'd like to contribute, please fork the [GitHub repository](https://github.com/ManuelGil/vscode-extension-starter-advanced) and submit a pull request with your changes.
 
 Before contributing, please read our [Contribution Guidelines](./CONTRIBUTING.md) for instructions on coding standards, testing, and more.
 
@@ -183,7 +183,7 @@ For a complete list of changes, see the [CHANGELOG.md](./CHANGELOG.md)
 
 - **Manuel Gil** - _Owner_ - [ManuelGil](https://github.com/ManuelGil)
 
-See also the list of [contributors](https://github.com/ManuelGil/extension-starter-kit/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ManuelGil/vscode-extension-starter-advanced/contributors) who participated in this project.
 
 ## License
 
