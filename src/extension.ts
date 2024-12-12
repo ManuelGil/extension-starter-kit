@@ -23,18 +23,53 @@ import { OpenAIService } from './app/services';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
   // The code you place here will be executed every time your command is executed
-  let resource:
-    | vscode.Uri
-    | vscode.TextDocument
-    | vscode.WorkspaceFolder
-    | undefined;
+  let resource: vscode.WorkspaceFolder | undefined;
 
-  // Get the resource for the workspace
-  if (vscode.workspace.workspaceFolders) {
-    resource = vscode.workspace.workspaceFolders[0];
+  // Check if there are workspace folders
+  if (
+    !vscode.workspace.workspaceFolders ||
+    vscode.workspace.workspaceFolders.length === 0
+  ) {
+    const message = vscode.l10n.t(
+      'No workspace folders are open. Please open a workspace folder to use this extension',
+    );
+    vscode.window.showErrorMessage(message);
+    return;
   }
+
+  // Optionally, prompt the user to select a workspace folder if multiple are available
+  if (vscode.workspace.workspaceFolders.length === 1) {
+    resource = vscode.workspace.workspaceFolders[0];
+  } else {
+    const placeHolder = vscode.l10n.t(
+      'Select a workspace folder to use. This folder will be used to load workspace-specific configuration for the extension',
+    );
+    const selectedFolder = await vscode.window.showWorkspaceFolderPick({
+      placeHolder,
+    });
+
+    resource = selectedFolder;
+  }
+
+  // -----------------------------------------------------------------
+  // Initialize the extension
+  // -----------------------------------------------------------------
+
+  // Get the configuration for the extension
+  const config = new ExtensionConfig(
+    vscode.workspace.getConfiguration(EXTENSION_ID, resource?.uri),
+  );
+
+  // Watch for changes in the configuration
+  vscode.workspace.onDidChangeConfiguration((event) => {
+    if (event.affectsConfiguration(EXTENSION_ID, resource?.uri)) {
+      config.update(
+        vscode.workspace.getConfiguration(EXTENSION_ID, resource?.uri),
+      );
+    }
+  });
 
   // -----------------------------------------------------------------
   // Get version of the extension
@@ -65,15 +100,6 @@ export function activate(context: vscode.ExtensionContext) {
     // Update the version in the global state
     context.globalState.update('version', currentVersion);
   }
-
-  // -----------------------------------------------------------------
-  // Initialize the extension
-  // -----------------------------------------------------------------
-
-  // Get the configuration for the extension
-  const config = new ExtensionConfig(
-    vscode.workspace.getConfiguration(EXTENSION_ID, resource),
-  );
 
   // #region Example
 
