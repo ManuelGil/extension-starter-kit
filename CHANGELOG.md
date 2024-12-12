@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2024-12-12
+
+### Changed
+
+- Update workspace folder handling and configuration initialization
+
 ## [1.9.0] - 2024-11-18
 
 ### Added
@@ -200,7 +206,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix file creation issue when creating a new file
 
-[unreleased]: https://github.com/ManuelGil/vscode-extension-starter-advanced/compare/v1.9.0...HEAD
+[unreleased]: https://github.com/ManuelGil/vscode-extension-starter-advanced/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/ManuelGil/vscode-extension-starter-advanced/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/ManuelGil/vscode-extension-starter-advanced/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/ManuelGil/vscode-extension-starter-advanced/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/ManuelGil/vscode-extension-starter-advanced/compare/v1.6.0...v1.7.0
